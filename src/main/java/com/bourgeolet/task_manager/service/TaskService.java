@@ -23,9 +23,6 @@ public class TaskService {
 
 
     public TaskResponseDTO create(Task task) {
-        if ((task.getTitle() == null)) {
-            throw new IllegalArgumentException("title is required");
-        }
 
         Task taskResponse = taskRepository.save(task);
 
@@ -42,7 +39,7 @@ public class TaskService {
 
     public List<TaskResponseDTO> getTasksByUserId(Long userId) throws UserNotFoundException {
         if (!userRepository.existsById(userId)) {
-            throw new UserNotFoundException("User " + userId + " not found");
+            throw new UserNotFoundException(userId);
         }
 
         List<Task> taskList = taskRepository.findByUserId(userId);

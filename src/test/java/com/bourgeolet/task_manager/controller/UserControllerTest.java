@@ -1,58 +1,94 @@
 package com.bourgeolet.task_manager.controller;
 
+import com.bourgeolet.task_manager.dto.TaskCreateDTO;
+import com.bourgeolet.task_manager.dto.TaskResponseDTO;
+import com.bourgeolet.task_manager.dto.UserCreateDTO;
 import com.bourgeolet.task_manager.dto.UserResponseDTO;
 import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.repository.UserRepository;
+import com.bourgeolet.task_manager.service.TaskService;
 import com.bourgeolet.task_manager.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+import tools.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest(UserController.class)
 class UserControllerTest {
+    @Autowired
+    MockMvc mockMvc;
 
-    @Mock
-    UserRepository userRepository;
+    @MockitoBean
+    TaskService taskService;
 
-    @InjectMocks
+    @MockitoBean
     UserService userService;
 
+    @Autowired
+    ObjectMapper objectMapper;
 
-    @Test
-    void createUser_success() {
-        User input = new User();
-        input.setUsername("Test");
+    List<TaskResponseDTO> listTaskResponse = new ArrayList<>();
+    TaskResponseDTO taskResponse = new TaskResponseDTO(1L, "Titre", "Desc", "User", false);
+    UserResponseDTO userResponse = new UserResponseDTO(10L, "Username", "Email@test.com");
+    UserCreateDTO userCreateKo = new UserCreateDTO(null, "email@email.test");
+    UserCreateDTO userCreate = new UserCreateDTO("Username", "email@email.test");
 
-        User saved = new User();
-        saved.setId(1L);
-        saved.setUsername("test");
-        when(userRepository.save(any(User.class))).thenReturn(saved);
-
-        UserResponseDTO result = userService.create(input);
-
-        assertEquals("test", result.username());
-        assertEquals(1L, result.id());
+    @BeforeEach
+    void setUp() {
+        listTaskResponse.add(new TaskResponseDTO(10L, "Titre1", "Desc1", "User1", false));
+        listTaskResponse.add(new TaskResponseDTO(20L, "Titre2", "Desc2", "User2", false));
+        listTaskResponse.add(new TaskResponseDTO(30L, "Titre3", "Desc3", "User3", false));
     }
 
     @Test
-    void createUser_missingUsername_shouldFail() {
-        User input = new User();
-        input.setEmail("test@example.com");
-
-        assertThrows(IllegalArgumentException.class, () -> userService.create(input));
+    void create_ok() throws Exception {
+        when(userService.create(any())).thenReturn(userResponse);
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(userCreate)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("Username"));
     }
 
     @Test
-    void create() {
+    void create_ko_no_username() throws Exception {
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(userCreateKo)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
-    void all() {
+    void all() throws Exception {
+        when(userService.create(any())).thenReturn(userResponse);
+
+        mockMvc.perform(get("/users"))
+                        .andExpect(status().isOk());
+
     }
+
+    @Test
+    void findByUserId() throws Exception {
+
+        when(taskService.getTasksByUserId(10L)).thenReturn(listTaskResponse);
+        mockMvc.perform(get("/users/10/tasks"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].title").value("Titre1"));
+    }
+
+
 }
