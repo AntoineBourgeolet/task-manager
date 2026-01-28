@@ -5,6 +5,7 @@ import com.bourgeolet.task_manager.dto.TaskResponseDTO;
 import com.bourgeolet.task_manager.dto.UserCreateDTO;
 import com.bourgeolet.task_manager.dto.UserResponseDTO;
 import com.bourgeolet.task_manager.entity.User;
+import com.bourgeolet.task_manager.model.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
 import com.bourgeolet.task_manager.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,16 +43,16 @@ class UserControllerTest {
     ObjectMapper objectMapper;
 
     List<TaskResponseDTO> listTaskResponse = new ArrayList<>();
-    TaskResponseDTO taskResponse = new TaskResponseDTO(1L, "Titre", "Desc", "User", false);
-    UserResponseDTO userResponse = new UserResponseDTO(10L, "Username", "Email@test.com");
+    TaskResponseDTO taskResponse = new TaskResponseDTO(1L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO);
+    UserResponseDTO userResponse = new UserResponseDTO( "Username", "Email@test.com");
     UserCreateDTO userCreateKo = new UserCreateDTO(null, "email@email.test");
     UserCreateDTO userCreate = new UserCreateDTO("Username", "email@email.test");
 
     @BeforeEach
     void setUp() {
-        listTaskResponse.add(new TaskResponseDTO(10L, "Titre1", "Desc1", "User1", false));
-        listTaskResponse.add(new TaskResponseDTO(20L, "Titre2", "Desc2", "User2", false));
-        listTaskResponse.add(new TaskResponseDTO(30L, "Titre3", "Desc3", "User3", false));
+        listTaskResponse.add(new TaskResponseDTO(10L, "Titre1", "Desc1", "User1", 1,null, TaskStatus.TODO));
+        listTaskResponse.add(new TaskResponseDTO(20L, "Titre2", "Desc2", "User2", 1,null, TaskStatus.TODO));
+        listTaskResponse.add(new TaskResponseDTO(30L, "Titre3", "Desc3", "User3", 1,null, TaskStatus.TODO));
     }
 
     @Test
@@ -84,7 +85,7 @@ class UserControllerTest {
     @Test
     void findByUserId() throws Exception {
 
-        when(taskService.getTasksByUserId(10L)).thenReturn(listTaskResponse);
+        when(taskService.getTasksByUserId("Username")).thenReturn(listTaskResponse);
         mockMvc.perform(get("/users/10/tasks"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("Titre1"));

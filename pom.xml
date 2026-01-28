@@ -34,6 +34,12 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+            <version>2.4.240</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-h2console</artifactId>
+            <!-- version gérée par le parent; sinon, mets 4.0.1/4.0.2 -->
         </dependency>
         <dependency>
 			<groupId>org.springframework.boot</groupId>

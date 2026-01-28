@@ -38,10 +38,10 @@ public class UserController {
     public List<UserResponseDTO> all() {
         return userService.findAll();
     }
-
+/*
     @GetMapping("/{user_id}/tasks")
     public List<TaskResponseDTO> findByUserId(@PathVariable Long user_id) throws UserNotFoundException {
         return taskService.getTasksByUserId(user_id);
     }
-
+*/
 }

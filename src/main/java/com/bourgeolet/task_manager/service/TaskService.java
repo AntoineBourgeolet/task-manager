@@ -3,12 +3,18 @@ package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.dto.TaskResponseDTO;
 import com.bourgeolet.task_manager.entity.Task;
+import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.exception.UserNotFoundException;
+import com.bourgeolet.task_manager.model.TaskStatus;
 import com.bourgeolet.task_manager.repository.TaskRepository;
 import com.bourgeolet.task_manager.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -37,16 +43,36 @@ public class TaskService {
                 .toList();
     }
 
-    public List<TaskResponseDTO> getTasksByUserId(Long userId) throws UserNotFoundException {
-        if (!userRepository.existsById(userId)) {
-            throw new UserNotFoundException(userId);
+    public List<TaskResponseDTO> getTasksByUserId(String username) throws UserNotFoundException {
+        if (userRepository.findUserByUsername(username) != null) {
+            throw new UserNotFoundException(username);
         }
 
-        List<Task> taskList = taskRepository.findByUserId(userId);
+        List<Task> taskList = taskRepository.findByUser(username);
 
         return taskList.stream()
                 .map(this::toTaskResponseDTO)
                 .toList();
+    }
+
+
+    public TaskResponseDTO changeStatus(Long taskId, TaskStatus newStatus) {
+        Task newTask = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException("Task not found"));
+        newTask.setStatus(newStatus);
+        return toTaskResponseDTO(taskRepository.save(newTask));
+
+    }
+
+    public TaskResponseDTO changeUser(Long taskId, String username) {
+        Task newTask = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException("Task not found"));
+        User newUser = userRepository.findUserByUsername(username);
+        if (newUser == null){
+            throw new UserNotFoundException(null);
+        }
+
+        newTask.setUser(newUser);
+        return toTaskResponseDTO(taskRepository.save(newTask));
+
     }
 
     private TaskResponseDTO toTaskResponseDTO(Task task) {
@@ -58,7 +84,10 @@ public class TaskService {
                 task.getTitle(),
                 task.getDescription(),
                 username,
-                task.isDone()
+                task.getPriority(),
+                task.getTags(),
+                task.getStatus()
         );
     }
+
 }

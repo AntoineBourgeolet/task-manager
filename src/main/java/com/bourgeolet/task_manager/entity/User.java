@@ -15,14 +15,11 @@ import java.util.List;
 @Setter
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
     private List<Task> idTicketAffectees;
 
     @NotBlank
+    @Id
     private String username;
 
     private String email;

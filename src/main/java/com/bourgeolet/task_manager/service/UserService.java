@@ -36,13 +36,12 @@ public class UserService {
 
     }
 
-    public User getUserById(Long id) {
-            return userRepository.getReferenceById(id);
+    public User getUserByUsername(String username) {
+            return userRepository.findUserByUsername(username);
     }
 
     private UserResponseDTO toUserResponseDTO(User user) {
         return new UserResponseDTO(
-                user.getId(),
                 user.getUsername(),
                 user.getEmail()
         );
