@@ -1,0 +1,57 @@
+
+.kanban {
+  /* 5 colonnes alignées sur une seule rangée */
+  display: grid;
+  grid-auto-flow: column;                /* empile en colonnes */
+  grid-auto-columns: minmax(280px, 1fr); /* largeur de base de chaque colonne */
+  column-gap: 16px;
+
+  /* scroll horizontal si besoin */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Esthétique de colonne */
+.kanban__column {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Scrollbar (optionnel) */
+.kanban::-webkit-scrollbar { height: 10px; }
+.kanban::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.2);
+  border-radius: 999px;
+}
+
+mat-card{
+  margin-bottom: 5px;
+  max-width: 400px;
+
+}
+
+
+.column{
+  border-left: #aaaaaa 1px solid;
+  padding-left: 20px;
+}
+
+
+.header{
+  margin-bottom: 20px;
+}
+
+.user_button{
+  margin-top: 15px;
+}
+
+.tag-chip-set{
+  margin-left: 15px;
+}
