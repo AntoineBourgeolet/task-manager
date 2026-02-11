@@ -1,11 +1,125 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule, MatChipEditedEvent, MatChipGrid, MatChipInputEvent, MatChipRow, MatChipInput } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Tag, Task, TaskCreateDto } from '../../models/task';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../models/user';
+import { FormsModule } from '@angular/forms';
+import { TaskService } from '../../services/task/task.service';
+import { TaskEventsService } from '../../services/events/task-events/task-events.service';
 
 @Component({
   selector: 'app-task-create',
-  imports: [],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, MatChipGrid,
+    MatChipRow, MatIconModule, MatChipInput, MatChipsModule,FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './task-create.html',
   styleUrl: './task-create.css',
 })
 export class TaskCreate {
+
+
+constructor(
+  private dialogRef: MatDialogRef<TaskCreate>,
+  private taskEvents: TaskEventsService
+) {}
+
+
+  userService: UserService = inject(UserService);
+  taskService: TaskService = inject(TaskService);
+
+  users: User[] = [];
+  readonly addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly tags = signal<Tag[]>([]);
+  readonly announcer = inject(LiveAnnouncer);
+  description: string = "";
+  titre: string = "";
+  priority: number = 3;
+  utilisateurAffecte: string = "";
+
+taskCreateDto: TaskCreateDto = { title: '', description: '', userAffectee: null, priority: 1, tags: [] };
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.userService.getAllUser().subscribe({
+      next: (usersResponse) => {
+        this.users = usersResponse;
+        console.log(this.users)
+      },
+    });
+  }
+
+  createTask(): void {
+   this.taskCreateDto = { title: this.titre, description: this.description, userAffectee: this.utilisateurAffecte, priority: this.priority, tags: this.tags() };
+    this.taskService.create(this.taskCreateDto).subscribe(() => {
+      
+    this.taskEvents.notifyRefresh(); // 🔥 DÉCLENCHEUR
+
+      this.dialogRef.close();
+     });
+  }
+
+  cancelCreate(): void {
+    this.dialogRef.close();
+  }
+
+
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our tag
+    if (value) {
+      this.tags.update(tags => [...tags, { name: value }]);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(tag: Tag): void {
+    this.tags.update(tags => {
+      const index = tags.indexOf(tag);
+      if (index < 0) {
+        return tags;
+      }
+
+      tags.splice(index, 1);
+      this.announcer.announce(`Removed ${tag.name}`);
+      return [...tags];
+    });
+  }
+
+  edit(tag: Tag, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove tag if it no longer has a name
+    if (!value) {
+      this.remove(tag);
+      return;
+    }
+
+    // Edit existing tag
+    this.tags.update(tags => {
+      const index = tags.indexOf(tag);
+      if (index >= 0) {
+        tags[index].name = value;
+        return [...tags];
+      }
+      return tags;
+    });
+  }
+
 
 }

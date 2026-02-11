@@ -4,12 +4,10 @@
     </button>
     <span>Task Manager Antoine</span>
     <span class="spacer"></span>
-    <button matIconButton class=" favorite-icon" aria-label="icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button matIconButton aria-label="icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
+        <button matButton="elevated" (click)="createTask()">Créer un ticket</button>
+        <button matButton="elevated" (click)="createUser()">Créer un Utilisateur</button>
+
+    
 </mat-toolbar>
 
 <router-outlet />

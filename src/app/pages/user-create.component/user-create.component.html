@@ -1,0 +1,15 @@
+<mat-dialog-content>
+
+    <mat-form-field>
+        <mat-label>Nom d'utilisateur : </mat-label>
+        <input matInput required [(ngModel)]="username">
+    </mat-form-field><br>
+    <mat-form-field>
+        <mat-label>Email : </mat-label>
+        <input matInput [(ngModel)]="email">
+    </mat-form-field><br>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton="elevated" (click)="cancelCreate()">Annuler</button>
+    <button matButton="elevated" (click)="createTask()">Créer</button>
+</mat-dialog-actions>

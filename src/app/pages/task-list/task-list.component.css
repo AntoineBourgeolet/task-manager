@@ -1,57 +1,223 @@
-
+/* ============================
+   LAYOUT GÉNÉRAL
+============================ */
 .kanban {
-  /* 5 colonnes alignées sur une seule rangée */
   display: grid;
-  grid-auto-flow: column;                /* empile en colonnes */
-  grid-auto-columns: minmax(280px, 1fr); /* largeur de base de chaque colonne */
-  column-gap: 16px;
-
-  /* scroll horizontal si besoin */
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  padding: 16px;
-  box-sizing: border-box;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+  padding: 0.5rem;
 }
 
-/* Esthétique de colonne */
-.kanban__column {
-  background: #f6f6f6;
-  border-radius: 12px;
-  padding: 12px;
-  min-height: 70vh;
+/* ============================
+   COLONNES
+============================ */
+.column-card {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  height: 100%;
 }
 
-/* Scrollbar (optionnel) */
-.kanban::-webkit-scrollbar { height: 10px; }
-.kanban::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,.2);
-  border-radius: 999px;
+.column-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: .5rem .75rem;
+  gap: .5rem;
 }
 
-mat-card{
-  margin-bottom: 5px;
-  max-width: 400px;
-
+.column-icon {
+  background: rgba(63, 81, 181, 0.12);
+  color: rgb(63, 81, 181);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
 }
 
-
-.column{
-  border-left: #aaaaaa 1px solid;
-  padding-left: 20px;
+.column-title {
+  font-weight: 400;
+  flex: 1;
 }
 
-
-.header{
-  margin-bottom: 20px;
+.count {
+  opacity: .75;
+  font-size: .85rem;
 }
 
-.user_button{
-  margin-top: 15px;
+.column-card mat-card-content {
+  padding-top: .5rem;
 }
 
-.tag-chip-set{
-  margin-left: 15px;
+/* ============================
+   LISTE DE CARTES
+============================ */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 4rem;
+}
+
+.card {
+  cursor: grab;
+}
+
+/* ============================
+   TASK CARDS
+============================ */
+.task-card {
+  transition: box-shadow .2s ease, transform .15s ease;
+  border-radius: .5rem;
+  padding-bottom: 0.25rem;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, .18));
+}
+
+.task-title {
+  font-weight: 600;
+  line-height: 1.2;
+  font-size: 1.2rem;
+}
+
+.task-subtitle {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  opacity: 0.9;
+}
+
+.task-id {
+  opacity: .6;
+}
+
+.due {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+.due.overdue {
+  color: var(--mdc-theme-error, #d32f2f);
+  font-weight: 600;
+}
+
+.w-100 {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.user-option {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* ============================
+   TAGS & CHIPS
+============================ */
+.tag-chip-set {
+  margin-top: .35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .6rem;
+}
+
+.tag-chip {
+  --mdc-chip-outline-color: rgba(0, 0, 0, .2);
+}
+
+/* ============================
+   PRIORITÉ
+============================ */
+.priority-line {
+  margin-top: .4rem;
+}
+
+.priority-chip {
+  font-weight: 600 !important;
+}
+
+/* couleurs regroupées */
+.priority-chip.p1,
+.priority-dot.p1 {
+  background: #ffebee !important;
+  color: #c62828 !important;
+}
+
+.priority-chip.p2,
+.priority-dot.p2 {
+  background: #fff8e1 !important;
+  color: #ef6c00 !important;
+}
+
+.priority-chip.p3,
+.priority-dot.p3 {
+  background: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+.priority-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+/* ============================
+   DRAG & DROP
+============================ */
+.drag-preview {
+  padding: .6rem .9rem;
+  border-radius: .5rem;
+  background: var(--mdc-filled-text-field-container-color, #fff);
+  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, .18));
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 500;
+}
+
+.drag-placeholder {
+  height: 64px;
+  border: 2px dashed rgba(63, 81, 181, .5);
+  border-radius: .5rem;
+  background: rgba(63, 81, 181, .08);
+}
+
+/* ============================
+   EMPTY STATE
+============================ */
+.empty {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  color: rgba(0, 0, 0, .5);
+  border: 1px dashed rgba(0, 0, 0, .15);
+  border-radius: .5rem;
+  font-size: .9rem;
+  gap: .5rem;
+}
+
+/* ============================
+   SPACER
+============================ */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ============================
+   ANCIENNES CLASSES DE COULEUR
+============================ */
+.card-red   { border-left: 4px solid #e53935; }
+.card-orange{ border-left: 4px solid #fb8c00; }
+.card-green { border-left: 4px solid #43a047; }
+
+
+
+.id-card{
+  text-align: center;
 }
