@@ -1,4 +1,4 @@
-package com.bourgeolet.task_manager.model;
+package com.bourgeolet.task_manager.model.task;
 
 
 public enum TaskStatus {

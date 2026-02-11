@@ -1,6 +1,4 @@
-package com.bourgeolet.task_manager.dto;
-
-import jakarta.validation.constraints.NotBlank;
+package com.bourgeolet.task_manager.dto.task;
 
 import java.util.List;
 

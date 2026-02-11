@@ -1,11 +1,9 @@
 package com.bourgeolet.task_manager.controller;
 
-import com.bourgeolet.task_manager.dto.TaskCreateDTO;
-import com.bourgeolet.task_manager.dto.TaskResponseDTO;
-import com.bourgeolet.task_manager.dto.UserCreateDTO;
-import com.bourgeolet.task_manager.dto.UserResponseDTO;
-import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.model.TaskStatus;
+import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
+import com.bourgeolet.task_manager.dto.user.UserCreateDTO;
+import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
+import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
 import com.bourgeolet.task_manager.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +18,6 @@ import tools.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

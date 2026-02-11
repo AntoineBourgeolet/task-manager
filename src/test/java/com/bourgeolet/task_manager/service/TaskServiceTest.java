@@ -1,7 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
-import com.bourgeolet.task_manager.dto.TaskCreateDTO;
-import com.bourgeolet.task_manager.dto.TaskResponseDTO;
+import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
+import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
 import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.repository.TaskRepository;

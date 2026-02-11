@@ -1,8 +1,7 @@
 package com.bourgeolet.task_manager.entity;
 
-import com.bourgeolet.task_manager.model.TaskStatus;
+import com.bourgeolet.task_manager.model.task.TaskStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Null;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,8 @@ import java.util.List;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
+    @SequenceGenerator(name = "task_seq", sequenceName = "task_seq")
     private Long id;
 
     @ManyToOne(cascade = CascadeType.DETACH)

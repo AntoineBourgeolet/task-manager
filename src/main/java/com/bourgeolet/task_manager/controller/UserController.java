@@ -1,47 +1,48 @@
 package com.bourgeolet.task_manager.controller;
 
-import com.bourgeolet.task_manager.dto.TaskResponseDTO;
-import com.bourgeolet.task_manager.dto.UserCreateDTO;
-import com.bourgeolet.task_manager.dto.UserResponseDTO;
-import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.exception.UserNotFoundException;
-import com.bourgeolet.task_manager.service.TaskService;
+import com.bourgeolet.task_manager.config.global.GlobalConstant;
+import com.bourgeolet.task_manager.dto.user.UserCreateDTO;
+import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
+import com.bourgeolet.task_manager.events.UserCreateCommand;
+import com.bourgeolet.task_manager.kafka.user.UserCreateProducer;
 import com.bourgeolet.task_manager.service.UserService;
 import jakarta.validation.Valid;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
+import static com.bourgeolet.task_manager.config.global.GlobalConstant.APPLICATION_KAFKA_SOURCE;
+import static java.time.LocalTime.now;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
-    private final TaskService taskService;
+    private final UserCreateProducer producer;
+
+    public record CreateUserAcceptedDTO(String name, String status) {
+    }
 
 
-    public UserController(UserService userService, TaskService taskService) {
+    public UserController(UserService userService, UserCreateProducer producer) {
         super();
         this.userService = userService;
-        this.taskService = taskService;
+        this.producer = producer;
     }
 
     @PostMapping
-    public UserResponseDTO create(@Valid @RequestBody UserCreateDTO dto) {
-        User user = new User();
-        user.setEmail(dto.email());
-        user.setUsername(dto.username());
-        return userService.create(user);
+    public ResponseEntity<@NotNull UserResponseDTO> create(@Valid @RequestBody UserCreateDTO dto) {
+        userService.create(dto);
+        return ResponseEntity.accepted().body(response);
     }
 
     @GetMapping
     public List<UserResponseDTO> all() {
         return userService.findAll();
     }
-/*
-    @GetMapping("/{user_id}/tasks")
-    public List<TaskResponseDTO> findByUserId(@PathVariable Long user_id) throws UserNotFoundException {
-        return taskService.getTasksByUserId(user_id);
-    }
-*/
+
 }

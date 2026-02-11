@@ -1,8 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
-import com.bourgeolet.task_manager.dto.UserResponseDTO;
+import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
 import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.repository.TaskRepository;
 import com.bourgeolet.task_manager.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

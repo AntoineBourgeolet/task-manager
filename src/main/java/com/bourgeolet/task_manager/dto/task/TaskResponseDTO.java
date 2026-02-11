@@ -1,7 +1,6 @@
-package com.bourgeolet.task_manager.dto;
+package com.bourgeolet.task_manager.dto.task;
 
-import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.model.TaskStatus;
+import com.bourgeolet.task_manager.model.task.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;

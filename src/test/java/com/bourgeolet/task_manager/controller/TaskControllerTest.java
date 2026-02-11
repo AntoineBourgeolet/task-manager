@@ -1,10 +1,10 @@
 package com.bourgeolet.task_manager.controller;
 
-import com.bourgeolet.task_manager.dto.TaskCreateDTO;
-import com.bourgeolet.task_manager.dto.TaskResponseDTO;
+import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
+import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
 import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.exception.UserNotFoundException;
-import com.bourgeolet.task_manager.model.TaskStatus;
+import com.bourgeolet.task_manager.exception.user.UserNotFoundException;
+import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
 import com.bourgeolet.task_manager.service.UserService;
 import org.junit.jupiter.api.Test;
