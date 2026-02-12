@@ -8,7 +8,7 @@ import { TaskCreate } from './pages/task-create/task-create';
 import { take } from 'rxjs';
 import { TaskService } from './services/task/task.service';
 import { routes } from './app.routes';
-import { UserCreateDto } from './models/user';
+import { UserCreateDto } from './models/user/user';
 import { UserCreateComponent } from './pages/user-create.component/user-create.component';
 
 @Component({

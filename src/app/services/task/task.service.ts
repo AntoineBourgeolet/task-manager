@@ -1,15 +1,18 @@
 
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '../../../environnements/environnement'; // vérifie le chemin
-import { Task, Board, ColumnId, TaskCreateDto } from '../../models/task';
-import { Observable, throwError } from 'rxjs';
-import { TaskCreate } from '../../pages/task-create/task-create';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environnements/environnement';
+import { Observable } from 'rxjs';
+import { Board, Task } from '../../models/task/task';
+import { TaskCreateDto } from '../../models/task/task-create-dto';
+import { TaskDeleteDto } from '../../models/task/task-delete-dto';
+import { TaskChangeStatusDTO } from '../../models/task/task-change-status-dto';
+import { TaskChangeUserAffecteeDTO } from '../../models/task/task-change-user-affectee-dto';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = environment.apiBaseUrl?.replace(/\/$/, '') ?? ''; // ex: '/api'
+  private readonly baseUrl = environment.apiBaseUrl?.replace(/\/$/, '') ?? '';
   private readonly apiUrl = `${this.baseUrl}/tasks`;
 
   getAllTaskByStatus(): Observable<Board> {
@@ -20,20 +23,23 @@ export class TaskService {
     return this.http.get<Task>(this.apiUrl+ "/getTaskById/"+id);
   }
 
-  create(taskCreateDto: TaskCreateDto): Observable<Task> {
-    return this.http.post<Task>(this.apiUrl, taskCreateDto);
+  create(taskCreateDto: TaskCreateDto): Observable < Task > {
+    return this.http.post < Task > (this.apiUrl, taskCreateDto);
   }
 
-  delete(idTask: number | string): Observable<void> {
-    return this.http.delete<void>(this.apiUrl+"/"+idTask);
+  delete(taskDeleteDto: TaskDeleteDto): Observable < void> {
+   return this.http.delete < void > (this.apiUrl, {
+    body: taskDeleteDto,
+    headers: { 'Content-Type': 'application/json' },
+   });
   }
 
-  modifyStatus(task_id: string | number, new_status: String): Observable<Task>{
-    return this.http.patch<Task>(this.apiUrl+"/modifyStatus/"+task_id+"?newStatus="+new_status.toUpperCase(),"");
+  modifyStatus(taskChangeStatusDTO: TaskChangeStatusDTO): Observable < Task > {
+    return this.http.patch < Task > (this.apiUrl + "/modifyStatus", taskChangeStatusDTO);
   }
 
-   modifyUser(task_id: string | number, new_username: String): Observable<Task>{
-    return this.http.patch<Task>(this.apiUrl+"/modifyUser/"+task_id+"?newUser="+new_username,"");
+   modifyUser(taskChangeUserAffecteeDTO: TaskChangeUserAffecteeDTO): Observable<Task>{
+    return this.http.patch<Task>(this.apiUrl+"/modifyUser", taskChangeUserAffecteeDTO);
   }
 
 }

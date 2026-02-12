@@ -8,12 +8,16 @@ import { MatChipsModule, MatChipEditedEvent, MatChipGrid, MatChipInputEvent, Mat
 import { MatIconModule } from '@angular/material/icon';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Tag, Task, TaskCreateDto } from '../../models/task';
 import { UserService } from '../../services/user/user.service';
-import { User } from '../../models/user';
+import { User } from '../../models/user/user';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task/task.service';
 import { TaskEventsService } from '../../services/events/task-events/task-events.service';
+import { Tag } from '../../models/tag/tag';
+import { TaskCreateDto } from '../../models/task/task-create-dto';
+import { TaskChangeUserAffecteeDTO } from '../../models/task/task-change-user-affectee-dto';
+import { TaskChangeStatusDTO } from '../../models/task/task-change-status-dto';
+import { TaskDeleteDto } from '../../models/task/task-delete-dto';
 
 @Component({
   selector: 'app-task-create',
@@ -35,6 +39,7 @@ constructor(
   userService: UserService = inject(UserService);
   taskService: TaskService = inject(TaskService);
 
+  actor: string = "AntoineActor";
   users: User[] = [];
   readonly addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -45,7 +50,8 @@ constructor(
   priority: number = 3;
   utilisateurAffecte: string = "";
 
-taskCreateDto: TaskCreateDto = { title: '', description: '', userAffectee: null, priority: 1, tags: [] };
+taskCreateDto: TaskCreateDto = { actor: 'AntoineActor', title: '', description: '', userAffectee: null, priority: 1, tags: [] };
+
 
   ngOnInit(): void {
     this.loadUsers();
@@ -55,16 +61,15 @@ taskCreateDto: TaskCreateDto = { title: '', description: '', userAffectee: null,
     this.userService.getAllUser().subscribe({
       next: (usersResponse) => {
         this.users = usersResponse;
-        console.log(this.users)
       },
     });
   }
 
   createTask(): void {
-   this.taskCreateDto = { title: this.titre, description: this.description, userAffectee: this.utilisateurAffecte, priority: this.priority, tags: this.tags() };
+   this.taskCreateDto = { actor: this.actor, title: this.titre, description: this.description, userAffectee: this.utilisateurAffecte, priority: this.priority, tags: this.tags() };
     this.taskService.create(this.taskCreateDto).subscribe(() => {
       
-    this.taskEvents.notifyRefresh(); // 🔥 DÉCLENCHEUR
+    this.taskEvents.notifyRefresh();
 
       this.dialogRef.close();
      });

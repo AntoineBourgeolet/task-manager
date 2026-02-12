@@ -9,8 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { UserService } from '../../services/user/user.service';
 import { TaskService } from '../../services/task/task.service';
-import { User } from '../../models/user';
-import { columnsTemplate, Tag, Task } from '../../models/task';
+import { User } from '../../models/user/user';
+import { columnsTemplate, Task } from '../../models/task/task';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { CommonModule, LowerCasePipe } from '@angular/common';
@@ -44,7 +44,7 @@ export class TaskOpenedComponent {
   userService: UserService = inject(UserService);
   taskService: TaskService = inject(TaskService);
 
-  task: Task = {id: "",title: "",description: "", priority: 1,userAffectee: "", status: 'todo', tags : []}
+  task: Task = {id: 0,title: "",description: "", priority: 1,userAffectee: "", status: 'TODO', tags : []}
   users: User[] = [];
   readonly addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -67,7 +67,6 @@ export class TaskOpenedComponent {
     this.userService.getAllUser().subscribe({
       next: (usersResponse) => {
         this.users = usersResponse;
-        console.log(this.users)
       },
     });
   }
@@ -76,9 +75,7 @@ export class TaskOpenedComponent {
     this.taskService.getTaskById(this.data.id).subscribe({
       next: (taskResponse) => {
         this.task = taskResponse;
-        console.log(this.task.status);
         this.statusBinded = this.getStatusById(this.task.status);
-        console.log(this.statusBinded);
         this.cdr.detectChanges();
       }
     })

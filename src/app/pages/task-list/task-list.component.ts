@@ -9,17 +9,20 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { TaskService } from '../../services/task/task.service';
-import { Task, Board, ColumnId, columnsTemplate } from '../../models/task';
+import { Task, Board, columnsTemplate } from '../../models/task/task';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { User } from '../../models/user';
+import { User } from '../../models/user/user';
 import { UserService } from '../../services/user/user.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskEventsService } from '../../services/events/task-events/task-events.service';
 import { TaskOpenedComponent } from '../task-opened.component/task-opened.component';
 import { take } from 'rxjs';
-import { MatBadge } from '@angular/material/badge';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { TaskDeleteDto } from '../../models/task/task-delete-dto';
+import { TaskChangeStatusDTO } from '../../models/task/task-change-status-dto';
+import { TaskChangeUserAffecteeDTO } from '../../models/task/task-change-user-affectee-dto';
+import { move } from '@angular-devkit/schematics';
 
 @Component({
   selector: 'task-list',
@@ -44,12 +47,15 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 export class TaskListComponent {
   columns = columnsTemplate;
 
-  tasks: Board = { todo: [], blocked: [], doing: [], testing: [], done: [] };
+  tasks: Board = { TODO: [], BLOCKED: [], DOING: [], TESTING: [], DONE: [] };
   users: User[] = [];
   loading = true;
 
+  actor: string = "AntoineActor";
 
-
+  taskChangeUserAffecteeDTO: TaskChangeUserAffecteeDTO = { actor: 'AntoineActor', id: 0, newUser: ''};
+  taskChangeStatusDTO: TaskChangeStatusDTO = { actor: 'AntoineActor', id: 0, newStatus: ''};
+  taskDeleteDto: TaskDeleteDto = { actor: 'AntoineActor', id: 0};
 
 
 
@@ -65,6 +71,7 @@ export class TaskListComponent {
   ngOnInit(): void {
 
     this.taskEvents.refreshList$.subscribe(() => {
+      this.loadUsers();
       this.loadBoard();
     });
 
@@ -78,7 +85,6 @@ export class TaskListComponent {
     this.userService.getAllUser().subscribe({
       next: (usersResponse) => {
         this.users = usersResponse;
-        console.log(this.users)
       },
     });
   }
@@ -99,8 +105,10 @@ export class TaskListComponent {
         });
   }
 
-  deleteTask(idTask: number | string) {
-    this.taskService.delete(idTask).subscribe(() => {
+  deleteTask(idTask: number) {
+   this.taskDeleteDto = { actor: this.actor, id: idTask };
+
+    this.taskService.delete(this.taskDeleteDto).subscribe(() => {
       this.loadBoard();
       this.cdr.detectChanges();
     });
@@ -117,11 +125,12 @@ export class TaskListComponent {
     });
   }
 
-  affecteUser(id: number | string, event: string): void {
-    this.taskService.modifyUser(id, event).subscribe();
+  affecteUser(idTask: number, newTaskUser: string): void {
+    this.taskChangeUserAffecteeDTO = {actor: this.actor, id: idTask, newUser: newTaskUser};
+    console.log(this.taskChangeUserAffecteeDTO);
+    this.taskService.modifyUser(this.taskChangeUserAffecteeDTO).subscribe();
   }
 
-// Pour CDK
 getConnectedLists(): string[] {
   return this.columns.map(c => c.id);
 }
@@ -138,7 +147,8 @@ drop(event: CdkDragDrop<Task[]>, targetColId: string) {
     );
     const moved = event.container.data[event.currentIndex];
     console.log(moved.id,targetColId.toUpperCase());
-    this.taskService.modifyStatus?.( moved.id,targetColId).subscribe();
+    this.taskChangeStatusDTO = {actor: this.actor, id: moved.id, newStatus: targetColId}
+    this.taskService.modifyStatus?.(this.taskChangeStatusDTO).subscribe();
   }
 }
 

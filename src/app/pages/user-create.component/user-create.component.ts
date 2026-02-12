@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserService } from '../../services/user/user.service';
-import { UserCreateDto } from '../../models/user';
+import { UserCreateDto } from '../../models/user/user';
 import { TaskEventsService } from '../../services/events/task-events/task-events.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,8 +32,10 @@ export class UserCreateComponent {
   readonly announcer = inject(LiveAnnouncer);
   username: string = "";
   email: string = "";
+  actor: string = "AntoineActor";
 
-userCreateDto: UserCreateDto = { username: '', email: '' };
+userCreateDto: UserCreateDto = {actor:'', username: '', email: '' };
+
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -41,11 +43,11 @@ userCreateDto: UserCreateDto = { username: '', email: '' };
     
   }
 
-  createTask(): void {
-   this.userCreateDto = { username: this.username, email: this.email};
+  createUser(): void {
+   this.userCreateDto = { actor: this.actor, username: this.username, email: this.email};
     this.userService.create(this.userCreateDto).subscribe(() => {
       
-    this.taskEvents.notifyRefresh(); // 🔥 DÉCLENCHEUR
+    this.taskEvents.notifyRefresh();
 
       this.dialogRef.close();
      });
