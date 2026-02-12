@@ -13,7 +13,7 @@ import { TaskChangeUserAffecteeDTO } from '../../models/task/task-change-user-af
 export class TaskService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiBaseUrl?.replace(/\/$/, '') ?? '';
-  private readonly apiUrl = `${this.baseUrl}/tasks`;
+  private readonly apiUrl = `${this.baseUrl}/task`;
 
   getAllTaskByStatus(): Observable<Board> {
     return this.http.get<Board>(this.apiUrl+ "/allByStatus");

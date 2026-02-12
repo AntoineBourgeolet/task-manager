@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   private readonly http = inject(HttpClient);
     private readonly baseUrl = environment.apiBaseUrl?.replace(/\/$/, '') ?? '';
-    private readonly apiUrl = `${this.baseUrl}/users`;
+    private readonly apiUrl = `${this.baseUrl}/account`;
   
       getAllUser(): Observable<User[]> {
         return this.http.get<User[]>(this.apiUrl);
