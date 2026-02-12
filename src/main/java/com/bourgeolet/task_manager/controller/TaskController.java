@@ -1,6 +1,7 @@
 package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.task.*;
+import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.mapper.TaskMapper;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/task")
 public class TaskController {
 
     private final TaskMapper taskMapper;
@@ -32,17 +33,20 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<@NotNull TaskResponseDTO> create(@Valid @RequestBody TaskCreateDTO dto) {
-        return ResponseEntity.accepted().body(taskService.create(taskMapper.taskFromTaskCreateDTO(dto), dto.actor()));
+        Task result = taskService.create(taskMapper.taskFromTaskCreateDTO(dto), dto.actor());
+        return ResponseEntity.accepted().body(taskMapper.taskToTaskResponseDTO(result));
     }
 
     @PatchMapping(path = "/modifyStatus")
     public ResponseEntity<@NotNull TaskResponseDTO> modifyStatus(@Valid @RequestBody TaskChangeStatusDTO dto) {
-        return ResponseEntity.accepted().body(taskService.changeStatus(dto.id(), dto.newStatus(), dto.actor()));
+        Task result = taskService.changeStatus(dto.id(), dto.newStatus(), dto.actor());
+        return ResponseEntity.accepted().body(taskMapper.taskToTaskResponseDTO(result));
     }
 
     @PatchMapping(path = "/modifyUser")
     public ResponseEntity<@NotNull TaskResponseDTO> modifyUser(@Valid @RequestBody TaskChangeUserAffecteeDTO dto) {
-        return ResponseEntity.accepted().body(taskService.changeUser(dto.id(), dto.newUser(), dto.actor()));
+        Task result = taskService.changeUserAffectee(dto.id(), dto.newUser(), dto.actor());
+        return ResponseEntity.accepted().body(taskMapper.taskToTaskResponseDTO(result));
     }
 
     @DeleteMapping()

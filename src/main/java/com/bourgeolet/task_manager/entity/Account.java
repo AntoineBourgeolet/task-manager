@@ -9,18 +9,18 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "account")
 @Getter
 @Setter
-public class User {
+public class Account {
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.DETACH)
     private List<Task> idTicketAffectees;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
-    @SequenceGenerator(name = "task_seq", sequenceName = "task_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
+    @SequenceGenerator(name = "account_seq", sequenceName = "account_seq")
     private Long id;
 
     @NotBlank

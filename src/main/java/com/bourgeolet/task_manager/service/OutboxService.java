@@ -2,6 +2,7 @@ package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.config.audit.AuditEvent;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
+import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.mapper.OutboxMapper;
 import com.bourgeolet.task_manager.repository.OutboxRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,20 +26,20 @@ public class OutboxService {
         outboxRepository.markPublished(id);
     }
 
-    public void ticketStatusChangedAuditEvent(TaskResponseDTO result, String oldStatus, String newStatus, String actor) {
-        AuditEvent evt = AuditEvent.ticketChangedStatus(result.id(), actor, oldStatus, newStatus);
+    public void ticketStatusChangedAuditEvent(Task result, String oldStatus, String newStatus, String actor) {
+        AuditEvent evt = AuditEvent.ticketChangedStatus(result.getId(), actor, oldStatus, newStatus);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 
-    public void ticketChangedUserAffecteeAuditEvent(TaskResponseDTO result, String oldUser, String newUser, String actor) {
+    public void ticketChangedUserAffecteeAuditEvent(Task result, String oldUser, String newUser, String actor) {
         oldUser = Objects.requireNonNullElse(oldUser, "");
         newUser = Objects.requireNonNullElse(newUser, "");
-        AuditEvent evt = AuditEvent.ticketChangedUserAffectee(result.id(), actor, oldUser, newUser);
+        AuditEvent evt = AuditEvent.ticketChangedUserAffectee(result.getId(), actor, oldUser, newUser);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 
-    public void ticketCreatedAuditEvent(TaskResponseDTO result, String actor) {
-        AuditEvent evt = AuditEvent.ticketCreated(result.id(), actor);
+    public void ticketCreatedAuditEvent(Task result, String actor) {
+        AuditEvent evt = AuditEvent.ticketCreated(result.getId(), actor);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 

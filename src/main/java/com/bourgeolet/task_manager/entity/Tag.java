@@ -5,14 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tags")
+@Table(name = "tag")
 @Getter
 @Setter
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
-    @SequenceGenerator(name = "task_seq", sequenceName = "task_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tag_seq")
+    @SequenceGenerator(name = "tag_seq", sequenceName = "tag_seq")
     private Long id;
 
     private String name;

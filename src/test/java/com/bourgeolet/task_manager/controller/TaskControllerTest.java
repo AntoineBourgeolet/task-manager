@@ -2,11 +2,11 @@ package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.entity.User;
-import com.bourgeolet.task_manager.exception.user.UserNotFoundException;
+import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
-import com.bourgeolet.task_manager.service.UserService;
+import com.bourgeolet.task_manager.service.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -32,14 +32,14 @@ class TaskControllerTest {
     TaskService taskService;
 
     @MockitoBean
-    UserService userService;
+    AccountService accountService;
 
     @Autowired
     ObjectMapper objectMapper;
 
     @Test
     void create_ok() throws Exception {
-        when(userService.getUserByUsername("Username")).thenReturn(new User());
+        when(accountService.getUserByUsername("Username")).thenReturn(new Account());
         when(taskService.create(any(),"Actor")).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO));
 
         mockMvc.perform(post("/tasks")
@@ -59,13 +59,13 @@ class TaskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userAffectee").isEmpty());
 
-        verify(userService, never()).getUserByUsername(any());
+        verify(accountService, never()).getUserByUsername(any());
     }
 
     @Test
     void create_ok_user_not_found() throws Exception {
         String id = "Username";
-        when(userService.getUserByUsername(id)).thenThrow(new UserNotFoundException(id));
+        when(accountService.getUserByUsername(id)).thenThrow(new AccountNotFoundException(id));
 
         mockMvc.perform(post("/tasks")
                         .contentType(MediaType.APPLICATION_JSON)

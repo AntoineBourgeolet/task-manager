@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "task")
 @Getter
 @Setter
 public class Task {
@@ -19,8 +19,8 @@ public class Task {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "user_username")
-    private User user;
+    @JoinColumn(name = "account_username")
+    private Account account;
 
     private String title;
 

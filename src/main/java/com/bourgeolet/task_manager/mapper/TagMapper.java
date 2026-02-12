@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TagMapper {
 
-    public TagCreateDTO tagToTagCreateDTO(Tag tag){
-        return new TagCreateDTO(tag.getName());
-    }
 
     public Tag tagCreateDTOToTag(TagCreateDTO tagCreateDTO){
         Tag tag = new Tag();
@@ -22,12 +19,5 @@ public class TagMapper {
 
     public TagResponseDTO tagToTagResponseDTO(Tag tag){
         return new TagResponseDTO(tag.getId(), tag.getName());
-    }
-
-    public Tag tagResponseDTOToTag(TagResponseDTO tagResponseDTO){
-        Tag tag = new Tag();
-        tag.setId(tagResponseDTO.id());
-        tag.setName(tagResponseDTO.name());
-        return tag;
     }
 }

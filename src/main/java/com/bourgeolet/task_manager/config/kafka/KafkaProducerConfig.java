@@ -1,7 +1,6 @@
 package com.bourgeolet.task_manager.config.kafka;
 
 
-import com.bourgeolet.task_manager.events.UserCreateCommand;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.jetbrains.annotations.NotNull;
@@ -36,9 +35,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<@NotNull String, @NotNull String> outboxCreateKafkaTemplate(
-            ProducerFactory<@NotNull String, @NotNull String> pf
-    ) {
+    public KafkaTemplate<@NotNull String, @NotNull String> outboxCreateKafkaTemplate(ProducerFactory<@NotNull String, @NotNull String> pf) {
         return new KafkaTemplate<>(pf);
     }
 }

@@ -1,11 +1,11 @@
 package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.dto.user.UserCreateDTO;
-import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
+import com.bourgeolet.task_manager.dto.account.AccountCreateDTO;
+import com.bourgeolet.task_manager.dto.account.AccountResponseDTO;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
-import com.bourgeolet.task_manager.service.UserService;
+import com.bourgeolet.task_manager.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class)
-class UserControllerTest {
+@WebMvcTest(AccountController.class)
+class AccountControllerTest {
     @Autowired
     MockMvc mockMvc;
 
@@ -34,16 +34,16 @@ class UserControllerTest {
     TaskService taskService;
 
     @MockitoBean
-    UserService userService;
+    AccountService accountService;
 
     @Autowired
     ObjectMapper objectMapper;
 
     List<TaskResponseDTO> listTaskResponse = new ArrayList<>();
     TaskResponseDTO taskResponse = new TaskResponseDTO(1L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO);
-    UserResponseDTO userResponse = new UserResponseDTO( "Username", "Email@test.com");
-    UserCreateDTO userCreateKo = new UserCreateDTO("actor",null, "email@email.test");
-    UserCreateDTO userCreate = new UserCreateDTO("actor","Username", "email@email.test");
+    AccountResponseDTO userResponse = new AccountResponseDTO( "Username", "Email@test.com");
+    AccountCreateDTO userCreateKo = new AccountCreateDTO("actor",null, "email@email.test");
+    AccountCreateDTO userCreate = new AccountCreateDTO("actor","Username", "email@email.test");
 
     @BeforeEach
     void setUp() {
@@ -54,7 +54,7 @@ class UserControllerTest {
 
     @Test
     void create_ok() throws Exception {
-        when(userService.create(any())).thenReturn(userResponse);
+        when(accountService.create(any())).thenReturn(userResponse);
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userCreate)))
@@ -72,7 +72,7 @@ class UserControllerTest {
 
     @Test
     void all() throws Exception {
-        when(userService.create(any())).thenReturn(userResponse);
+        when(accountService.create(any())).thenReturn(userResponse);
 
         mockMvc.perform(get("/users"))
                         .andExpect(status().isOk());

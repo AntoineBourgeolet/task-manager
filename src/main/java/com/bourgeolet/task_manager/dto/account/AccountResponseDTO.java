@@ -1,8 +1,8 @@
-package com.bourgeolet.task_manager.dto.user;
+package com.bourgeolet.task_manager.dto.account;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record UserResponseDTO(
+public record AccountResponseDTO(
          @NotBlank String username,
         String email
 ) {

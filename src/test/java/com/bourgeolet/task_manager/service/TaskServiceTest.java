@@ -2,10 +2,10 @@ package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
+import com.bourgeolet.task_manager.entity.Account;
 import com.bourgeolet.task_manager.entity.Task;
-import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.repository.TaskRepository;
-import com.bourgeolet.task_manager.repository.UserRepository;
+import com.bourgeolet.task_manager.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +30,7 @@ class TaskServiceTest {
     TaskRepository taskRepository;
 
     @Mock
-    UserRepository userRepository;
+    AccountRepository accountRepository;
 
     @InjectMocks
     TaskService taskService;
@@ -42,7 +42,7 @@ class TaskServiceTest {
     private Task simpleTasks1;
     private Task simpleTasks2;
 
-    private User user;
+    private Account account;
 
     @BeforeEach
     void setUp() {
@@ -66,9 +66,9 @@ class TaskServiceTest {
         listOfTasks.add(simpleTasks1);
         listOfTasks.add(simpleTasks2);
 
-        user = new User();
-        user.setUsername("Username");
-        user.setEmail("email@email.com");
+        account = new Account();
+        account.setUsername("Username");
+        account.setEmail("email@email.com");
     }
 
 
@@ -106,7 +106,7 @@ class TaskServiceTest {
     @Test
     void getTasksByUserId() {
 
-        when(userRepository.existsById(1L)).thenReturn(true);
+        when(accountRepository.existsById(1L)).thenReturn(true);
 
         List<TaskResponseDTO> result = taskService.getTasksByUserId("Username");
 
@@ -117,8 +117,8 @@ class TaskServiceTest {
         assertEquals("Titre2", result.get(1).title());
         assertEquals("Description2", result.get(1).description());
 
-        verify(userRepository).existsById(1L);
-        verifyNoMoreInteractions(userRepository, taskRepository);
+        verify(accountRepository).existsById(1L);
+        verifyNoMoreInteractions(accountRepository, taskRepository);
 
     }
 

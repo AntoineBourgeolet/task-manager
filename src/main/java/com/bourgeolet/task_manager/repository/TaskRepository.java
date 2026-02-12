@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<@NotNull Task, @NotNull Long> {
 
-    List<Task> findByUser(String username);
+    List<Task> findByAccount(String username);
 
 }
