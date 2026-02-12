@@ -2,7 +2,7 @@ package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.entity.Users;
+import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.exception.user.UserNotFoundException;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TaskController.class)
-class TasksControllerTest {
+class TaskControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -39,7 +39,7 @@ class TasksControllerTest {
 
     @Test
     void create_ok() throws Exception {
-        when(userService.getUserByUsername("Username")).thenReturn(new Users());
+        when(userService.getUserByUsername("Username")).thenReturn(new User());
         when(taskService.create(any(),"Actor")).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO));
 
         mockMvc.perform(post("/tasks")

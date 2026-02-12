@@ -2,7 +2,7 @@ package com.bourgeolet.task_manager.mapper;
 
 import com.bourgeolet.task_manager.dto.user.UserCreateDTO;
 import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
-import com.bourgeolet.task_manager.entity.Users;
+import com.bourgeolet.task_manager.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
 
 
-    public UserResponseDTO userToUserResponseDTO(Users users) {
-        return new UserResponseDTO(users.getUsername(), users.getEmail());
+    public UserResponseDTO userToUserResponseDTO(User user) {
+        return new UserResponseDTO(user.getUsername(), user.getEmail());
     }
 
-    public Users userCreateDTOToUser(@Valid UserCreateDTO dto) {
-        Users users = new Users();
-        users.setUsername(dto.username());
-        users.setEmail(dto.email());
-        return users;
+    public User userCreateDTOToUser(@Valid UserCreateDTO dto) {
+        User user = new User();
+        user.setUsername(dto.username());
+        user.setEmail(dto.email());
+        return user;
     }
 }

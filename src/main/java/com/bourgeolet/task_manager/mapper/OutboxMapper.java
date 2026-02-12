@@ -12,7 +12,7 @@ public class OutboxMapper {
     private final ObjectMapper objectMapper;
 
     public Outbox toOutbox(AuditEvent evt) {
-        String payload = writeJson(evt); // stocke tout l’événement tel quel
+        String payload = writeJson(evt);
         Outbox out = new Outbox();
         out.setId(evt.eventId());
         out.setAggregateType(evt.aggregateType());

@@ -1,7 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
-import com.bourgeolet.task_manager.entity.Users;
+import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.mapper.UserMapper;
 import com.bourgeolet.task_manager.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +18,17 @@ public class UserService {
     private final UserMapper userMapper;
 
 
-    public UserResponseDTO create(Users users) {
-        return userMapper.userToUserResponseDTO(userRepository.save(users));
+    public UserResponseDTO create(User user) {
+        return userMapper.userToUserResponseDTO(userRepository.save(user));
     }
 
     public List<UserResponseDTO> findAll() {
-        List<Users> usersList = userRepository.findAll();
-        return usersList.stream().map(userMapper::userToUserResponseDTO).toList();
+        List<User> userList = userRepository.findAll();
+        return userList.stream().map(userMapper::userToUserResponseDTO).toList();
 
     }
 
-    public Users getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 

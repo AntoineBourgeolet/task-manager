@@ -2,8 +2,8 @@ package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.entity.Tasks;
-import com.bourgeolet.task_manager.entity.Users;
+import com.bourgeolet.task_manager.entity.Task;
+import com.bourgeolet.task_manager.entity.User;
 import com.bourgeolet.task_manager.repository.TaskRepository;
 import com.bourgeolet.task_manager.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class TasksServiceTest {
+class TaskServiceTest {
 
 
     @Mock
@@ -36,27 +36,27 @@ class TasksServiceTest {
     TaskService taskService;
 
 
-    private Tasks tasksToSave;
+    private Task tasksToSave;
     private TaskCreateDTO taskToSaveDTO;
-    private List<Tasks> listOfTasks;
-    private Tasks simpleTasks1;
-    private Tasks simpleTasks2;
+    private List<Task> listOfTasks;
+    private Task simpleTasks1;
+    private Task simpleTasks2;
 
-    private Users users;
+    private User user;
 
     @BeforeEach
     void setUp() {
-        tasksToSave = new Tasks();
+        tasksToSave = new Task();
         tasksToSave.setTitle("Titre1");
         tasksToSave.setDescription("Description1");
 
         taskToSaveDTO = new TaskCreateDTO("actor","user","title","desc", 1, null);
 
-        simpleTasks1 = new Tasks();
+        simpleTasks1 = new Task();
         simpleTasks1.setTitle("Titre1");
         simpleTasks1.setDescription("Description1");
 
-        simpleTasks2 = new Tasks();
+        simpleTasks2 = new Task();
         simpleTasks2.setTitle("Titre2");
         simpleTasks2.setDescription("Description2");
 
@@ -66,15 +66,15 @@ class TasksServiceTest {
         listOfTasks.add(simpleTasks1);
         listOfTasks.add(simpleTasks2);
 
-        users = new Users();
-        users.setUsername("Username");
-        users.setEmail("email@email.com");
+        user = new User();
+        user.setUsername("Username");
+        user.setEmail("email@email.com");
     }
 
 
     @Test
     void create_ok() {
-        when(taskRepository.save(any(Tasks.class))).thenReturn(tasksToSave);
+        when(taskRepository.save(any(Task.class))).thenReturn(tasksToSave);
 
         TaskResponseDTO result = taskService.create(tasksToSave, "actor");
 

@@ -2,9 +2,9 @@ package com.bourgeolet.task_manager.service;
 
 
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.entity.Tasks;
-import com.bourgeolet.task_manager.entity.Users;
-import com.bourgeolet.task_manager.exception.user.TaskNotFoundException;
+import com.bourgeolet.task_manager.entity.Task;
+import com.bourgeolet.task_manager.entity.User;
+import com.bourgeolet.task_manager.exception.task.TaskNotFoundException;
 import com.bourgeolet.task_manager.exception.user.UserNotFoundException;
 import com.bourgeolet.task_manager.mapper.TaskMapper;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
@@ -27,14 +27,14 @@ public class TaskService {
     private final OutboxService outboxService;
 
 
-    public TaskResponseDTO create(Tasks tasks, String actor) {
+    public TaskResponseDTO create(Task tasks, String actor) {
         TaskResponseDTO taskResponseDTO = taskMapper.taskToTaskResponseDTO(taskRepository.save(tasks));
         outboxService.ticketCreatedAuditEvent(taskResponseDTO, actor);
         return taskResponseDTO;
     }
 
     public TaskResponseDTO changeStatus(Long idTask, TaskStatus newStatus, String actor) {
-        Tasks tasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
+        Task tasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
         TaskStatus oldStatus = tasks.getStatus();
         tasks.setStatus(newStatus);
         TaskResponseDTO result = taskMapper.taskToTaskResponseDTO(taskRepository.save(tasks));
@@ -44,16 +44,16 @@ public class TaskService {
     }
 
     public TaskResponseDTO changeUser(Long idTask, String newUsername, String actor) {
-        Tasks newTasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
-        String oldUsername = newTasks.getUsers() != null ? newTasks.getUsers().getUsername() : "";
+        Task newTasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
+        String oldUsername = newTasks.getUser() != null ? newTasks.getUser().getUsername() : "";
         if (newUsername == null || newUsername.isBlank()) {
-            newTasks.setUsers(null);
+            newTasks.setUser(null);
         } else {
-            Users newUsers = userRepository.findUserByUsername(newUsername);
-            if (newUsers == null) {
+            User newUser = userRepository.findUserByUsername(newUsername);
+            if (newUser == null) {
                 throw new UserNotFoundException(null);
             }
-            newTasks.setUsers(newUsers);
+            newTasks.setUser(newUser);
         }
 
         TaskResponseDTO taskResponseDTO = taskMapper.taskToTaskResponseDTO(taskRepository.save(newTasks));
@@ -63,7 +63,7 @@ public class TaskService {
     }
 
     public void deleteTask(Long idTask, String actor) {
-        Tasks tasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
+        Task tasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
         outboxService.ticketDeleteAuditEvent(idTask, actor);
         taskRepository.delete(tasks);
     }
@@ -74,7 +74,7 @@ public class TaskService {
             throw new UserNotFoundException(username);
         }
 
-        List<Tasks> tasksList = taskRepository.findByUser(username);
+        List<Task> tasksList = taskRepository.findByUser(username);
 
         return tasksList.stream().map(taskMapper::taskToTaskResponseDTO).toList();
     }
@@ -85,7 +85,7 @@ public class TaskService {
     }
 
     public List<TaskResponseDTO> findAll() {
-        List<Tasks> tasksList = taskRepository.findAll();
+        List<Task> tasksList = taskRepository.findAll();
 
         return tasksList.stream().map(taskMapper::taskToTaskResponseDTO).toList();
     }

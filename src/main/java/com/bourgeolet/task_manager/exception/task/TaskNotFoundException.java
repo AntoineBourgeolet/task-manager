@@ -1,4 +1,4 @@
-package com.bourgeolet.task_manager.exception.user;
+package com.bourgeolet.task_manager.exception.task;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

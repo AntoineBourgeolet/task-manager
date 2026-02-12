@@ -1,0 +1,33 @@
+package com.bourgeolet.task_manager.mapper;
+
+import com.bourgeolet.task_manager.dto.tag.TagCreateDTO;
+import com.bourgeolet.task_manager.dto.tag.TagResponseDTO;
+import com.bourgeolet.task_manager.entity.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
+public class TagMapper {
+
+    public TagCreateDTO tagToTagCreateDTO(Tag tag){
+        return new TagCreateDTO(tag.getName());
+    }
+
+    public Tag tagCreateDTOToTag(TagCreateDTO tagCreateDTO){
+        Tag tag = new Tag();
+        tag.setName(tagCreateDTO.name());
+        return tag;
+    }
+
+    public TagResponseDTO tagToTagResponseDTO(Tag tag){
+        return new TagResponseDTO(tag.getId(), tag.getName());
+    }
+
+    public Tag tagResponseDTOToTag(TagResponseDTO tagResponseDTO){
+        Tag tag = new Tag();
+        tag.setId(tagResponseDTO.id());
+        tag.setName(tagResponseDTO.name());
+        return tag;
+    }
+}
