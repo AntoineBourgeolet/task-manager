@@ -1,6 +1,6 @@
 2026-01-21 13:46:49.512224+01:00 database: flush
-org.h2.message.DbException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
+org.h2.message.DbException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -150,12 +150,12 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/an
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 149 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
@@ -163,8 +163,8 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
 	... 143 more
 2026-01-22 11:24:48.826778+01:00 database: flush
-org.h2.message.DbException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
+org.h2.message.DbException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -314,12 +314,12 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/an
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:237)
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]" [50000-240]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 149 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/task-manager/data/taskdb.mv.db [2.4.240/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/antoine.bourgeolet/Documents/Recherche mission 2026/ProjetFilRouge/tasks-manager/data/taskdb.mv.db [2.4.240/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
@@ -1721,3 +1721,354 @@ ORDER BY event_at
 FOR UPDATE SKIP LOCKED
 LIMIT ?
  [42000-240]
+2026-02-12 12:01:14.304724+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:16.387548+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:18.399390+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:20.414522+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:22.433037+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:24.451026+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:26.462598+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:28.472394+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:30.481418+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:32.493098+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:34.507573+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:36.515191+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:39.137545+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:01:41.161056+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:13.718812+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:16.383149+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:26.872589+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:33.052333+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:35.076022+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:37.092951+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:39.346448+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:41.365225+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:43.374573+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:45.389329+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:47.400264+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:49.413277+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:51.421398+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:53.440178+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:55.450404+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:57.460948+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:41:59.471135+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:01.495792+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:03.516726+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:05.530165+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:07.541451+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:09.550040+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:11.574506+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:13.583365+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]
+2026-02-12 12:42:15.592242+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TICKET_OUTBOX" non trouvée
+Table "TICKET_OUTBOX" not found; SQL statement:
+SELECT *
+FROM ticket_outbox
+WHERE published = false
+ORDER BY event_at
+LIMIT ?
+ [42102-240]

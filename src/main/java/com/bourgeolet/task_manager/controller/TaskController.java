@@ -1,8 +1,7 @@
 package com.bourgeolet.task_manager.controller;
 
-import com.bourgeolet.task_manager.dto.task.TaskByStatusResponseDTO;
-import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
-import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
+import com.bourgeolet.task_manager.dto.task.*;
+import com.bourgeolet.task_manager.mapper.TaskMapper;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
 import jakarta.validation.Valid;
@@ -16,19 +15,40 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
+    private final TaskMapper taskMapper;
+
     private final TaskService taskService;
 
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, TaskMapper taskMapper) {
         super();
         this.taskService = taskService;
+        this.taskMapper = taskMapper;
+    }
+
+    private static List<TaskResponseDTO> getStatusList(List<TaskResponseDTO> listTask, TaskStatus taskStatus) {
+        return listTask.stream().filter(taskResponseDTO -> taskResponseDTO.status().equals(taskStatus)).toList();
     }
 
     @PostMapping
     public ResponseEntity<@NotNull TaskResponseDTO> create(@Valid @RequestBody TaskCreateDTO dto) {
-        return ResponseEntity.accepted().body(taskService.create(dto));
+        return ResponseEntity.accepted().body(taskService.create(taskMapper.taskFromTaskCreateDTO(dto), dto.actor()));
     }
 
+    @PatchMapping(path = "/modifyStatus")
+    public ResponseEntity<@NotNull TaskResponseDTO> modifyStatus(@Valid @RequestBody TaskChangeStatusDTO dto) {
+        return ResponseEntity.accepted().body(taskService.changeStatus(dto.id(), dto.newStatus(), dto.actor()));
+    }
+
+    @PatchMapping(path = "/modifyUser")
+    public ResponseEntity<@NotNull TaskResponseDTO> modifyUser(@Valid @RequestBody TaskChangeUserAffecteeDTO dto) {
+        return ResponseEntity.accepted().body(taskService.changeUser(dto.id(), dto.newUser(), dto.actor()));
+    }
+
+    @DeleteMapping()
+    public void delete(@Valid @RequestBody TaskDeleteDTO dto) {
+        taskService.deleteTask(dto.id(), dto.actor());
+    }
 
     @GetMapping
     public List<TaskResponseDTO> all() {
@@ -38,37 +58,12 @@ public class TaskController {
     @GetMapping(path = "/allByStatus")
     public TaskByStatusResponseDTO allByStatus() {
         List<TaskResponseDTO> listTask = taskService.findAll();
-        return new TaskByStatusResponseDTO(
-                getStatusList(listTask, TaskStatus.TODO),
-                getStatusList(listTask, TaskStatus.BLOCKED),
-                getStatusList(listTask, TaskStatus.DOING),
-                getStatusList(listTask, TaskStatus.TESTING),
-                getStatusList(listTask, TaskStatus.DONE)
-        );
-    }
-
-    @PatchMapping(path = "/modifyStatus/{taskId}")
-    public TaskResponseDTO modifyStatus(@RequestParam("newStatus") TaskStatus newStatus, @PathVariable Long taskId) {
-        return taskService.changeStatus(taskId, newStatus);
-    }
-
-    @PatchMapping(path = "/modifyUser/{taskId}")
-    public TaskResponseDTO modifyUser(@RequestParam("newUser") String newUser, @PathVariable Long taskId) {
-        return taskService.changeUser(taskId, newUser);
-    }
-
-    @DeleteMapping(path = "/{taskId}")
-    public void deleteTask(@PathVariable Long taskId) {
-        taskService.deleteTask(taskId);
+        return new TaskByStatusResponseDTO(getStatusList(listTask, TaskStatus.TODO), getStatusList(listTask, TaskStatus.BLOCKED), getStatusList(listTask, TaskStatus.DOING), getStatusList(listTask, TaskStatus.TESTING), getStatusList(listTask, TaskStatus.DONE));
     }
 
     @GetMapping(path = "/getTaskById/{taskId}")
     public TaskResponseDTO getTaskById(@PathVariable Long taskId) {
         return taskService.getTaskById(taskId);
-    }
-
-    private static List<TaskResponseDTO> getStatusList(List<TaskResponseDTO> listTask, TaskStatus taskStatus) {
-        return listTask.stream().filter(taskResponseDTO -> taskResponseDTO.status().equals(taskStatus)).toList();
     }
 
 

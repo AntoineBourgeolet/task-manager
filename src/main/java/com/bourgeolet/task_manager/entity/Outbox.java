@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "ticket_outbox")
+@Table(name = "outbox")
 public class Outbox {
 
     @Id

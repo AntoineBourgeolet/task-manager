@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-class UserControllerTest {
+class UsersControllerTest {
     @Autowired
     MockMvc mockMvc;
 
@@ -42,8 +42,8 @@ class UserControllerTest {
     List<TaskResponseDTO> listTaskResponse = new ArrayList<>();
     TaskResponseDTO taskResponse = new TaskResponseDTO(1L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO);
     UserResponseDTO userResponse = new UserResponseDTO( "Username", "Email@test.com");
-    UserCreateDTO userCreateKo = new UserCreateDTO(null, "email@email.test");
-    UserCreateDTO userCreate = new UserCreateDTO("Username", "email@email.test");
+    UserCreateDTO userCreateKo = new UserCreateDTO("actor",null, "email@email.test");
+    UserCreateDTO userCreate = new UserCreateDTO("actor","Username", "email@email.test");
 
     @BeforeEach
     void setUp() {

@@ -15,7 +15,7 @@ public interface OutboxRepository extends JpaRepository<@NotNull Outbox, @NotNul
 
     @Query(value = """
         SELECT *
-        FROM ticket_outbox
+        FROM outbox
         WHERE published = false
         ORDER BY event_at
         LIMIT :batchSize
@@ -24,7 +24,7 @@ public interface OutboxRepository extends JpaRepository<@NotNull Outbox, @NotNul
 
     @Modifying
     @Query(value = """
-        UPDATE ticket_outbox
+        UPDATE outbox
         SET published = true, published_at = now()
         WHERE id = :id
         """, nativeQuery = true)

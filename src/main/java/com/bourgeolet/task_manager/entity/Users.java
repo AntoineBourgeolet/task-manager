@@ -2,11 +2,9 @@ package com.bourgeolet.task_manager.entity;
 
 
 import jakarta.persistence.*;
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
@@ -14,10 +12,11 @@ import java.util.List;
 @Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class Users {
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
-    private List<Task> idTicketAffectees;
+    private List<Tasks> idTicketAffectees;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")

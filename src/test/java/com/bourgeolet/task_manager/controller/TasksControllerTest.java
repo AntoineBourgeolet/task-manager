@@ -2,7 +2,7 @@ package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
-import com.bourgeolet.task_manager.entity.User;
+import com.bourgeolet.task_manager.entity.Users;
 import com.bourgeolet.task_manager.exception.user.UserNotFoundException;
 import com.bourgeolet.task_manager.model.task.TaskStatus;
 import com.bourgeolet.task_manager.service.TaskService;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TaskController.class)
-class TaskControllerTest {
+class TasksControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -39,23 +39,23 @@ class TaskControllerTest {
 
     @Test
     void create_ok() throws Exception {
-        when(userService.getUserByUsername("Username")).thenReturn(new User());
-        when(taskService.create(any())).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO));
+        when(userService.getUserByUsername("Username")).thenReturn(new Users());
+        when(taskService.create(any(),"Actor")).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User", 1,null, TaskStatus.TODO));
 
         mockMvc.perform(post("/tasks")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new TaskCreateDTO("Username", "Titre", "Desc", 1,null))))
+                        .content(objectMapper.writeValueAsString(new TaskCreateDTO("actor","username","title","desc", 1, null))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(10));
     }
 
     @Test
     void create_ok_with_no_user() throws Exception {
-        when(taskService.create(any())).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", null, 1,null, TaskStatus.TODO));
+        when(taskService.create(any(),"Actor")).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", null, 1,null, TaskStatus.TODO));
 
         mockMvc.perform(post("/tasks")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new TaskCreateDTO(null, "Titre", "Desc", 1,null))))
+                        .content(objectMapper.writeValueAsString(new TaskCreateDTO("actor",null,"title","des", 1, null))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userAffectee").isEmpty());
 
@@ -69,7 +69,7 @@ class TaskControllerTest {
 
         mockMvc.perform(post("/tasks")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new TaskCreateDTO(id, "Titre", "Desc"))))
+                        .content(objectMapper.writeValueAsString(new TaskCreateDTO("actor",null,"title",null, 1, null))))
                 .andExpect(status().isNotFound());
 
 
@@ -80,7 +80,7 @@ class TaskControllerTest {
 
         mockMvc.perform(post("/tasks")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new TaskCreateDTO(1L, null, "Desc"))))
+                        .content(objectMapper.writeValueAsString(new TaskCreateDTO("actor",null,null,null, 1, null))))
                 .andExpect(status().isBadRequest());
     }
 
@@ -88,7 +88,7 @@ class TaskControllerTest {
     void all() throws Exception {
 
 
-        when(taskService.create(any())).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User", false));
+        when(taskService.create(any(),"Actor")).thenReturn(new TaskResponseDTO(10L, "Titre", "Desc", "User",1, null , TaskStatus.TODO));
 
 
         mockMvc.perform(get("/tasks"))

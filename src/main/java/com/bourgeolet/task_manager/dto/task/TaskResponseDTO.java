@@ -5,14 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-public record TaskResponseDTO(
-        @NotBlank Long id,
-        String title,
-        String description,
-        String userAffectee ,
-         int priority,
-         List<String>tags,
-         TaskStatus status
-) {
+public record TaskResponseDTO(@NotBlank Long id, String title, String description, String userAffectee, int priority,
+                              List<String> tags, TaskStatus status) {
 
 }

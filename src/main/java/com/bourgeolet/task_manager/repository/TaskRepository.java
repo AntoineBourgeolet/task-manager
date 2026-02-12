@@ -1,13 +1,13 @@
 package com.bourgeolet.task_manager.repository;
 
-import com.bourgeolet.task_manager.entity.Task;
+import com.bourgeolet.task_manager.entity.Tasks;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface TaskRepository extends JpaRepository<@NotNull Task, @NotNull Long> {
+public interface TaskRepository extends JpaRepository<@NotNull Tasks, @NotNull Long> {
 
-    List<Task> findByUser(String username);
+    List<Tasks> findByUser(String username);
 
 }

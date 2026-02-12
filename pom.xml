@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>com.bourgeolet</groupId>
-    <artifactId>task-manager</artifactId>
+    <artifactId>tasks-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>task-manager</name>
-    <description>Projet fil rouge : task-manager</description>
+    <name>tasks-manager</name>
+    <description>Projet fil rouge : tasks-manager</description>
     <url/>
     <licenses>
         <license/>

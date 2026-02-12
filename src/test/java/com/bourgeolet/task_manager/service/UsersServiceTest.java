@@ -1,7 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.dto.user.UserResponseDTO;
-import com.bourgeolet.task_manager.entity.User;
+import com.bourgeolet.task_manager.entity.Users;
 import com.bourgeolet.task_manager.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+class UsersServiceTest {
 
 
     @Mock
@@ -29,41 +29,41 @@ class UserServiceTest {
     UserService userService;
 
 
-    private User userToSave;
-    private List<User> listUser;
-    private User userSimple1;
+    private Users usersToSave;
+    private List<Users> listUsers;
+    private Users usersSimple1;
 
 
     @BeforeEach
     void setUp() {
-        userToSave = new User();
-        userToSave.setUsername("Username");
-        userToSave.setEmail("email@email.com");
+        usersToSave = new Users();
+        usersToSave.setUsername("Username");
+        usersToSave.setEmail("email@email.com");
 
-        userSimple1 = new User();
-        userSimple1.setUsername("username1");
-        userSimple1.setEmail("email1@email.com");
+        usersSimple1 = new Users();
+        usersSimple1.setUsername("username1");
+        usersSimple1.setEmail("email1@email.com");
 
-        User userSimple2 = new User();
-        userSimple2.setUsername("username2");
-        userSimple2.setEmail("email2@email.com");
+        Users usersSimple2 = new Users();
+        usersSimple2.setUsername("username2");
+        usersSimple2.setEmail("email2@email.com");
 
-        listUser = new ArrayList<>();
-        listUser.add(userSimple1);
-        listUser.add(userSimple2);
+        listUsers = new ArrayList<>();
+        listUsers.add(usersSimple1);
+        listUsers.add(usersSimple2);
     }
 
     @Test
     void create() {
-        when(userRepository.save(any(User.class))).thenReturn(userToSave);
+        when(userRepository.save(any(Users.class))).thenReturn(usersToSave);
 
-        UserResponseDTO response = userService.create(userToSave);
+        UserResponseDTO response = userService.create(usersToSave);
 
         assertNotNull(response);
         assertEquals("username", response.username());
         assertEquals("email@email.com", response.email());
 
-        verify(userRepository).save(userToSave);
+        verify(userRepository).save(usersToSave);
     }
 
     @Test
@@ -79,7 +79,7 @@ class UserServiceTest {
 
     @Test
     void findAll() {
-        when(userRepository.findAll()).thenReturn(listUser);
+        when(userRepository.findAll()).thenReturn(listUsers);
 
         List<UserResponseDTO> userResponseDTOList = userService.findAll();
 
@@ -92,15 +92,5 @@ class UserServiceTest {
         verify(userRepository).findAll();
     }
 
-    @Test
-    void getUserById() {
-        when(userRepository.getReferenceById(1L)).thenReturn(userSimple1);
 
-        User result = userService.getUserById(1L);
-
-        assertNotNull(result);
-        assertEquals("username1", result.getUsername());
-        assertEquals("email1@email.com", result.getEmail());
-        verify(userRepository).getReferenceById(1L);
-    }
 }

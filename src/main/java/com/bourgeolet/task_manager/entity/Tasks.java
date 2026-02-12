@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "tasks")
 @Getter
 @Setter
-public class Task {
+public class Tasks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
@@ -20,7 +20,7 @@ public class Task {
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_username")
-    private User user;
+    private Users users;
 
     private String title;
 
