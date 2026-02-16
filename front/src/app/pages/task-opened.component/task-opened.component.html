@@ -1,0 +1,109 @@
+<div mat-dialog-title class="ticket-header">
+  <div class="header-left">
+    @if (task.id) {
+      <span class="ticket-id">Ticket&nbsp;#{{ task.id }}</span>
+    } @else {
+      <span class="ticket-id new">Nouveau ticket</span>
+    }
+
+    <div class="header-meta">
+
+      @if (task.status) {
+        <span class="meta-chip status">{{ statusBinded }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="header-right">
+    @if (task.id) {
+      <button
+        mat-icon-button
+        matTooltip="Copier l'ID"
+        aria-label="Copier l'ID du ticket"
+      >
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    }
+  </div>
+</div>
+
+<mat-dialog-content class="ticket-dialog">
+
+  <form class="ticket-form">
+
+    <!-- Titre -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Titre</mat-label>
+      <input matInput required [(ngModel)]="task.title" name="title" />
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        rows="5"
+        [(ngModel)]="task.description"
+        name="description"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Utilisateur affecté -->
+    <mat-form-field appearance="outline">
+      <mat-label>Utilisateur affecté</mat-label>
+      <mat-select [(ngModel)]="task.userAffectee" name="user">
+        <mat-option [value]="''">Aucun</mat-option>
+        @for (user of users; track user.username) {
+          <mat-option [value]="user.username">{{ user.username }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Priorité -->
+    <mat-form-field appearance="outline">
+      <mat-label>Priorité</mat-label>
+      <mat-select required [(ngModel)]="task.priority" name="priority">
+        <mat-option [value]="3">Basse</mat-option>
+        <mat-option [value]="2">Moyenne</mat-option>
+        <mat-option [value]="1">Haute</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Tags -->
+    <div class="tags-section">
+      <mat-label>Tags</mat-label>
+      <mat-form-field class="tag-field" appearance="outline">
+        <mat-chip-grid #chipGrid aria-label="Tags">
+          @for (tag of task.tags; track tag) {
+            <mat-chip-row [editable]="true">
+              <button matChipEdit mat-icon-button aria-label="Modifier le tag">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              {{ tag }}
+
+              <button matChipRemove mat-icon-button aria-label="Supprimer le tag">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+
+          <input
+            placeholder="Ajouter un tag"
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="warn" (click)="cancelCreate()">Annuler</button>
+  <button mat-raised-button color="primary" >Enregistrer</button>
+</mat-dialog-actions>

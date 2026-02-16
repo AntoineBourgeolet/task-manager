@@ -1,0 +1,13 @@
+<mat-toolbar>
+    <button matIconButton class="icon" aria-label="icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Task Manager Antoine</span>
+    <span class="spacer"></span>
+        <button matButton="elevated" (click)="createTask()">Créer un ticket</button>
+        <button matButton="elevated" (click)="createUser()">Créer un Utilisateur</button>
+
+    
+</mat-toolbar>
+
+<router-outlet />
