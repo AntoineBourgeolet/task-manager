@@ -22,8 +22,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding: .5rem .75rem;
-  gap: .5rem;
+  padding: 0.5rem 0.75rem;
+  gap: 0.5rem;
 }
 
 .column-icon {
@@ -42,12 +42,12 @@
 }
 
 .count {
-  opacity: .75;
-  font-size: .85rem;
+  opacity: 0.75;
+  font-size: 0.85rem;
 }
 
 .column-card mat-card-content {
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 /* ============================
@@ -68,14 +68,16 @@
    TASK CARDS
 ============================ */
 .task-card {
-  transition: box-shadow .2s ease, transform .15s ease;
-  border-radius: .5rem;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+  border-radius: 0.5rem;
   padding-bottom: 0.25rem;
 }
 
 .task-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, .18));
+  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, 0.18));
 }
 
 .task-title {
@@ -87,18 +89,18 @@
 .task-subtitle {
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: 0.6rem;
   opacity: 0.9;
 }
 
 .task-id {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .due {
   display: inline-flex;
   align-items: center;
-  gap: .25rem;
+  gap: 0.25rem;
 }
 
 .due.overdue {
@@ -114,28 +116,28 @@
 .user-option {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 /* ============================
    TAGS & CHIPS
 ============================ */
 .tag-chip-set {
-  margin-top: .35rem;
+  margin-top: 0.35rem;
   display: flex;
   flex-wrap: wrap;
-  gap: .35rem .6rem;
+  gap: 0.35rem 0.6rem;
 }
 
 .tag-chip {
-  --mdc-chip-outline-color: rgba(0, 0, 0, .2);
+  --mdc-chip-outline-color: rgba(0, 0, 0, 0.2);
 }
 
 /* ============================
    PRIORITÉ
 ============================ */
 .priority-line {
-  margin-top: .4rem;
+  margin-top: 0.4rem;
 }
 
 .priority-chip {
@@ -171,21 +173,21 @@
    DRAG & DROP
 ============================ */
 .drag-preview {
-  padding: .6rem .9rem;
-  border-radius: .5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
   background: var(--mdc-filled-text-field-container-color, #fff);
-  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, .18));
+  box-shadow: var(--mat-elevation-z8, 0 6px 20px rgba(0, 0, 0, 0.18));
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   font-weight: 500;
 }
 
 .drag-placeholder {
   height: 64px;
-  border: 2px dashed rgba(63, 81, 181, .5);
-  border-radius: .5rem;
-  background: rgba(63, 81, 181, .08);
+  border: 2px dashed rgba(63, 81, 181, 0.5);
+  border-radius: 0.5rem;
+  background: rgba(63, 81, 181, 0.08);
 }
 
 /* ============================
@@ -195,11 +197,11 @@
   display: grid;
   place-items: center;
   padding: 1.25rem;
-  color: rgba(0, 0, 0, .5);
-  border: 1px dashed rgba(0, 0, 0, .15);
-  border-radius: .5rem;
-  font-size: .9rem;
-  gap: .5rem;
+  color: rgba(0, 0, 0, 0.5);
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  gap: 0.5rem;
 }
 
 /* ============================
@@ -212,12 +214,16 @@
 /* ============================
    ANCIENNES CLASSES DE COULEUR
 ============================ */
-.card-red   { border-left: 4px solid #e53935; }
-.card-orange{ border-left: 4px solid #fb8c00; }
-.card-green { border-left: 4px solid #43a047; }
+.card-red {
+  border-left: 4px solid #e53935;
+}
+.card-orange {
+  border-left: 4px solid #fb8c00;
+}
+.card-green {
+  border-left: 4px solid #43a047;
+}
 
-
-
-.id-card{
+.id-card {
   text-align: center;
 }

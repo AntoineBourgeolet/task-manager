@@ -6,63 +6,58 @@
           <div mat-card-avatar class="column-icon">
             <mat-icon>view_kanban</mat-icon>
           </div>
-
           <mat-card-title class="column-title">
             {{ col.title }}
           </mat-card-title>
-
           <mat-card-subtitle>
-            <span class="count" >
-              Tickets : {{tasks[col.id]?.length}}
-            </span>
+            <span class="count"> Tickets : {{ tasks[col.id]?.length }} </span>
           </mat-card-subtitle>
-
           <span class="spacer"></span>
-
-     
         </mat-card-header>
-
         <mat-divider></mat-divider>
-
         <mat-card-content>
-          <div class="list"
-               cdkDropList
-               [id]="col.id"
-               [cdkDropListData]="tasks[col.id]"
-               [cdkDropListConnectedTo]="getConnectedLists()"
-               (cdkDropListDropped)="drop($event, col.id)">
-
+          <div
+            class="list"
+            cdkDropList
+            [id]="col.id"
+            [cdkDropListData]="tasks[col.id]"
+            [cdkDropListConnectedTo]="getConnectedLists()"
+            (cdkDropListDropped)="drop($event, col.id)"
+          >
             @for (task of tasks[col.id]; track task.id) {
-              <div class="card"
-                   cdkDrag
-                   (click)="openTask(task.id)"
-                   [attr.aria-label]="'Tâche ' + task.title">
-                <mat-card appearance="outlined"
-                          class="task-card"
-                          [ngClass]="priorityClass(task.priority)">
-
+              <div
+                class="card"
+                cdkDrag
+                (click)="openTask(task.id)"
+                [attr.aria-label]="'Tâche ' + task.title"
+              >
+                <mat-card
+                  appearance="outlined"
+                  class="task-card"
+                  [ngClass]="priorityClass(task.priority)"
+                >
                   <mat-card-header>
-                   
-
                     <mat-card-title class="task-title">
                       {{ task.title }}
                     </mat-card-title>
 
                     <mat-card-subtitle class="task-subtitle">
                       @if (true) {
-                        <span class="due" >
+                        <span class="due">
                           <mat-icon inline>event</mat-icon>
-                          12/12/2012 
+                          12/12/2012
                         </span>
                       }
                     </mat-card-subtitle>
 
                     <span class="spacer"></span>
 
-                    <button mat-icon-button
-                            [matMenuTriggerFor]="taskMenu"
-                            (click)="$event.stopPropagation()"
-                            aria-label="Actions de tâche">
+                    <button
+                      mat-icon-button
+                      [matMenuTriggerFor]="taskMenu"
+                      (click)="$event.stopPropagation()"
+                      aria-label="Actions de tâche"
+                    >
                       <mat-icon>more_horiz</mat-icon>
                     </button>
                     <mat-menu #taskMenu="matMenu">
@@ -70,7 +65,7 @@
                         <mat-icon>open_in_new</mat-icon>
                         <span>Ouvrir</span>
                       </button>
-                      <button mat-menu-item >
+                      <button mat-menu-item>
                         <mat-icon>content_copy</mat-icon>
                         <span>Dupliquer</span>
                       </button>
@@ -82,10 +77,6 @@
                   </mat-card-header>
 
                   <mat-card-content>
-                    <!-- Assignation -->
-                   
-
-                    <!-- Tags -->
                     @if (task.tags?.length) {
                       <mat-chip-set class="tag-chip-set" aria-label="Tags">
                         @for (tag of task.tags; track tag) {
@@ -105,12 +96,17 @@
                       </mat-chip>
                     </div>
 
-
-                     <mat-form-field appearance="fill" subscriptSizing="dynamic" class="w-100"
-                                    (click)="$event.stopPropagation()">
+                    <mat-form-field
+                      appearance="fill"
+                      subscriptSizing="dynamic"
+                      class="w-100"
+                      (click)="$event.stopPropagation()"
+                    >
                       <mat-label>Utilisateur affecté</mat-label>
-                      <mat-select [(value)]="task.userAffectee"
-                                  (selectionChange)="affecteUser(task.id, $event.value)">
+                      <mat-select
+                        [(value)]="task.userAffectee"
+                        (selectionChange)="affecteUser(task.id, $event.value)"
+                      >
                         <mat-option [value]="null">Non affecté</mat-option>
                         @for (user of users; track user.username) {
                           <mat-option [value]="user.username">
@@ -124,9 +120,12 @@
                   </mat-card-content>
 
                   <mat-card-actions align="end">
-                    <button mat-icon-button color="warn"
-                            (click)="deleteTask(task.id); $event.stopPropagation()"
-                            aria-label="Supprimer la tâche">
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      (click)="deleteTask(task.id); $event.stopPropagation()"
+                      aria-label="Supprimer la tâche"
+                    >
                       <mat-icon>delete</mat-icon>
                     </button>
                   </mat-card-actions>
@@ -147,9 +146,8 @@
                   <div class="drag-placeholder"></div>
                 </ng-template>
               </div>
-            }
 
-            @empty {
+            } @empty {
               <div class="empty">
                 <mat-icon>inbox</mat-icon>
                 Aucune tâche ici

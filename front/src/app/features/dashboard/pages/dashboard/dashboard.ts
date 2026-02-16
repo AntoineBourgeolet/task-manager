@@ -8,27 +8,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { TaskService } from '../../services/task/task.service';
-import { Task, Board, columnsTemplate } from '../../models/task/task';
+import { TaskService } from '../../../task/data-access/task.api';
+import { Task, Board, columnsTemplate } from '../../../task/models/task';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { User } from '../../models/user/user';
-import { UserService } from '../../services/user/user.service';
+import { User } from '../../../user/models/user';
+import { UserService } from '../../../user/data-access/user.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { TaskEventsService } from '../../services/events/task-events/task-events.service';
-import { TaskOpenedComponent } from '../task-opened.component/task-opened.component';
+import { TaskEventsService } from '../../../task/data-access/task-events.service';
+import { TaskOpenedComponent } from '../../../task/dialogs/task-opened/task-opened';
 import { take } from 'rxjs';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { TaskDeleteDto } from '../../models/task/task-delete-dto';
-import { TaskChangeStatusDTO } from '../../models/task/task-change-status-dto';
-import { TaskChangeUserAffecteeDTO } from '../../models/task/task-change-user-affectee-dto';
+import { TaskDeleteDto } from '../../../task/models/task-delete-dto';
+import { TaskChangeStatusDTO } from '../../../task/models/task-change-status-dto';
+import { TaskChangeUserAffecteeDTO } from '../../../task/models/task-change-user-affectee-dto';
 import { move } from '@angular-devkit/schematics';
 
 @Component({
-  selector: 'task-list',
+  selector: 'dashboard',
   standalone: true,
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css'],
+  templateUrl: './dashboard.html',
+  styleUrls: ['./dashboard.css'],
   imports: [
     CommonModule,
     DragDropModule,
@@ -44,7 +44,7 @@ import { move } from '@angular-devkit/schematics';
     MatMenuModule
   ]
 })
-export class TaskListComponent {
+export class Dashboard {
   columns = columnsTemplate;
 
   tasks: Board = { TODO: [], BLOCKED: [], DOING: [], TESTING: [], DONE: [] };

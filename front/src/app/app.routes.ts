@@ -1,8 +1,21 @@
 import { Routes } from '@angular/router';
-import { TaskListComponent } from './pages/task-list/task-list.component';
 
 export const routes: Routes = [
-{ path: 'tasks', component: TaskListComponent },
-  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
-  { path: '**', redirectTo: 'tasks' }
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+  },
+  {
+    path: 'tasks',
+    loadChildren: () =>
+      import('./features/task/task.routes').then(m => m.TASK_ROUTES),
+  },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./features/user/user.routes').then(m => m.USER_ROUTES),
+  },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' },
 ];

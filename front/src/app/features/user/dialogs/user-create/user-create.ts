@@ -3,22 +3,22 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserService } from '../../services/user/user.service';
-import { UserCreateDto } from '../../models/user/user';
-import { TaskEventsService } from '../../services/events/task-events/task-events.service';
+import { UserService } from '../../data-access/user.service';
+import { UserCreateDto } from '../../models/user';
+import { TaskEventsService } from '../../../task/data-access/task-events.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipGrid, MatChipInput, MatChipRow, MatChipsModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-user-create.component',
+  selector: 'user-create',
   imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatDialogModule, MatButtonModule, 
      MatIconModule, MatChipsModule,FormsModule],
-  templateUrl: './user-create.component.html',
+  templateUrl: './user-create.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './user-create.component.css',
+  styleUrl: './user-create.css',
 })
 export class UserCreateComponent {
 

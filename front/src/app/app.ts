@@ -4,12 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskCreate } from './pages/task-create/task-create';
+import { TaskCreate } from './features/task/dialogs/task-create/task-create';
 import { take } from 'rxjs';
-import { TaskService } from './services/task/task.service';
+import { TaskService } from './features/task/data-access/task.api';
 import { routes } from './app.routes';
-import { UserCreateDto } from './models/user/user';
-import { UserCreateComponent } from './pages/user-create.component/user-create.component';
+import { UserCreateDto } from './features/user/models/user';
+import { UserCreateComponent } from './features/user/dialogs/user-create/user-create';
 
 @Component({
   selector: 'app-root',
