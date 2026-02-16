@@ -1,5 +1,5 @@
 <div class="kanban">
-  @for (col of columns; track col.id) {
+  @for (col of column; track col.id) {
     <section class="column">
       <mat-card class="column-card" appearance="outlined">
         <mat-card-header class="column-header">
@@ -10,7 +10,7 @@
             {{ col.title }}
           </mat-card-title>
           <mat-card-subtitle>
-            <span class="count"> Tickets : {{ tasks[col.id]?.length }} </span>
+            <span class="count"> Tickets : {{ board[col.id]?.length }} </span>
           </mat-card-subtitle>
           <span class="spacer"></span>
         </mat-card-header>
@@ -20,11 +20,11 @@
             class="list"
             cdkDropList
             [id]="col.id"
-            [cdkDropListData]="tasks[col.id]"
+            [cdkDropListData]="board[col.id]"
             [cdkDropListConnectedTo]="getConnectedLists()"
             (cdkDropListDropped)="drop($event, col.id)"
           >
-            @for (task of tasks[col.id]; track task.id) {
+            @for (task of board[col.id]; track task.id) {
               <div
                 class="card"
                 cdkDrag
@@ -87,15 +87,12 @@
                         }
                       </mat-chip-set>
                     }
-
-                    <!-- Priorité -->
                     <div class="priority-line">
                       <mat-chip class="priority-chip" [ngClass]="priorityChipClass(task.priority)">
                         <mat-icon inline>flag</mat-icon>
                         Priorité : {{ task.priority }}
                       </mat-chip>
                     </div>
-
                     <mat-form-field
                       appearance="fill"
                       subscriptSizing="dynamic"
@@ -118,7 +115,6 @@
                       </mat-select>
                     </mat-form-field>
                   </mat-card-content>
-
                   <mat-card-actions align="end">
                     <button
                       mat-icon-button
@@ -129,13 +125,10 @@
                       <mat-icon>delete</mat-icon>
                     </button>
                   </mat-card-actions>
-
                   <mat-card-footer>
                     <p class="id-card">Id : {{ task.id }}</p>
                   </mat-card-footer>
                 </mat-card>
-
-                <!-- Drag preview/placeholder -->
                 <ng-template cdkDragPreview>
                   <div class="drag-preview">
                     <mat-icon>drag_indicator</mat-icon>
@@ -146,7 +139,6 @@
                   <div class="drag-placeholder"></div>
                 </ng-template>
               </div>
-
             } @empty {
               <div class="empty">
                 <mat-icon>inbox</mat-icon>

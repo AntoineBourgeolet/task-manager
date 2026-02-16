@@ -1,25 +1,26 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { UserService } from '../../../user/data-access/user.service';
+import { UserService } from '../../../user/data-access/user.api';
 import { TaskService } from '../../data-access/task.api';
 import { User } from '../../../user/models/user';
-import { columnsTemplate, Task } from '../../models/task';
+import { Task } from '../../models/task';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { columnsTemplate } from '../../../../../environments/const';
 
 @Component({
   selector: 'task-opened',
   imports: [
-FormsModule,
+    FormsModule,
     ClipboardModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -29,33 +30,35 @@ FormsModule,
     MatChipsModule,
     MatIconModule,
     MatTooltipModule,
-
-],
+  ],
   templateUrl: './task-opened.html',
   styleUrl: './task-opened.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskOpenedComponent {
+  private readonly userService: UserService = inject(UserService);
+  private readonly taskService: TaskService = inject(TaskService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
-  columns = columnsTemplate;
-  statusBinded = "";
-  userService: UserService = inject(UserService);
-  taskService: TaskService = inject(TaskService);
+  public readonly announcer = inject(LiveAnnouncer);
+  public readonly dialogRef = inject(MatDialogRef<TaskOpenedComponent>);
 
-  task: Task = {id: 0,title: "",description: "", priority: 1,userAffectee: "", status: 'TODO', tags : []}
-  users: User[] = [];
-  readonly addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  readonly announcer = inject(LiveAnnouncer);
-  constructor(
+  private readonly idTask = this.dialogRef._containerInstance._config.data.id;
 
-    @Inject(MAT_DIALOG_DATA) public data: { id: number },
-  private dialogRef: MatDialogRef<TaskOpenedComponent>,
-      private cdr: ChangeDetectorRef,
+  public readonly addOnBlur = true;
+  public readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-) {}
-
+  public task: Task = {
+    id: 0,
+    title: '',
+    description: '',
+    priority: 1,
+    userAffectee: '',
+    status: 'TODO',
+    tags: [],
+  };
+  public users: User[] = [];
+  public statusBinded = '';
 
   ngOnInit(): void {
     this.loadUsers();
@@ -70,34 +73,28 @@ export class TaskOpenedComponent {
     });
   }
 
-  loadTask(): void{
-    this.taskService.getTaskById(this.data.id).subscribe({
+  loadTask(): void {
+    console.log(this.dialogRef);
+    this.taskService.getTaskById(this.idTask).subscribe({
       next: (taskResponse) => {
         this.task = taskResponse;
         this.statusBinded = this.getStatusById(this.task.status);
         this.cdr.detectChanges();
-      }
-    })
+      },
+    });
   }
 
-  
+  private normalizeId(id?: string | null): string {
+    return (id ?? '').toLowerCase();
+  }
 
-// Normalise l'ID en lowercase
-private normalizeId(id?: string | null): string {
-  return (id ?? '').toLowerCase(); // ou toLocaleLowerCase('fr-FR') si besoin
-}
-
-getStatusById(id?: string | null, fallback = ''): string {
-  const nid = this.normalizeId(id);
-  const col = this.columns.find(c => c.id === nid);
-  return col?.title ?? fallback;
-}
-
-
+  private getStatusById(id?: string | null, fallback = ''): string {
+    const nid = this.normalizeId(id);
+    const col = columnsTemplate.find((c) => c.id === nid);
+    return col?.title ?? fallback;
+  }
 
   cancelCreate(): void {
     this.dialogRef.close();
   }
-
-  
 }

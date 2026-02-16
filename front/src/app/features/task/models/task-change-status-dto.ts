@@ -3,4 +3,3 @@ export interface TaskChangeStatusDTO {
   id: number;
   newStatus: string;
 }
-

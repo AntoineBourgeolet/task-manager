@@ -3,4 +3,3 @@ export interface TaskChangeUserAffecteeDTO {
   id: number;
   newUser: string;
 }
-

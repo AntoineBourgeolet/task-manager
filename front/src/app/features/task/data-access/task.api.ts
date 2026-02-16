@@ -1,17 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environnements/environnement';
 import { Observable } from 'rxjs';
-import { Board, Task } from '../models/task';
+import { Task } from '../models/task';
 import { TaskCreateDto } from '../models/task-create-dto';
 import { TaskDeleteDto } from '../models/task-delete-dto';
 import { TaskChangeStatusDTO } from '../models/task-change-status-dto';
 import { TaskChangeUserAffecteeDTO } from '../models/task-change-user-affectee-dto';
+import { Board } from '../../../../environments/type';
+import { api } from '../../../../environments/const';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = environment.apiBaseUrl?.replace(/\/$/, '') ?? '';
+  private readonly baseUrl = api.apiBaseUrl?.replace(/\/$/, '') ?? '';
   private readonly apiUrl = `${this.baseUrl}/task`;
 
   getAllTaskByStatus(): Observable<Board> {

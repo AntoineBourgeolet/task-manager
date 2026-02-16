@@ -1,5 +1,6 @@
 export interface TaskDeleteDto {
-    actor: string;
-    id: number;
+  actor: string;
+  id: number;
 }
+
 

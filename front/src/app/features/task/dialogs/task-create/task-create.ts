@@ -15,7 +15,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { UserService } from '../../../user/data-access/user.service';
+import { UserService } from '../../../user/data-access/user.api';
 import { User } from '../../../user/models/user';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../data-access/task.api';
@@ -25,6 +25,7 @@ import { TaskCreateDto } from '../../models/task-create-dto';
 import { TaskChangeUserAffecteeDTO } from '../../models/task-change-user-affectee-dto';
 import { TaskChangeStatusDTO } from '../../models/task-change-status-dto';
 import { TaskDeleteDto } from '../../models/task-delete-dto';
+import { buildTaskCreateDTO } from '../../data-access/builders/task-create.builder';
 
 @Component({
   selector: 'task-create',
@@ -45,34 +46,27 @@ import { TaskDeleteDto } from '../../models/task-delete-dto';
   templateUrl: './task-create.html',
   styleUrl: './task-create.css',
 })
-export class TaskCreate {
-  constructor(
-    private dialogRef: MatDialogRef<TaskCreate>,
-    private taskEvents: TaskEventsService,
-  ) {}
+export class TaskCreateDialog {
+  private readonly taskEvents = inject(TaskEventsService);
+  private readonly dialogRef = inject(MatDialogRef<TaskCreateDialog>);
+  private readonly userService = inject(UserService);
+  private readonly taskService = inject(TaskService);
 
-  userService: UserService = inject(UserService);
-  taskService: TaskService = inject(TaskService);
+  private readonly actor: string = 'AntoineActor';
 
-  actor: string = 'AntoineActor';
-  users: User[] = [];
-  readonly addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  readonly tags = signal<Tag[]>([]);
-  readonly announcer = inject(LiveAnnouncer);
-  description: string = '';
-  titre: string = '';
-  priority: number = 3;
-  utilisateurAffecte: string = '';
+  public readonly addOnBlur = true;
+  public readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  public readonly tags = signal<Tag[]>([]);
+  public readonly announcer = inject(LiveAnnouncer);
 
-  taskCreateDto: TaskCreateDto = {
-    actor: 'AntoineActor',
-    title: '',
-    description: '',
-    userAffectee: null,
-    priority: 1,
-    tags: [],
-  };
+  private taskCreateDto: TaskCreateDto = buildTaskCreateDTO();
+
+  public users: User[] = [];
+
+  public description: string = '';
+  public titre: string = '';
+  public priority: number = 3;
+  public utilisateurAffecte: string = '';
 
   ngOnInit(): void {
     this.loadUsers();
@@ -97,7 +91,6 @@ export class TaskCreate {
     };
     this.taskService.create(this.taskCreateDto).subscribe(() => {
       this.taskEvents.notifyRefresh();
-
       this.dialogRef.close();
     });
   }
@@ -108,13 +101,9 @@ export class TaskCreate {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    // Add our tag
     if (value) {
       this.tags.update((tags) => [...tags, { name: value }]);
     }
-
-    // Clear the input value
     event.chipInput!.clear();
   }
 
@@ -133,14 +122,10 @@ export class TaskCreate {
 
   edit(tag: Tag, event: MatChipEditedEvent) {
     const value = event.value.trim();
-
-    // Remove tag if it no longer has a name
     if (!value) {
       this.remove(tag);
       return;
     }
-
-    // Edit existing tag
     this.tags.update((tags) => {
       const index = tags.indexOf(tag);
       if (index >= 0) {

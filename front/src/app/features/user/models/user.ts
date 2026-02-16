@@ -4,9 +4,3 @@ export interface User {
   username: string;
   email?: string;
 }
-
-export interface UserCreateDto {
-  actor: string;
-  username: string;
-  email?: string;
-}
