@@ -1,10 +1,10 @@
-name: SonarCloud Analysis
+name: SonarCloud Analysis (Backend + Frontend)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
 jobs:
   build-and-analyze:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -27,8 +27,23 @@ jobs:
           java-version: "21"
           cache: maven
 
-      - name: Build & Test (Maven)
+      - name: Build Backend (Maven)
+        working-directory: backend
         run: mvn -B -DskipITs clean verify
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build Frontend (Angular)
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run test -- --watch=false --code-coverage
+          npm run build -- --configuration production
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
