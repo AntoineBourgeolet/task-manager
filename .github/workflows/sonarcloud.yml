@@ -7,12 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-analyze:
-    runs-on: ubuntu-latest
-
+  backend:
     permissions:
       contents: read
       pull-requests: read
+    name: Build Backend (Maven)
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -31,6 +31,26 @@ jobs:
         working-directory: backend
         run: mvn -B -DskipITs clean verify
 
+      - name: Upload backend artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-artifacts
+          path: |
+            backend/target/**
+          if-no-files-found: error
+
+  frontend:
+    name: Build Frontend (Angular)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
@@ -44,8 +64,43 @@ jobs:
           npm ci --ignore-scripts
           npm run build -- --configuration production
 
+      - name: Upload frontend artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-artifacts
+          path: |
+            frontend/dist/**
+            frontend/coverage/**
+          if-no-files-found: ignore
+
+  sonar:
+    permissions:
+      contents: read
+      pull-requests: read
+    name: SonarCloud Scan
+    runs-on: ubuntu-latest
+    needs: [ backend, frontend ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download backend artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-artifacts
+          path: .
+
+      - name: Download frontend artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-artifacts
+          path: .
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9
+        uses: SonarSource/sonarsource-scan-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
