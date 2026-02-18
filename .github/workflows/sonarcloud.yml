@@ -100,14 +100,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: backend-artifacts
-          path: backend
+          path: .
 
 
       - name: Download frontend artifacts
         uses: actions/download-artifact@v4
         with:
           name: frontend-artifacts
-          path: frontend
+          path: .
 
       - name: SonarCloud Scan
         uses:  SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9
