@@ -90,13 +90,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: backend-artifacts
-          path: .
+          path: backend
 
       - name: Download frontend artifacts
         uses: actions/download-artifact@v4
         with:
           name: frontend-artifacts
-          path: .
+          path: frontend
 
       - name: Normalize artifact layout
         run: |
