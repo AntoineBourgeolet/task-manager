@@ -34,8 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: backend-artifacts
-          path: |
-            backend/target/**
+          path: backend/target/**
           if-no-files-found: error
 
   frontend:
