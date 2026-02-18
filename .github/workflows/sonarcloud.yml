@@ -109,6 +109,19 @@ jobs:
           name: frontend-artifacts
           path: .
 
+      - name: Debug — list backend target contents
+        run: |
+          echo "Workspace: $GITHUB_WORKSPACE"
+          echo "PWD: $(pwd)"
+          echo "Listing backend directory:"
+          ls -la backend || true
+          echo "Listing backend/target (top level):"
+          ls -la backend/target || true
+          echo "Find class files and jars under backend/target:" 
+          find backend/target -maxdepth 6 -type f \( -name "*.class" -o -name "*.jar" \) -print || true
+          echo "Print sonar-project.properties contents:" 
+          sed -n '1,200p' sonar-project.properties || true
+
       - name: SonarCloud Scan
         uses:  SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9
         env:
