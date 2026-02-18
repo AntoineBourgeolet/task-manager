@@ -38,13 +38,20 @@ jobs:
         working-directory: backend
         run: mvn -B -DskipITs clean verify
 
+      - name: Debug — list backend/target after build
+        working-directory: backend
+        run: |
+          echo "PWD: $(pwd)"
+          ls -la target || true
+          find target -maxdepth 6 -type f -print || true
+
       - name: Upload backend artifacts
         uses: actions/upload-artifact@v4
         with:
           name: backend-artifacts
           path: |
-            backend/target/**
-            backend/target/site/jacoco/**
+            backend/target
+            backend/target/site/jacoco
           if-no-files-found: error
 
   frontend:
