@@ -37,6 +37,6 @@ public class TagController {
 
     @DeleteMapping
     public void delete (@Valid @RequestBody TagDeleteDTO dto){
-        tagService.delete(tagMapper.tagDeleteDTOToTag(dto), dto.actor());
+        tagService.delete(tagMapper.tagDeleteDTOToTag(dto));
     }
 }
