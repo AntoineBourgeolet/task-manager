@@ -18,11 +18,11 @@ public class TagService {
         return tagRepository.findAll();
     }
 
-    public Tag create(Tag tag, @NotBlank String actor) {
+    public Tag create(Tag tag) {
         return tagRepository.save(tag);
     }
 
-    public void delete(Tag tag, @NotBlank String actor) {
+    public void delete(Tag tag) {
         tagRepository.delete(tag);
     }
 }

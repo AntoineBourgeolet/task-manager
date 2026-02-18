@@ -49,7 +49,7 @@ class TagServiceTest {
         Tag input = new Tag();
         when(tagRepository.save(input)).thenReturn(input);
 
-        Tag created = tagService.create(input, "antoine");
+        Tag created = tagService.create(input);
 
         assertThat(created).isSameAs(input);
 

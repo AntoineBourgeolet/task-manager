@@ -26,7 +26,7 @@ public class TagController {
 
     @PostMapping
     public ResponseEntity<@NotNull TagResponseDTO> create(@Valid @RequestBody TagCreateDTO dto) {
-        Tag tag = tagService.create(tagMapper.tagCreateDTOToTag(dto), dto.actor());
+        Tag tag = tagService.create(tagMapper.tagCreateDTOToTag(dto));
         return ResponseEntity.accepted().body(tagMapper.tagToTagResponseDTO(tag));
     }
 
