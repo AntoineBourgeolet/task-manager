@@ -97,26 +97,6 @@ jobs:
           name: frontend-artifacts
           path: frontend
 
-      - name: Normalize artifact layout
-        run: |
-            set -euxo pipefail
-            # Si l'action a créé un dossier enveloppe "backend-artifacts", on aplatit
-            if [ -d "backend-artifacts" ]; then
-              rsync -a backend-artifacts/ .
-              rm -rf backend-artifacts
-            fi
-
-            # Idem pour "frontend-artifacts" si nécessaire
-            if [ -d "frontend-artifacts" ]; then
-              rsync -a frontend-artifacts/ .
-              rm -rf frontend-artifacts
-            fi
-
-            # Debug : afficher ce qu'on a pour s'assurer que target/classes est là
-            ls -la backend || true
-            ls -la backend/target || true
-            test -d backend/target/classes
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9
         env:
