@@ -1,0 +1,294 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404575224*java2.BÑ
+
+K
+Fback/src/main/java/com/bourgeolet/task_manager/service/TagService.java2
+	
+type3
+	
+MAIN4
+
+package6
+(
+#com.bourgeolet.task_manager.service7
+3
+.com.bourgeolet.task_manager.service.TagService9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(11:1)-(28:2)14
+
+simple-name15
+
+
+TagService16
+
+Service18
+
+unknown19
+
+annotated by20
+%
+Recovered#typeBindingLService;022
+
+
+uses23
+
+RequiredArgsConstructor25
+5
+/Recovered#typeBindingLRequiredArgsConstructor;027
+B
+<com.bourgeolet.task_manager.service.TagService.tagRepository29
+
+field30
+
+private31
+
+(15:5)-(15:47)32
+
+tagRepository33
+:
+4com.bourgeolet.task_manager.repository.TagRepository35
+
+is type36
+M
+Gcom.bourgeolet.task_manager.service.TagService#getAll()Ljava/util/List;38
+
+method39
+
+(17:5)-(19:6)40
+
+getAll41
+,
+&com.bourgeolet.task_manager.entity.Tag43
+
+
+references44
+ 
+™com.bourgeolet.task_manager.service.TagService#create(Lcom/bourgeolet/task_manager/entity/Tag;Ljava/lang/String;)Lcom/bourgeolet/task_manager/entity/Tag;46
+
+(21:5)-(23:6)47
+
+create48
+
+returns49
+
+	has param50
+
+NotBlank52
+&
+ Recovered#typeBindingLNotBlank;054
+x
+rcom.bourgeolet.task_manager.service.TagService#delete(Lcom/bourgeolet/task_manager/entity/Tag;Ljava/lang/String;)V56
+
+(25:5)-(27:6)57
+
+delete58J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j¥
+
+21
+212219
+
+17
+171819
+
+24
+242519
+
+26
+262719
+M
+37G
+373839 *
+1 (28:5B$
+
+
+11
+12
+
+
+13
+40
+
+
+15
+41
+M
+55G
+555639 *
+1 (28:5B$
+
+
+11
+12
+
+
+13
+57
+
+
+15
+58
+
+53
+535419
+
+34
+343519
+
+42
+424319
+
+51
+515219
+M
+45G
+454639 *
+1 (28:5B$
+
+
+11
+12
+
+
+13
+47
+
+
+15
+48
+M
+28G
+282930 *
+1! (.28:5B$
+
+
+11
+31
+
+
+13
+32
+
+
+15
+33
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16r‹
+
+81720*
+1 (	
+
+82123*
+1 (	
+
+82420*
+1 (
+
+82623*
+1 (
+
+283436*
+1 ( 
+
+283423*
+1 ( 
+
+283423*
+1! (.
+
+374223*
+1 (
+
+372844*
+1 (
+
+373423*
+1 (
+
+372844*
+1 (
+
+454249*
+1 (
+
+454250*
+1 (
+
+454223*
+1 (
+
+454236*
+1 (
+
+454223*
+1 (
+
+455120*
+1  ()
+
+455323*
+1! ()
+
+452844*
+1 (
+
+453423*
+1 (
+
+452844*
+1 (
+
+554250*
+1 (
+
+554236*
+1 (
+
+554223*
+1 (
+
+555120*
+1! (*
+
+555323*
+1" (*
+
+552844*
+1	 (
+
+553423*
+1	 (
+
+552844*
+1	 (

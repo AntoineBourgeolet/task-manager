@@ -1,0 +1,52 @@
+
+öcom.bourgeolet.task_manager.mapper.TagMapper#tagDeleteDTOToTag(Lcom/bourgeolet/task_manager/dto/tag/TagDeleteDTO;)Lcom/bourgeolet/task_manager/entity/Tag;à
+~C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/TagMapper.java ( "startingBlock*∑
+startingBlock  (9ù
+ö
+! ('
+%3"
+__annotate*%
+
+__unknown_file (	
+Valid*U
+
+__unknown_file (9
+7
+dto0com.bourgeolet.task_manager.dto.tag.TagDeleteDTOw
+u
+5 (87
+dto0com.bourgeolet.task_manager.dto.tag.TagDeleteDTO"__annotation*"
+
+__unknown_file (
+
+%3*
+1*ù
+1 (b`
+ (,
+%0&com.bourgeolet.task_manager.entity.Tag"&com.bourgeolet.task_manager.entity.Tagë
+é
+ (
+%1"0com.bourgeolet.task_manager.entity.Tag#<init>()V*J
+
+__unknown_file (.
+,
+%0&com.bourgeolet.task_manager.entity.Tagé
+ã
+ (-
+tag&com.bourgeolet.task_manager.entity.Tag"__id*J
+
+__unknown_file (.
+,
+%0&com.bourgeolet.task_manager.entity.Tag«ƒ
+ (
+%2java.lang.Long"Ecom.bourgeolet.task_manager.dto.tag.TagDeleteDTO#id()Ljava/lang/Long;*U
+
+__unknown_file (9
+7
+dto0com.bourgeolet.task_manager.dto.tag.TagDeleteDTO2id()";
+ (/
+-
+tag&com.bourgeolet.task_manager.entity.Tag:C
+! (87
+dto0com.bourgeolet.task_manager.dto.tag.TagDeleteDTOB0.
+,com.bourgeolet.task_manager.mapper.TagMapperH

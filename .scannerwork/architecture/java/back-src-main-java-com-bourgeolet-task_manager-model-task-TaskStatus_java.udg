@@ -1,0 +1,217 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404576050*java2.Bø
+N
+Iback/src/main/java/com/bourgeolet/task_manager/model/task/TaskStatus.java2
+	
+type3
+	
+MAIN4
+
+package6
++
+&com.bourgeolet.task_manager.model.task7
+6
+1com.bourgeolet.task_manager.model.task.TaskStatus9
+
+
+enum10
+
+access11
+
+public12
+
+
+full-range13
+
+(4:1)-(6:2)14
+
+simple-name15
+
+
+TaskStatus16
+t
+ncom.bourgeolet.task_manager.model.task.TaskStatus#values()[Lcom/bourgeolet/task_manager/model/task/TaskStatus;18
+
+method19
+
+values20
+‡
+€com.bourgeolet.task_manager.model.task.TaskStatus#valueOf(Ljava/lang/String;)Lcom/bourgeolet/task_manager/model/task/TaskStatus;22
+
+valueOf23
+<
+6com.bourgeolet.task_manager.model.task.TaskStatus.TODO25
+
+field26
+
+(5:5)-(5:10)27
+
+
+TODO28
+
+calls29
+?
+9com.bourgeolet.task_manager.model.task.TaskStatus.BLOCKED31
+
+(5:11)-(5:19)32
+
+BLOCKED33
+=
+7com.bourgeolet.task_manager.model.task.TaskStatus.DOING35
+
+(5:20)-(5:26)36
+
+DOING37
+?
+9com.bourgeolet.task_manager.model.task.TaskStatus.TESTING39
+
+(5:27)-(5:35)40
+
+TESTING41
+<
+6com.bourgeolet.task_manager.model.task.TaskStatus.DONE43
+
+(5:36)-(5:40)44
+
+
+DONE45J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jž
+A
+24;
+242526 *
+1 (	28:5B
+
+
+13
+27
+
+
+15
+28
+A
+17;
+171819 *
+1 (28:5B
+
+
+13
+14
+
+
+15
+20
+A
+34;
+343526 *
+1 (28:5B
+
+
+13
+36
+
+
+15
+37
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+A
+38;
+383926 *
+1 ("28:5B
+
+
+13
+40
+
+
+15
+41
+A
+21;
+212219 *
+1 (28:5B
+
+
+13
+14
+
+
+15
+23
+A
+30;
+303126 *
+1 (28:5B
+
+
+13
+32
+
+
+15
+33
+A
+42;
+424326 *
+1$ ((28:5B
+
+
+13
+44
+
+
+15
+45r„
+
+24829*
+1 (	
+
+24829*
+1 (	
+
+30829*
+1 (
+
+30829*
+1 (
+
+34829*
+1 (
+
+34829*
+1 (
+
+38829*
+1 ("
+
+38829*
+1 ("
+
+42829*
+1$ ((
+
+42829*
+1$ ((

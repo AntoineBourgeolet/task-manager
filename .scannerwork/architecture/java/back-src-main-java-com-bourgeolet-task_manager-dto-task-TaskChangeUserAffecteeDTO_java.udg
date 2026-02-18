@@ -1,0 +1,228 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577041*java2.B¥	
+[
+Vback/src/main/java/com/bourgeolet/task_manager/dto/task/TaskChangeUserAffecteeDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+)
+$com.bourgeolet.task_manager.dto.task7
+C
+>com.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(6:1)-(12:2)14
+
+simple-name15
+
+TaskChangeUserAffecteeDTO16
+J
+Dcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO.actor18
+
+field19
+
+	protected20
+
+(7:9)-(7:32)21
+
+actor22
+^
+Xcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#actor()Ljava/lang/String;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+G
+Acom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO.id35
+
+(9:9)-(9:26)36
+
+id37
+Y
+Scom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#id()Ljava/lang/Long;39
+
+NotNull41
+%
+Recovered#typeBindingLNotNull;043
+L
+Fcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO.newUser45
+
+(10:9)-(10:23)46
+
+newUser47
+`
+Zcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#newUser()Ljava/lang/String;49J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jœ
+
+31
+313229
+
+42
+424329
+G
+8B
+8910 *
+1 ((:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+A
+38;
+383925 *
+1	 	(28:5B
+
+
+13
+36
+
+
+15
+37
+
+27
+272829
+A
+48;
+484925 *
+1
+ 
+(28:5B
+
+
+13
+46
+
+
+15
+47
+M
+17G
+171819 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+M
+34G
+343519 *
+1	 	(28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+
+40
+404129
+M
+44G
+444519 *
+1
+ 
+(28:5B$
+
+
+11
+20
+
+
+13
+46
+
+
+15
+47
+A
+23;
+232425 *
+1 (28:5B
+
+
+13
+21
+
+
+15
+22rΩ
+
+231726*
+1 (
+
+172730*
+1	 (
+
+173133*
+1
+ (
+
+383426*
+1	 	(
+
+344030*
+1		 	(
+
+344233*
+1	
+ 	(
+
+484426*
+1
+ 
+(

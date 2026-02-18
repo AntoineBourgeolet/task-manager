@@ -1,0 +1,14 @@
+
+Gcom.bourgeolet.task_manager.service.TagService#getAll()Ljava/util/List;‹
+€C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/service/TagService.java ("1*Ö
+1 (²
+¯
+ (:
+%04com.bourgeolet.task_manager.repository.TagRepository"__id*a
+
+__unknown_file (E*C0
+.com.bourgeolet.task_manager.service.TagService"
+tagRepository"
+ ('
+""B20
+.com.bourgeolet.task_manager.service.TagServiceH

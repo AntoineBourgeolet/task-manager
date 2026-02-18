@@ -1,0 +1,7 @@
+organization=antoinebourgeolet
+projectKey=AntoineBourgeolet_task-manager
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.81438
+dashboardUrl=https://sonarcloud.io/dashboard?id=AntoineBourgeolet_task-manager
+ceTaskId=AZxv8UxfIQHGgFb8WeRL
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZxv8UxfIQHGgFb8WeRL

@@ -1,0 +1,174 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404575810*java2.BÏ
+M
+Hback/src/main/java/com/bourgeolet/task_manager/dto/tag/TagCreateDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+(
+#com.bourgeolet.task_manager.dto.tag7
+5
+0com.bourgeolet.task_manager.dto.tag.TagCreateDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(5:1)-(10:2)14
+
+simple-name15
+
+TagCreateDTO16
+<
+6com.bourgeolet.task_manager.dto.tag.TagCreateDTO.actor18
+
+field19
+
+	protected20
+
+(6:9)-(6:32)21
+
+actor22
+P
+Jcom.bourgeolet.task_manager.dto.tag.TagCreateDTO#actor()Ljava/lang/String;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+;
+5com.bourgeolet.task_manager.dto.tag.TagCreateDTO.name35
+
+(8:9)-(8:30)36
+
+
+name37
+O
+Icom.bourgeolet.task_manager.dto.tag.TagCreateDTO#name()Ljava/lang/String;39J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j•
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+M
+17G
+171819 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+
+31
+313229
+
+27
+272829
+M
+34G
+343519 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+A
+23;
+232425 *
+1 (28:5B
+
+
+13
+21
+
+
+15
+22
+A
+38;
+383925 *
+1 (28:5B
+
+
+13
+36
+
+
+15
+37r¢
+
+231726*
+1 (
+
+172730*
+1	 (
+
+173133*
+1
+ (
+
+383426*
+1 (
+
+342730*
+1	 (
+
+343133*
+1
+ (

@@ -1,0 +1,22 @@
+
+vcom.bourgeolet.task_manager.service.TaskService#getTaskById(Ljava/lang/Long;)Lcom/bourgeolet/task_manager/entity/Task;å
+ÅC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/service/TaskService.javaM M("1*‰
+1N N(µ
+≤
+N N(;
+%05com.bourgeolet.task_manager.repository.TaskRepository"__id*c
+
+__unknown_file (G*E1
+/com.bourgeolet.task_manager.service.TaskService"
+taskRepositoryà
+Ö
+N; N(b
+%1"__declareFunction*`
+
+__unknown_file (DB
+@__sonar_lambda_4$com.bourgeolet.task_manager.service.TaskService"
+N N(d
+"":$
+M M('
+idTaskjava.lang.LongB31
+/com.bourgeolet.task_manager.service.TaskServiceH

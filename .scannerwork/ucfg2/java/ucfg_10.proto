@@ -1,0 +1,39 @@
+
+ôcom.bourgeolet.task_manager.service.TagService#create(Lcom/bourgeolet/task_manager/entity/Tag;Ljava/lang/String;)Lcom/bourgeolet/task_manager/entity/Tag;ã
+ÄC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/service/TagService.java ("startingBlock*˝
+startingBlock (6Å
+
+ ((
+%1"
+__annotate*(
+
+__unknown_file (
+
+NotBlank*7
+
+__unknown_file (
+
+actorjava.lang.StringY
+W
+0 (5
+actorjava.lang.String"__annotation*"
+
+__unknown_file (
+
+%1*
+1*÷
+1 (≤
+Ø
+ (:
+%04com.bourgeolet.task_manager.repository.TagRepository"__id*a
+
+__unknown_file (E*C0
+.com.bourgeolet.task_manager.service.TagService"
+tagRepository"
+ ('
+"":9
+ (-
+tag&com.bourgeolet.task_manager.entity.Tag:%
+ (5
+actorjava.lang.StringB20
+.com.bourgeolet.task_manager.service.TagServiceH

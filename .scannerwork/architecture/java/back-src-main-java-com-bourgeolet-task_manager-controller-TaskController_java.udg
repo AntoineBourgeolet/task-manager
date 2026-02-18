@@ -1,0 +1,1203 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577767*java2.B–.
+R
+Mback/src/main/java/com/bourgeolet/task_manager/controller/TaskController.java2
+	
+type3
+	
+MAIN4
+
+package6
++
+&com.bourgeolet.task_manager.controller7
+:
+5com.bourgeolet.task_manager.controller.TaskController9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(16:1)-(70:2)14
+
+simple-name15
+
+TaskController16
+
+RestController18
+
+unknown19
+
+annotated by20
+,
+&Recovered#typeBindingLRestController;022
+
+
+uses23
+
+RequiredArgsConstructor25
+5
+/Recovered#typeBindingLRequiredArgsConstructor;027
+
+RequestMapping29
+,
+&Recovered#typeBindingLRequestMapping;031
+F
+@com.bourgeolet.task_manager.controller.TaskController.taskMapper33
+
+field34
+
+private35
+
+(21:5)-(21:41)36
+
+
+taskMapper37
+3
+-com.bourgeolet.task_manager.mapper.TaskMapper39
+
+is type40
+G
+Acom.bourgeolet.task_manager.controller.TaskController.taskService42
+
+(23:5)-(23:43)43
+
+taskService44
+5
+/com.bourgeolet.task_manager.service.TaskService46
+ü
+òcom.bourgeolet.task_manager.controller.TaskController#getStatusList(Ljava/util/List;Lcom/bourgeolet/task_manager/model/task/TaskStatus;)Ljava/util/List;48
+
+method49
+
+(26:5)-(28:6)50
+
+getStatusList51
+7
+1com.bourgeolet.task_manager.model.task.TaskStatus53
+
+	has param54
+:
+4com.bourgeolet.task_manager.dto.task.TaskResponseDTO56
+
+returns57
+
+
+references58
+v
+pcom.bourgeolet.task_manager.dto.task.TaskResponseDTO#status()Lcom/bourgeolet/task_manager/model/task/TaskStatus;60
+
+calls61
+â
+Çcom.bourgeolet.task_manager.controller.TaskController#create(Lcom/bourgeolet/task_manager/dto/task/TaskCreateDTO;)LResponseEntity;63
+
+(30:5)-(34:6)64
+
+create65
+
+ResponseEntity67
+8
+2com.bourgeolet.task_manager.dto.task.TaskCreateDTO69
+
+PostMapping71
+)
+#Recovered#typeBindingLPostMapping;073
+
+NotNull75
+%
+Recovered#typeBindingLNotNull;077
+
+Valid79
+#
+Recovered#typeBindingLValid;081
+
+RequestBody83
+)
+#Recovered#typeBindingLRequestBody;085
+-
+'com.bourgeolet.task_manager.entity.Task87
+£
+úcom.bourgeolet.task_manager.service.TaskService#create(Lcom/bourgeolet/task_manager/entity/Task;Ljava/lang/String;)Lcom/bourgeolet/task_manager/entity/Task;89
+©
+¢com.bourgeolet.task_manager.mapper.TaskMapper#taskFromTaskCreateDTO(Lcom/bourgeolet/task_manager/dto/task/TaskCreateDTO;)Lcom/bourgeolet/task_manager/entity/Task;91
+R
+Lcom.bourgeolet.task_manager.dto.task.TaskCreateDTO#actor()Ljava/lang/String;93
+´
+§com.bourgeolet.task_manager.mapper.TaskMapper#taskToTaskResponseDTO(Lcom/bourgeolet/task_manager/entity/Task;)Lcom/bourgeolet/task_manager/dto/task/TaskResponseDTO;95
+ï
+écom.bourgeolet.task_manager.controller.TaskController#modifyStatus(Lcom/bourgeolet/task_manager/dto/task/TaskChangeStatusDTO;)LResponseEntity;97
+
+(36:5)-(40:6)98
+
+modifyStatus99
+?
+8com.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO101
+
+PatchMapping103
++
+$Recovered#typeBindingLPatchMapping;0105
+ƒ
+ºcom.bourgeolet.task_manager.service.TaskService#changeStatus(Ljava/lang/Long;Lcom/bourgeolet/task_manager/model/task/TaskStatus;Ljava/lang/String;)Lcom/bourgeolet/task_manager/entity/Task;107
+T
+Mcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#id()Ljava/lang/Long;109
+~
+wcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#newStatus()Lcom/bourgeolet/task_manager/model/task/TaskStatus;111
+Y
+Rcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#actor()Ljava/lang/String;113
+ö
+ícom.bourgeolet.task_manager.controller.TaskController#modifyUser(Lcom/bourgeolet/task_manager/dto/task/TaskChangeUserAffecteeDTO;)LResponseEntity;115
+
+(42:5)-(46:6)116
+
+
+modifyUser117
+E
+>com.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO119
+©
+°com.bourgeolet.task_manager.service.TaskService#changeUserAffectee(Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)Lcom/bourgeolet/task_manager/entity/Task;121
+Z
+Scom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#id()Ljava/lang/Long;123
+a
+Zcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#newUser()Ljava/lang/String;125
+_
+Xcom.bourgeolet.task_manager.dto.task.TaskChangeUserAffecteeDTO#actor()Ljava/lang/String;127
+z
+scom.bourgeolet.task_manager.controller.TaskController#delete(Lcom/bourgeolet/task_manager/dto/task/TaskDeleteDTO;)V129
+
+(48:5)-(51:6)130
+
+delete131
+9
+2com.bourgeolet.task_manager.dto.task.TaskDeleteDTO133
+
+DeleteMapping135
+,
+%Recovered#typeBindingLDeleteMapping;0137
+f
+_com.bourgeolet.task_manager.service.TaskService#deleteTask(Ljava/lang/Long;Ljava/lang/String;)V139
+N
+Gcom.bourgeolet.task_manager.dto.task.TaskDeleteDTO#id()Ljava/lang/Long;141
+S
+Lcom.bourgeolet.task_manager.dto.task.TaskDeleteDTO#actor()Ljava/lang/String;143
+R
+Kcom.bourgeolet.task_manager.controller.TaskController#all()Ljava/util/List;145
+
+(53:5)-(56:6)146
+
+
+all147
+
+
+GetMapping149
+)
+"Recovered#typeBindingLGetMapping;0151
+P
+Icom.bourgeolet.task_manager.service.TaskService#findAll()Ljava/util/List;153
+â
+Åcom.bourgeolet.task_manager.controller.TaskController#allByStatus()Lcom/bourgeolet/task_manager/dto/task/TaskByStatusResponseDTO;155
+
+(58:5)-(62:6)156
+
+allByStatus157
+C
+<com.bourgeolet.task_manager.dto.task.TaskByStatusResponseDTO159
+=
+6com.bourgeolet.task_manager.model.task.TaskStatus.TODO161
+@
+9com.bourgeolet.task_manager.model.task.TaskStatus.BLOCKED163
+>
+7com.bourgeolet.task_manager.model.task.TaskStatus.DOING165
+@
+9com.bourgeolet.task_manager.model.task.TaskStatus.TESTING167
+=
+6com.bourgeolet.task_manager.model.task.TaskStatus.DONE169
+ë
+âcom.bourgeolet.task_manager.controller.TaskController#getTaskById(Ljava/lang/Long;)Lcom/bourgeolet/task_manager/dto/task/TaskResponseDTO;171
+
+(64:5)-(67:6)172
+
+getTaskById173
+
+PathVariable175
++
+$Recovered#typeBindingLPathVariable;0177
+}
+vcom.bourgeolet.task_manager.service.TaskService#getTaskById(Ljava/lang/Long;)Lcom/bourgeolet/task_manager/entity/Task;179J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j≤
+
+90
+909119
+
+21
+212219
+
+176
+17617719
+
+80
+808119
+
+108
+10810919
+
+166
+16616719
+M
+41G
+414234 *
+1 (*28:5B$
+
+
+11
+35
+
+
+13
+43
+
+
+15
+44
+
+102
+10210319
+
+178
+17817919
+
+76
+767719
+
+142
+14214319
+R
+170K
+17017149 *
+1A A('28:5B&
+
+
+11
+12
+
+13
+172
+
+15
+173
+
+55
+555619
+
+30
+303119
+
+52
+525319
+
+110
+11011119
+
+150
+15015119
+R
+154K
+15415549 *
+1;$ ;(/28:5B&
+
+
+11
+12
+
+13
+156
+
+15
+157
+
+158
+15815919
+
+94
+949519
+
+122
+12212319
+
+164
+16416519
+
+86
+868719
+
+24
+242519
+
+84
+848519
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+88
+888919
+R
+128K
+12812949 *
+11 1(28:5B&
+
+
+11
+12
+
+13
+130
+
+15
+131
+
+162
+16216319
+
+106
+10610719
+M
+47G
+474849 *
+1* (728:5B$
+
+
+11
+35
+
+
+13
+50
+
+
+15
+51
+M
+96G
+969749 *
+1%5 %(A28:5B$
+
+
+11
+12
+
+
+13
+98
+
+
+15
+99
+
+148
+14814919
+
+100
+10010119
+
+78
+787919
+
+104
+10410519
+R
+144K
+14414549 *
+16" 6(%28:5B&
+
+
+11
+12
+
+13
+146
+
+15
+147
+
+92
+929319
+
+138
+13813919
+
+168
+16816919
+
+140
+14014119
+
+160
+16016119
+M
+62G
+626349 *
+15 (;28:5B$
+
+
+11
+12
+
+
+13
+64
+
+
+15
+65
+
+136
+13613719
+
+17
+171819
+
+26
+262719
+
+74
+747519
+
+28
+282919
+
+38
+383919
+
+70
+707119
+
+152
+15215319
+
+112
+11211319
+
+134
+13413519
+R
+114K
+11411549 *
+1+5 +(?28:5B&
+
+
+11
+12
+
+13
+116
+
+15
+117
+
+59
+596019
+
+45
+454619
+
+82
+828319
+
+126
+12612719
+
+68
+686919
+
+132
+13213319
+
+124
+12412519
+
+72
+727319
+
+66
+666719
+
+118
+11811919
+
+120
+12012119
+M
+32G
+323334 *
+1 ((28:5B$
+
+
+11
+35
+
+
+13
+36
+
+
+15
+37
+
+174
+17417519rÊ-
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (
+
+82820*
+1 (
+
+83023*
+1 (
+
+323840*
+1 (
+
+323823*
+1 (
+
+323823*
+1 ((
+
+414540*
+1 (
+
+414523*
+1 (
+
+414523*
+1 (*
+
+475254*
+1X (b
+
+475523*
+1 ((
+
+475523*
+1= (L
+
+475240*
+1c (m
+
+475223*
+1X (b
+
+475540*
+1) (8
+
+475257*
+1< (R
+
+475558*
+1< (R
+
+475961*
+1L (R
+
+626657*
+1 (4
+
+626854*
+1P (]
+
+627020*
+1 (
+
+627223*
+1 (
+
+626623*
+1 (
+
+625523*
+1 (3
+
+627420*
+1 (#
+
+627623*
+1 (#
+
+626840*
+1^ (a
+
+627820*
+1< (B
+
+628023*
+1= (B
+
+628220*
+1C (O
+
+628423*
+1D (O
+
+626823*
+1P (]
+
+628640*
+1   (
+
+628623*
+1 	  (
+
+628657*
+1   ()
+
+624558*
+1   ()
+
+628861*
+1 #  ()
+
+624158*
+1   ("
+
+624523*
+1   ("
+
+624158*
+1   ("
+
+628657*
+1 *  (J
+
+623858*
+1 *  (J
+
+629061*
+1 5  (J
+
+623258*
+1 *  (4
+
+623823*
+1 *  (4
+
+623258*
+1 *  (4
+
+626858*
+1 Q  (Z
+
+629261*
+1 U  (Z
+
+625557*
+1!/ !(O
+
+623858*
+1!/ !(O
+
+629461*
+1!: !(O
+
+623258*
+1!/ !(9
+
+623823*
+1!/ !(9
+
+623258*
+1!/ !(9
+
+966657*
+1% %(4
+
+9610054*
+1%V %(i
+
+9610220*
+1$ $(*
+
+9610423*
+1$ $(
+
+966623*
+1% %(
+
+965523*
+1% %(3
+
+967420*
+1% %(#
+
+967623*
+1% %(#
+
+9610040*
+1%j %(m
+
+967820*
+1%B %(H
+
+968023*
+1%C %(H
+
+968220*
+1%I %(U
+
+968423*
+1%J %(U
+
+9610023*
+1%V %(i
+
+968640*
+1& &(
+
+968623*
+1&	 &(
+
+968657*
+1& &(/
+
+964558*
+1& &(/
+
+9610661*
+1&# &(/
+
+964158*
+1& &("
+
+964523*
+1& &("
+
+964158*
+1& &("
+
+9610058*
+1&0 &(6
+
+9610861*
+1&4 &(6
+
+965257*
+1&: &(G
+
+9610058*
+1&: &(G
+
+9611061*
+1&> &(G
+
+9610058*
+1&K &(T
+
+9611261*
+1&O &(T
+
+965557*
+1'/ '(O
+
+963858*
+1'/ '(O
+
+969461*
+1': '(O
+
+963258*
+1'/ '(9
+
+963823*
+1'/ '(9
+
+963258*
+1'/ '(9
+
+1146657*
+1+ +(4
+
+11411854*
+1+T +(m
+
+11410220*
+1* *((
+
+11410423*
+1* *(
+
+1146623*
+1+ +(
+
+1145523*
+1+ +(3
+
+1147420*
+1+ +(#
+
+1147623*
+1+ +(#
+
+11411840*
+1+n +(q
+
+1147820*
+1+@ +(F
+
+1148023*
+1+A +(F
+
+1148220*
+1+G +(S
+
+1148423*
+1+H +(S
+
+11411823*
+1+T +(m
+
+1148640*
+1, ,(
+
+1148623*
+1,	 ,(
+
+1148657*
+1, ,(5
+
+1144558*
+1, ,(5
+
+11412061*
+1,# ,(5
+
+1144158*
+1, ,("
+
+1144523*
+1, ,("
+
+1144158*
+1, ,("
+
+11411858*
+1,6 ,(<
+
+11412261*
+1,: ,(<
+
+11411858*
+1,@ ,(K
+
+11412461*
+1,D ,(K
+
+11411858*
+1,O ,(X
+
+11412661*
+1,S ,(X
+
+1145557*
+1-/ -(O
+
+1143858*
+1-/ -(O
+
+1149461*
+1-: -(O
+
+1143258*
+1-/ -(9
+
+1143823*
+1-/ -(9
+
+1143258*
+1-/ -(9
+
+12813254*
+11, 1(9
+
+12813420*
+10 0(
+
+12813623*
+10 0(
+
+12813240*
+11: 1(=
+
+1287820*
+11 1(
+
+1288023*
+11 1(
+
+1288220*
+11 1(+
+
+1288423*
+11  1(+
+
+12813223*
+11, 1(9
+
+1284558*
+12	 2(
+
+12813861*
+12 2(
+
+1284158*
+12	 2(
+
+1284523*
+12	 2(
+
+1284158*
+12	 2(
+
+12813258*
+12  2(&
+
+12814061*
+12$ 2(&
+
+12813258*
+12* 2(3
+
+12814261*
+12. 2(3
+
+14414820*
+15 5(
+
+14415023*
+15 5(
+
+1445523*
+16 6( 
+
+1444558*
+17 7(#
+
+14415261*
+17 7(#
+
+1444158*
+17 7(
+
+1444523*
+17 7(
+
+1444158*
+17 7(
+
+1443823*
+173 7(=
+
+1443258*
+173 7(=
+
+15415857*
+1; ;(#
+
+15414820*
+1: :('
+
+15415023*
+1: :(
+
+15415823*
+1; ;(#
+
+1545523*
+1< <(
+
+1544558*
+1<* <(=
+
+15415261*
+1<6 <(=
+
+1544158*
+1<* <(5
+
+1544523*
+1<* <(5
+
+1544158*
+1<* <(5
+
+1543823*
+1<M <(W
+
+1543258*
+1<M <(W
+
+15415861*
+1= =(+
+
+154858*
+1=, =(9
+
+1544761*
+1=, =(9
+
+1545223*
+1=D =(N
+
+1545223*
+1=O =(S
+
+15416058*
+1=O =(S
+
+154858*
+1=V =(c
+
+1544761*
+1=V =(c
+
+1545223*
+1=n =(x
+
+1545223*
+1=y =(Ä
+
+15416258*
+1=y =(Ä
+
+154858*
+1=É =(ê
+
+1544761*
+1=É =(ê
+
+1545223*
+1=õ =(•
+
+1545223*
+1=¶ =(´
+
+15416458*
+1=¶ =(´
+
+154858*
+1=Æ =(ª
+
+1544761*
+1=Æ =(ª
+
+1545223*
+1=∆ =(–
+
+1545223*
+1=— =(ÿ
+
+15416658*
+1=— =(ÿ
+
+154858*
+1=€ =(Ë
+
+1544761*
+1=€ =(Ë
+
+1545223*
+1=Û =(˝
+
+1545223*
+1=˛ =(Ç
+
+15416858*
+1=˛ =(Ç
+
+1705557*
+1A A(
+
+17014820*
+1@ @(0
+
+17015023*
+1@ @(
+
+1705523*
+1A A(
+
+17017420*
+1A( A(5
+
+17017623*
+1A) A(5
+
+1705557*
+1B B(0
+
+1703858*
+1B B(0
+
+1709461*
+1B B(0
+
+1703258*
+1B B(
+
+1703823*
+1B B(
+
+1703258*
+1B B(
+
+1708657*
+1B1 B(H
+
+1704558*
+1B1 B(H
+
+17017861*
+1B= B(H
+
+1704158*
+1B1 B(<
+
+1704523*
+1B1 B(<
+
+1704158*
+1B1 B(<

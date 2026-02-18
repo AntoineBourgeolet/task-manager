@@ -1,0 +1,323 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404576008*java2.Bå
+
+G
+Bback/src/main/java/com/bourgeolet/task_manager/entity/Account.java2
+	
+type3
+	
+MAIN4
+
+package6
+'
+"com.bourgeolet.task_manager.entity7
+/
+*com.bourgeolet.task_manager.entity.Account9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(12:1)-(34:2)14
+
+simple-name15
+
+Account16
+
+Entity18
+
+unknown19
+
+annotated by20
+$
+Recovered#typeBindingLEntity;022
+
+
+uses23
+
+Table25
+#
+Recovered#typeBindingLTable;027
+
+Getter29
+$
+Recovered#typeBindingLGetter;031
+
+Setter33
+$
+Recovered#typeBindingLSetter;035
+B
+<com.bourgeolet.task_manager.entity.Account.idTicketAffectees37
+
+field38
+
+private39
+
+(19:5)-(20:42)40
+
+idTicketAffectees41
+
+	OneToMany43
+'
+!Recovered#typeBindingLOneToMany;045
+-
+'com.bourgeolet.task_manager.entity.Task47
+3
+-com.bourgeolet.task_manager.entity.Account.id49
+
+(22:5)-(25:21)50
+
+id51
+
+Id53
+ 
+Recovered#typeBindingLId;055
+
+GeneratedValue57
+,
+&Recovered#typeBindingLGeneratedValue;059
+
+SequenceGenerator61
+/
+)Recovered#typeBindingLSequenceGenerator;063
+9
+3com.bourgeolet.task_manager.entity.Account.username65
+
+(27:5)-(29:29)66
+
+username67
+
+NotBlank69
+&
+ Recovered#typeBindingLNotBlank;071
+
+Column73
+$
+Recovered#typeBindingLColumn;075
+6
+0com.bourgeolet.task_manager.entity.Account.email77
+
+(31:5)-(31:26)78
+
+email79J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j©
+
+44
+444519
+
+17
+171819
+
+74
+747519
+
+28
+282919
+
+34
+343519
+M
+48G
+484938 *
+1 (28:5B$
+
+
+11
+39
+
+
+13
+50
+
+
+15
+51
+
+56
+565719
+
+70
+707119
+
+72
+727319
+
+58
+585919
+
+68
+686919
+M
+76G
+767738 *
+1 (28:5B$
+
+
+11
+39
+
+
+13
+78
+
+
+15
+79
+M
+64G
+646538 *
+1 (28:5B$
+
+
+11
+39
+
+
+13
+66
+
+
+15
+67
+
+24
+242519
+
+26
+262719
+M
+36G
+363738 *
+1 ()28:5B$
+
+
+11
+39
+
+
+13
+40
+
+
+15
+41
+
+60
+606119
+
+46
+464719
+
+30
+303119
+
+42
+424319
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+21
+212219
+
+62
+626319
+
+32
+323319
+
+52
+525319
+
+54
+545519r¯
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (
+
+82820*
+1 (
+
+83023*
+1 (
+
+83220*
+1 (
+
+83423*
+1 (
+
+364220*
+1 (C
+
+364423*
+1 (
+
+364623*
+1 (
+
+485220*
+1 (
+
+485423*
+1 (
+
+485620*
+1 (S
+
+485823*
+1 (
+
+486020*
+1 (K
+
+486223*
+1 (
+
+646820*
+1 (
+
+647023*
+1 (
+
+647220*
+1 (
+
+647423*
+1 (

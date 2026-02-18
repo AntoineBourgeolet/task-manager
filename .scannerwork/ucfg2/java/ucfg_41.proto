@@ -1,0 +1,9 @@
+
+Çcom.bourgeolet.task_manager.mapper.OutboxMapper#writeJson(Lcom/bourgeolet/task_manager/config/audit/AuditEvent;)Ljava/lang/String;å
+ÅC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/OutboxMapper.java ("1*!
+1 ("
+ (4
+"":F
+ (+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEventB31
+/com.bourgeolet.task_manager.mapper.OutboxMapper

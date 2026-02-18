@@ -1,0 +1,53 @@
+
+˜com.bourgeolet.task_manager.controller.TaskController#getStatusList(Ljava/util/List;Lcom/bourgeolet/task_manager/model/task/TaskStatus;)Ljava/util/List;’
+‡C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/controller/TaskController.java) (6"1*Û
+1 (¨¥
+ ( 
+%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*8
+
+__unknown_file (
+
+listTaskjava.util.List2stream()v
+t
+( (f"
+%1java.util.function.Predicate"__declareFunction*1
+
+__unknown_file (
+__sonar_lambda_5$¶
+³
+
+__unknown_file (2
+"
+%1java.util.function.Predicate"
+
+taskStatus"__id*]
+
+__unknown_file (A
+?
+
+taskStatus1com.bourgeolet.task_manager.model.task.TaskStatus¬©
+ (g
+%4java.util.stream.Stream"Wjava.util.stream.Stream#filter(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;*;
+
+__unknown_file (
+
+%0java.util.stream.Stream*@
+
+__unknown_file ($
+"
+%1java.util.function.Predicate2&filter(Ljava/util/function/Predicate;)œ™
+ (p
+%5java.util.List"0java.util.stream.Stream#toList()Ljava/util/List;*;
+
+__unknown_file (
+
+%4java.util.stream.Stream2toList()""
+ (q
+
+%5java.util.List:&
+7 (V
+listTaskjava.util.List:K
+W (l?
+
+taskStatus1com.bourgeolet.task_manager.model.task.TaskStatusB9"7
+5com.bourgeolet.task_manager.controller.TaskController

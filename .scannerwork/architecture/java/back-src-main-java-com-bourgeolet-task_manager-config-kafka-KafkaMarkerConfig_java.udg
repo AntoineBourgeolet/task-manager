@@ -1,0 +1,94 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577071*java2.B—
+W
+Rback/src/main/java/com/bourgeolet/task_manager/config/kafka/KafkaMarkerConfig.java2
+	
+type3
+	
+MAIN4
+
+package6
+-
+(com.bourgeolet.task_manager.config.kafka7
+?
+:com.bourgeolet.task_manager.config.kafka.KafkaMarkerConfig9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(6:1)-(9:34)14
+
+simple-name15
+
+KafkaMarkerConfig16
+
+Configuration18
+
+unknown19
+
+annotated by20
++
+%Recovered#typeBindingLConfiguration;022
+
+
+uses23
+
+EnableKafka25
+)
+#Recovered#typeBindingLEnableKafka;027J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j™
+
+17
+171819
+
+26
+262719
+
+21
+212219
+G
+8B
+8910 *
+1	 	(:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+24
+242519rh
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (

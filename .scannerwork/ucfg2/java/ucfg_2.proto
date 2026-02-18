@@ -1,0 +1,83 @@
+
+öcom.bourgeolet.task_manager.config.audit.AuditEvent#ticketCreated(Ljava/lang/Long;Ljava/lang/String;)Lcom/bourgeolet/task_manager/config/audit/AuditEvent;ê
+ÖC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/config/audit/AuditEvent.java" "(*"1*ú
+1$ $(
+}
+$ $(!
+%0java.util.UUID"+java.util.UUID#randomUUID()Ljava/util/UUID;*.
+
+__unknown_file ("
+java.util.UUIDZ
+X
+% %(-
+%1java.lang.String"__id*.
+
+__unknown_file (
+TICKET_CREATEDQ
+O
+& &(9
+%2java.lang.String"__id*%
+
+__unknown_file (	
+AUDITç
+ä
+( ((
+%3java.time.LocalTime".java.time.LocalTime#now()Ljava/time/LocalTime;*3
+
+__unknown_file ("
+java.time.LocalTimeA
+?
+* *(9	
+%4int"__id*"
+
+__unknown_file (
+""|z
+# #(9
+%53com.bourgeolet.task_manager.config.audit.AuditEvent"3com.bourgeolet.task_manager.config.audit.AuditEvent¬
+ø
+# ,(	
+%6"∏com.bourgeolet.task_manager.config.audit.AuditEvent#<init>(Ljava/util/UUID;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/time/LocalTime;Ljava/lang/String;ILjava/util/Map;)V*W
+
+__unknown_file (;
+9
+%53com.bourgeolet.task_manager.config.audit.AuditEvent*2
+
+__unknown_file (
+
+%0java.util.UUID*4
+
+__unknown_file (
+
+%1java.lang.String*4
+
+__unknown_file (
+
+%2java.lang.String*8
+
+__unknown_file (
+
+ticketIdjava.lang.Long*7
+
+__unknown_file (
+
+%3java.time.LocalTime*9
+
+__unknown_file (
+
+actorIdjava.lang.String*'
+
+__unknown_file (
+	
+%4int*"
+
+__unknown_file (
+"""G
+# ,(
+;
+9
+%53com.bourgeolet.task_manager.config.audit.AuditEvent:&
+"+ "(9
+ticketIdjava.lang.Long:'
+": "(H
+actorIdjava.lang.StringB7"5
+3com.bourgeolet.task_manager.config.audit.AuditEventH

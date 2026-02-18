@@ -1,0 +1,338 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404573926*java2.B
+O
+Jback/src/main/java/com/bourgeolet/task_manager/dto/task/TaskCreateDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+)
+$com.bourgeolet.task_manager.dto.task7
+7
+2com.bourgeolet.task_manager.dto.task.TaskCreateDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(8:1)-(17:2)14
+
+simple-name15
+
+TaskCreateDTO16
+>
+8com.bourgeolet.task_manager.dto.task.TaskCreateDTO.actor18
+
+field19
+
+	protected20
+
+(9:9)-(9:32)21
+
+actor22
+R
+Lcom.bourgeolet.task_manager.dto.task.TaskCreateDTO#actor()Ljava/lang/String;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+E
+?com.bourgeolet.task_manager.dto.task.TaskCreateDTO.userAffectee35
+
+(11:9)-(11:29)36
+
+userAffectee37
+Y
+Scom.bourgeolet.task_manager.dto.task.TaskCreateDTO#userAffectee()Ljava/lang/String;39
+>
+8com.bourgeolet.task_manager.dto.task.TaskCreateDTO.title41
+
+(12:9)-(12:32)42
+
+title43
+R
+Lcom.bourgeolet.task_manager.dto.task.TaskCreateDTO#title()Ljava/lang/String;45
+D
+>com.bourgeolet.task_manager.dto.task.TaskCreateDTO.description47
+
+(13:9)-(13:28)48
+
+description49
+X
+Rcom.bourgeolet.task_manager.dto.task.TaskCreateDTO#description()Ljava/lang/String;51
+A
+;com.bourgeolet.task_manager.dto.task.TaskCreateDTO.priority53
+
+(14:9)-(14:22)54
+
+priority55
+D
+>com.bourgeolet.task_manager.dto.task.TaskCreateDTO#priority()I57
+=
+7com.bourgeolet.task_manager.dto.task.TaskCreateDTO.tags59
+
+(15:9)-(15:32)60
+
+
+tags61
+O
+Icom.bourgeolet.task_manager.dto.task.TaskCreateDTO#tags()Ljava/util/List;63
+6
+0com.bourgeolet.task_manager.dto.tag.TagCreateDTO65J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jñ
+
+64
+646529
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+M
+17G
+171819 *
+1	 	(28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+M
+34G
+343519 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+A
+50;
+505125 *
+1 (28:5B
+
+
+13
+48
+
+
+15
+49
+M
+52G
+525319 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+54
+
+
+15
+55
+A
+56;
+565725 *
+1 (28:5B
+
+
+13
+54
+
+
+15
+55
+M
+46G
+464719 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+48
+
+
+15
+49
+M
+58G
+585919 *
+1 ( 28:5B$
+
+
+11
+20
+
+
+13
+60
+
+
+15
+61
+A
+38;
+383925 *
+1 (28:5B
+
+
+13
+36
+
+
+15
+37
+A
+62;
+626325 *
+1 ( 28:5B
+
+
+13
+60
+
+
+15
+61
+A
+44;
+444525 *
+1 (28:5B
+
+
+13
+42
+
+
+15
+43
+
+31
+313229
+M
+40G
+404119 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+42
+
+
+15
+43
+
+27
+272829
+A
+23;
+232425 *
+1	 	(28:5B
+
+
+13
+21
+
+
+15
+22r©
+
+231726*
+1	 	(
+
+172730*
+1		 	(
+
+173133*
+1	
+ 	(
+
+383426*
+1 (
+
+444026*
+1 (
+
+402730*
+1	 (
+
+403133*
+1
+ (
+
+504626*
+1 (
+
+565226*
+1 (
+
+625826*
+1 ( 
+
+586433*
+1 (

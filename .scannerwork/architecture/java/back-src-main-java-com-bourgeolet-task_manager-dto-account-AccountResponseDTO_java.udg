@@ -1,0 +1,166 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404575966*java2.B¢
+W
+Rback/src/main/java/com/bourgeolet/task_manager/dto/account/AccountResponseDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+,
+'com.bourgeolet.task_manager.dto.account7
+?
+:com.bourgeolet.task_manager.dto.account.AccountResponseDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(5:1)-(10:2)14
+
+simple-name15
+
+AccountResponseDTO16
+I
+Ccom.bourgeolet.task_manager.dto.account.AccountResponseDTO.username18
+
+field19
+
+	protected20
+
+(6:10)-(6:36)21
+
+username22
+]
+Wcom.bourgeolet.task_manager.dto.account.AccountResponseDTO#username()Ljava/lang/String;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+F
+@com.bourgeolet.task_manager.dto.account.AccountResponseDTO.email35
+
+(7:9)-(7:21)36
+
+email37
+Z
+Tcom.bourgeolet.task_manager.dto.account.AccountResponseDTO#email()Ljava/lang/String;39J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j•
+M
+34G
+343519 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+A
+38;
+383925 *
+1 (28:5B
+
+
+13
+36
+
+
+15
+37
+
+31
+313229
+M
+17G
+171819 *
+1 (#28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+A
+23;
+232425 *
+1 (#28:5B
+
+
+13
+21
+
+
+15
+22
+
+27
+272829
+G
+8B
+8910 *
+1 (!:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16rl
+
+231726*
+1 (#
+
+172730*
+1
+ (
+
+173133*
+1 (
+
+383426*
+1 (

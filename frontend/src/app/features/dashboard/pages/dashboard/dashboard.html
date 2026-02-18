@@ -1,0 +1,155 @@
+<div class="kanban">
+  @for (col of column; track col.id) {
+    <section class="column">
+      <mat-card class="column-card" appearance="outlined">
+        <mat-card-header class="column-header">
+          <div mat-card-avatar class="column-icon">
+            <mat-icon>view_kanban</mat-icon>
+          </div>
+          <mat-card-title class="column-title">
+            {{ col.title }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span class="count"> Tickets : {{ board[col.id]?.length }} </span>
+          </mat-card-subtitle>
+          <span class="spacer"></span>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <div
+            class="list"
+            cdkDropList
+            [id]="col.id"
+            [cdkDropListData]="board[col.id]"
+            [cdkDropListConnectedTo]="getConnectedLists()"
+            (cdkDropListDropped)="drop($event, col.id)"
+          >
+            @for (task of board[col.id]; track task.id) {
+              <div
+                class="card"
+                cdkDrag
+                (click)="openTask(task.id)"
+                onkeypress=""
+                [attr.aria-label]="'Tâche ' + task.title"
+              >
+                <mat-card
+                  appearance="outlined"
+                  class="task-card"
+                  [ngClass]="priorityClass(task.priority)"
+                >
+                  <mat-card-header>
+                    <mat-card-title class="task-title">
+                      {{ task.title }}
+                    </mat-card-title>
+
+                    <mat-card-subtitle class="task-subtitle">
+                      @if (true) {
+                        <span class="due">
+                          <mat-icon inline>event</mat-icon>
+                          12/12/2012
+                        </span>
+                      }
+                    </mat-card-subtitle>
+
+                    <span class="spacer"></span>
+
+                    <button
+                      mat-icon-button
+                      [matMenuTriggerFor]="taskMenu"
+                      (click)="$event.stopPropagation()"
+                      aria-label="Actions de tâche"
+                    >
+                      <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #taskMenu="matMenu">
+                      <button mat-menu-item (click)="openTask(task.id)">
+                        <mat-icon>open_in_new</mat-icon>
+                        <span>Ouvrir</span>
+                      </button>
+                      <button mat-menu-item>
+                        <mat-icon>content_copy</mat-icon>
+                        <span>Dupliquer</span>
+                      </button>
+                      <button mat-menu-item (click)="deleteTask(task.id)">
+                        <mat-icon color="warn">delete</mat-icon>
+                        <span>Supprimer</span>
+                      </button>
+                    </mat-menu>
+                  </mat-card-header>
+
+                  <mat-card-content>
+                    @if (task.tags?.length) {
+                      <mat-chip-set class="tag-chip-set" aria-label="Tags">
+                        @for (tag of task.tags; track tag) {
+                          <mat-chip class="tag-chip" appearance="outlined" color="primary">
+                            <mat-icon matChipAvatar>label</mat-icon>
+                            {{ tag }}
+                          </mat-chip>
+                        }
+                      </mat-chip-set>
+                    }
+                    <div class="priority-line">
+                      <mat-chip class="priority-chip" [ngClass]="priorityChipClass(task.priority)">
+                        <mat-icon inline>flag</mat-icon>
+                        Priorité : {{ task.priority }}
+                      </mat-chip>
+                    </div>
+                    <mat-form-field
+                      appearance="fill"
+                      subscriptSizing="dynamic"
+                      class="w-100"
+                      onkeypress=""
+                      (click)="$event.stopPropagation()"
+                    >
+                      <mat-label>Utilisateur affecté</mat-label>
+                      <mat-select
+                        [(value)]="task.userAffectee"
+                        (selectionChange)="affecteUser(task.id, $event.value)"
+                      >
+                        <mat-option [value]="null">Non affecté</mat-option>
+                        @for (user of users; track user.username) {
+                          <mat-option [value]="user.username">
+                            <div class="user-option">
+                              <span>{{ user.username }}</span>
+                            </div>
+                          </mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
+                  </mat-card-content>
+                  <mat-card-actions align="end">
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      (click)="deleteTask(task.id); $event.stopPropagation()"
+                      aria-label="Supprimer la tâche"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-card-actions>
+                  <mat-card-footer>
+                    <p class="id-card">Id : {{ task.id }}</p>
+                  </mat-card-footer>
+                </mat-card>
+                <ng-template cdkDragPreview>
+                  <div class="drag-preview">
+                    <mat-icon>drag_indicator</mat-icon>
+                    {{ task.title }}
+                  </div>
+                </ng-template>
+                <ng-template cdkDragPlaceholder>
+                  <div class="drag-placeholder"></div>
+                </ng-template>
+              </div>
+            } @empty {
+              <div class="empty">
+                <mat-icon>inbox</mat-icon>
+                Aucune tâche ici
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  }
+</div>

@@ -1,0 +1,32 @@
+
+šcom.bourgeolet.task_manager.mapper.TagMapper#tagCreateDTOToTag(Lcom/bourgeolet/task_manager/dto/tag/TagCreateDTO;)Lcom/bourgeolet/task_manager/entity/Tag;ˆ
+~C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/TagMapper.java ( "1*®
+1 (b`
+ (,
+%0&com.bourgeolet.task_manager.entity.Tag"&com.bourgeolet.task_manager.entity.Tag‘
+Ž
+ (
+%1"0com.bourgeolet.task_manager.entity.Tag#<init>()V*J
+
+__unknown_file (.
+,
+%0&com.bourgeolet.task_manager.entity.TagŽ
+‹
+ (-
+tag&com.bourgeolet.task_manager.entity.Tag"__id*J
+
+__unknown_file (.
+,
+%0&com.bourgeolet.task_manager.entity.TagØÕ
+ ('
+%2java.lang.String"Icom.bourgeolet.task_manager.dto.tag.TagCreateDTO#name()Ljava/lang/String;*^
+
+__unknown_file (B
+@
+tagCreateDTO0com.bourgeolet.task_manager.dto.tag.TagCreateDTO2name()";
+ (/
+-
+tag&com.bourgeolet.task_manager.entity.Tag:L
+! (:@
+tagCreateDTO0com.bourgeolet.task_manager.dto.tag.TagCreateDTOB0.
+,com.bourgeolet.task_manager.mapper.TagMapperH

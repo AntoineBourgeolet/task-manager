@@ -1,0 +1,63 @@
+
+`com.bourgeolet.task_manager.config.kafka.KafkaProducerConfig#baseProducerConfig()Ljava/util/Map;™
+ŽC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/config/kafka/KafkaProducerConfig.java  (2"1*£
+1% (486
+) (2
+%0java.util.HashMap"java.util.HashMapf
+d
+% (4
+%1"java.util.HashMap#<init>()V*5
+
+__unknown_file (
+
+%0java.util.HashMapb
+`
+ (5
+configjava.util.Map"__id*5
+
+__unknown_file (
+
+%0java.util.HashMap¨
+¥
+ (M
+%2"__mapSet*5
+
+__unknown_file (
+
+configjava.util.Map*"
+
+__unknown_file (
+""*.
+
+__unknown_file (
+localhost:9092œ
+™
+ (V
+%3"__mapSet*5
+
+__unknown_file (
+
+configjava.util.Map*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+""œ
+™
+ (]
+%4"__mapSet*5
+
+__unknown_file (
+
+configjava.util.Map*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+"""%
+ (
+
+configjava.util.MapB@>
+<com.bourgeolet.task_manager.config.kafka.KafkaProducerConfig

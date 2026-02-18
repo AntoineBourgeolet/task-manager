@@ -1,0 +1,122 @@
+
+ com.bourgeolet.task_manager.config.audit.AuditEvent#ticketChangedUserAffectee(Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/bourgeolet/task_manager/config/audit/AuditEvent;ê
+ÖC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/config/audit/AuditEvent.java/ /(6"1*Ñ
+11 1(
+}
+1 1(!
+%0java.util.UUID"+java.util.UUID#randomUUID()Ljava/util/UUID;*.
+
+__unknown_file ("
+java.util.UUIDh
+f
+2 2(;
+%1java.lang.String"__id*<
+
+__unknown_file ( 
+TICKET_CHANGED_USER_AFFECTEEQ
+O
+3 3(9
+%2java.lang.String"__id*%
+
+__unknown_file (	
+AUDITç
+ä
+5 5(
+%3java.time.LocalTime".java.time.LocalTime#now()Ljava/time/LocalTime;*3
+
+__unknown_file ("
+java.time.LocalTimeA
+?
+7 7(9	
+%4int"__id*"
+
+__unknown_file (
+""S
+Q
+8 8(?
+%5java.lang.String"__id*'
+
+__unknown_file (	
+oldUserS
+Q
+8J 8(r
+%6java.lang.String"__id*'
+
+__unknown_file (	
+newUserû
+õ
+8 8(|
+%7java.util.Map"ijava.util.Map#of(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;*-
+
+__unknown_file ("
+java.util.Map*4
+
+__unknown_file (
+
+%5java.lang.String*9
+
+__unknown_file (
+
+oldUserjava.lang.String*4
+
+__unknown_file (
+
+%6java.lang.String*9
+
+__unknown_file (
+
+newUserjava.lang.String|z
+0 0(9
+%83com.bourgeolet.task_manager.config.audit.AuditEvent"3com.bourgeolet.task_manager.config.audit.AuditEvent—
+Œ
+0 9(	
+%9"∏com.bourgeolet.task_manager.config.audit.AuditEvent#<init>(Ljava/util/UUID;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/time/LocalTime;Ljava/lang/String;ILjava/util/Map;)V*W
+
+__unknown_file (;
+9
+%83com.bourgeolet.task_manager.config.audit.AuditEvent*2
+
+__unknown_file (
+
+%0java.util.UUID*4
+
+__unknown_file (
+
+%1java.lang.String*4
+
+__unknown_file (
+
+%2java.lang.String*8
+
+__unknown_file (
+
+ticketIdjava.lang.Long*7
+
+__unknown_file (
+
+%3java.time.LocalTime*9
+
+__unknown_file (
+
+actorIdjava.lang.String*'
+
+__unknown_file (
+	
+%4int*1
+
+__unknown_file (
+
+%7java.util.Map"G
+0 9(
+;
+9
+%83com.bourgeolet.task_manager.config.audit.AuditEvent:&
+/7 /(E
+ticketIdjava.lang.Long:'
+/F /(U
+actorIdjava.lang.String:'
+/V /(e
+oldUserjava.lang.String:'
+/f /(t
+newUserjava.lang.StringB7"5
+3com.bourgeolet.task_manager.config.audit.AuditEventH

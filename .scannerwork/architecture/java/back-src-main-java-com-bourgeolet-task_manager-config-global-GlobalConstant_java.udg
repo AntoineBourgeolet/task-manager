@@ -1,0 +1,306 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577271*java2.Bý
+U
+Pback/src/main/java/com/bourgeolet/task_manager/config/global/GlobalConstant.java2
+	
+type3
+	
+MAIN4
+
+package6
+.
+)com.bourgeolet.task_manager.config.global7
+=
+8com.bourgeolet.task_manager.config.global.GlobalConstant9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(3:1)-(25:2)14
+
+simple-name15
+
+GlobalConstant16
+H
+Bcom.bourgeolet.task_manager.config.global.GlobalConstant#<init>()V18
+
+method19
+
+private20
+
+(5:5)-(5:31)21
+
+calls22
+Y
+Scom.bourgeolet.task_manager.config.global.GlobalConstant.AGGREGATE_TYPE_AUDIT_EVENT24
+
+field25
+
+(8:5)-(8:69)26
+ 
+AGGREGATE_TYPE_AUDIT_EVENT27
+T
+Ncom.bourgeolet.task_manager.config.global.GlobalConstant.TICKET_CHANGED_STATUS29
+
+(11:5)-(11:80)30
+
+TICKET_CHANGED_STATUS31
+M
+Gcom.bourgeolet.task_manager.config.global.GlobalConstant.TICKET_CREATED33
+
+(12:5)-(12:66)34
+
+TICKET_CREATED35
+[
+Ucom.bourgeolet.task_manager.config.global.GlobalConstant.TICKET_CHANGED_USER_AFFECTEE37
+
+(13:5)-(13:94)38
+"
+TICKET_CHANGED_USER_AFFECTEE39
+M
+Gcom.bourgeolet.task_manager.config.global.GlobalConstant.TICKET_DELETED41
+
+(14:5)-(14:67)42
+
+TICKET_DELETED43
+Y
+Scom.bourgeolet.task_manager.config.global.GlobalConstant.SCHEMA_VERSION_AUDIT_EVENT45
+
+(18:5)-(18:60)46
+ 
+SCHEMA_VERSION_AUDIT_EVENT47
+Z
+Tcom.bourgeolet.task_manager.config.global.GlobalConstant.LOWER_CAMEL_CASE_OLD_STATUS49
+
+(21:5)-(21:74)50
+!
+LOWER_CAMEL_CASE_OLD_STATUS51
+Z
+Tcom.bourgeolet.task_manager.config.global.GlobalConstant.LOWER_CAMEL_CASE_NEW_STATUS53
+
+(22:5)-(22:74)54
+!
+LOWER_CAMEL_CASE_NEW_STATUS55
+X
+Rcom.bourgeolet.task_manager.config.global.GlobalConstant.LOWER_CAMEL_CASE_OLD_USER57
+
+(23:5)-(23:70)58
+
+LOWER_CAMEL_CASE_OLD_USER59
+X
+Rcom.bourgeolet.task_manager.config.global.GlobalConstant.LOWER_CAMEL_CASE_NEW_USER61
+
+(24:5)-(24:70)62
+
+LOWER_CAMEL_CASE_NEW_USER63J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j®
+M
+44G
+444525 *
+1 (728:5B$
+
+
+11
+12
+
+
+13
+46
+
+
+15
+47
+M
+32G
+323325 *
+1  (.28:5B$
+
+
+11
+12
+
+
+13
+34
+
+
+15
+35
+M
+23G
+232425 *
+1  (:28:5B$
+
+
+11
+12
+
+
+13
+26
+
+
+15
+27
+M
+60G
+606125 *
+1  (928:5B$
+
+
+11
+12
+
+
+13
+62
+
+
+15
+63
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+M
+17G
+171819 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+16
+M
+40G
+404125 *
+1  (.28:5B$
+
+
+11
+12
+
+
+13
+42
+
+
+15
+43
+M
+28G
+282925 *
+1  (528:5B$
+
+
+11
+12
+
+
+13
+30
+
+
+15
+31
+M
+48G
+484925 *
+1  (;28:5B$
+
+
+11
+12
+
+
+13
+50
+
+
+15
+51
+M
+36G
+363725 *
+1  (<28:5B$
+
+
+11
+12
+
+
+13
+38
+
+
+15
+39
+M
+56G
+565725 *
+1  (928:5B$
+
+
+11
+12
+
+
+13
+58
+
+
+15
+59
+M
+52G
+525325 *
+1  (;28:5B$
+
+
+11
+12
+
+
+13
+54
+
+
+15
+55r
+
+17822*
+1 (

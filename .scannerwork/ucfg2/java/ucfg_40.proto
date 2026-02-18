@@ -1,0 +1,73 @@
+
+öcom.bourgeolet.task_manager.mapper.OutboxMapper#toOutbox(Lcom/bourgeolet/task_manager/config/audit/AuditEvent;)Lcom/bourgeolet/task_manager/entity/Outbox;å
+ÅC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/OutboxMapper.java ("1*ô
+1 ("’
+“
+ ('
+%0java.lang.String"Çcom.bourgeolet.task_manager.mapper.OutboxMapper#writeJson(Lcom/bourgeolet/task_manager/config/audit/AuditEvent;)Ljava/lang/String;*O
+
+__unknown_file (31
+/com.bourgeolet.task_manager.mapper.OutboxMapper*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvente
+c
+ ((
+payloadjava.lang.String"__id*4
+
+__unknown_file (
+
+%0java.lang.Stringhf
+ (/
+%1)com.bourgeolet.task_manager.entity.Outbox")com.bourgeolet.task_manager.entity.Outboxó
+î
+ (!
+%2"3com.bourgeolet.task_manager.entity.Outbox#<init>()V*M
+
+__unknown_file (1
+/
+%1)com.bourgeolet.task_manager.entity.Outboxî
+ë
+ ("0
+out)com.bourgeolet.task_manager.entity.Outbox"__id*M
+
+__unknown_file (1
+/
+%1)com.bourgeolet.task_manager.entity.Outbox◊‘
+ (
+%3java.util.UUID"Mcom.bourgeolet.task_manager.config.audit.AuditEvent#eventId()Ljava/util/UUID;*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvent2	eventId()Á‰
+ (0
+%4java.lang.String"Ucom.bourgeolet.task_manager.config.audit.AuditEvent#aggregateType()Ljava/lang/String;*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvent2aggregateType()ﬂ‹
+ (,
+%5java.lang.Long"Qcom.bourgeolet.task_manager.config.audit.AuditEvent#aggregateId()Ljava/lang/Long;*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvent2aggregateId()ﬂ‹
+ ((
+%6java.lang.String"Qcom.bourgeolet.task_manager.config.audit.AuditEvent#eventType()Ljava/lang/String;*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvent2eventType()Á‰
+ ('
+%7java.time.LocalTime"Ucom.bourgeolet.task_manager.config.audit.AuditEvent#occurredAt()Ljava/time/LocalTime;*X
+
+__unknown_file (<
+:
+evt3com.bourgeolet.task_manager.config.audit.AuditEvent2occurredAt()">
+ (2
+0
+out)com.bourgeolet.task_manager.entity.Outbox:F
+ ():
+evt3com.bourgeolet.task_manager.config.audit.AuditEventB31
+/com.bourgeolet.task_manager.mapper.OutboxMapperH

@@ -1,0 +1,377 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577337*java2.B
+Q
+Lback/src/main/java/com/bourgeolet/task_manager/dto/task/TaskResponseDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+)
+$com.bourgeolet.task_manager.dto.task7
+9
+4com.bourgeolet.task_manager.dto.task.TaskResponseDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(8:1)-(11:2)14
+
+simple-name15
+
+TaskResponseDTO16
+=
+7com.bourgeolet.task_manager.dto.task.TaskResponseDTO.id18
+
+field19
+
+	protected20
+
+(8:31)-(8:49)21
+
+id22
+O
+Icom.bourgeolet.task_manager.dto.task.TaskResponseDTO#id()Ljava/lang/Long;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+@
+:com.bourgeolet.task_manager.dto.task.TaskResponseDTO.title35
+
+(8:50)-(8:63)36
+
+title37
+T
+Ncom.bourgeolet.task_manager.dto.task.TaskResponseDTO#title()Ljava/lang/String;39
+F
+@com.bourgeolet.task_manager.dto.task.TaskResponseDTO.description41
+
+(8:64)-(8:83)42
+
+description43
+Z
+Tcom.bourgeolet.task_manager.dto.task.TaskResponseDTO#description()Ljava/lang/String;45
+G
+Acom.bourgeolet.task_manager.dto.task.TaskResponseDTO.userAffectee47
+
+(8:84)-(8:104)48
+
+userAffectee49
+[
+Ucom.bourgeolet.task_manager.dto.task.TaskResponseDTO#userAffectee()Ljava/lang/String;51
+C
+=com.bourgeolet.task_manager.dto.task.TaskResponseDTO.priority53
+
+(8:105)-(8:118)54
+
+priority55
+F
+@com.bourgeolet.task_manager.dto.task.TaskResponseDTO#priority()I57
+?
+9com.bourgeolet.task_manager.dto.task.TaskResponseDTO.tags59
+
+(9:31)-(9:49)60
+
+
+tags61
+Q
+Kcom.bourgeolet.task_manager.dto.task.TaskResponseDTO#tags()Ljava/util/List;63
+A
+;com.bourgeolet.task_manager.dto.task.TaskResponseDTO.status65
+
+(9:50)-(9:67)66
+
+status67
+7
+1com.bourgeolet.task_manager.model.task.TaskStatus69
+
+is type70
+v
+pcom.bourgeolet.task_manager.dto.task.TaskResponseDTO#status()Lcom/bourgeolet/task_manager/model/task/TaskStatus;72J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jƒ	
+A
+38;
+383925 *
+19 (>28:5B
+
+
+13
+36
+
+
+15
+37
+M
+40G
+404119 *
+1G (R28:5B$
+
+
+11
+20
+
+
+13
+42
+
+
+15
+43
+M
+58G
+585919 *
+1	, 	(028:5B$
+
+
+11
+20
+
+
+13
+60
+
+
+15
+61
+A
+62;
+626325 *
+1	, 	(028:5B
+
+
+13
+60
+
+
+15
+61
+M
+46G
+464719 *
+1[ (g28:5B$
+
+
+11
+20
+
+
+13
+48
+
+
+15
+49
+A
+56;
+565725 *
+1m (u28:5B
+
+
+13
+54
+
+
+15
+55
+M
+52G
+525319 *
+1m (u28:5B$
+
+
+11
+20
+
+
+13
+54
+
+
+15
+55
+M
+64G
+646519 *
+1	= 	(C28:5B$
+
+
+11
+20
+
+
+13
+66
+
+
+15
+67
+A
+44;
+444525 *
+1G (R28:5B
+
+
+13
+42
+
+
+15
+43
+A
+50;
+505125 *
+1[ (g28:5B
+
+
+13
+48
+
+
+15
+49
+
+31
+313229
+A
+23;
+232425 *
+1. (028:5B
+
+
+13
+21
+
+
+15
+22
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+M
+17G
+171819 *
+1. (028:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+
+27
+272829
+A
+71;
+717225 *
+1	= 	(C28:5B
+
+
+13
+66
+
+
+15
+67
+M
+34G
+343519 *
+19 (>28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+
+68
+686929rÄ
+
+231726*
+1. (0
+
+172730*
+1 ((
+
+173133*
+1  ((
+
+383426*
+19 (>
+
+444026*
+1G (R
+
+504626*
+1[ (g
+
+565226*
+1m (u
+
+625826*
+1	, 	(0
+
+646870*
+1	2 	(<
+
+716426*
+1	= 	(C
+
+646833*
+1	2 	(<
+
+646833*
+1	= 	(C

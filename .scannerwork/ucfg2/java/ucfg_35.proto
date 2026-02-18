@@ -1,0 +1,31 @@
+
+[com.bourgeolet.task_manager.mapper.TaskMapper#tagToString(Ljava/util/List;)Ljava/util/List;‰
+C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/TaskMapper.java (*"1*ƒ
+1 (§¤
+ (
+%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*7
+
+__unknown_file (
+
+listTagjava.util.List2stream()†ƒ
+ (7
+%1java.util.stream.Stream"Sjava.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;*;
+
+__unknown_file (
+
+%0java.util.stream.Stream*"
+
+__unknown_file (
+""2"map(Ljava/util/function/Function;)œ™
+ (@
+%2java.util.List"0java.util.stream.Stream#toList()Ljava/util/List;*;
+
+__unknown_file (
+
+%1java.util.stream.Stream2toList()""
+ (A
+
+%2java.util.List:%
++ (E
+listTagjava.util.ListB1"/
+-com.bourgeolet.task_manager.mapper.TaskMapperH

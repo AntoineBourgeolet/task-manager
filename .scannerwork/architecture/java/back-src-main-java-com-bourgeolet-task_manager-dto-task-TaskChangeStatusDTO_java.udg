@@ -1,0 +1,255 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404576660*java2.Bï	
+U
+Pback/src/main/java/com/bourgeolet/task_manager/dto/task/TaskChangeStatusDTO.java2
+	
+type3
+	
+MAIN4
+
+package6
+)
+$com.bourgeolet.task_manager.dto.task7
+=
+8com.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO9
+
+record10
+
+access11
+
+public12
+
+
+full-range13
+
+(7:1)-(13:2)14
+
+simple-name15
+
+TaskChangeStatusDTO16
+D
+>com.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO.actor18
+
+field19
+
+	protected20
+
+(8:9)-(8:32)21
+
+actor22
+X
+Rcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#actor()Ljava/lang/String;24
+
+method25
+
+
+references26
+
+NotBlank28
+
+unknown29
+
+annotated by30
+&
+ Recovered#typeBindingLNotBlank;032
+
+
+uses33
+A
+;com.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO.id35
+
+(10:9)-(10:26)36
+
+id37
+S
+Mcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#id()Ljava/lang/Long;39
+
+NotNull41
+%
+Recovered#typeBindingLNotNull;043
+H
+Bcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO.newStatus45
+
+(11:9)-(11:38)46
+
+	newStatus47
+7
+1com.bourgeolet.task_manager.model.task.TaskStatus49
+
+is type50
+}
+wcom.bourgeolet.task_manager.dto.task.TaskChangeStatusDTO#newStatus()Lcom/bourgeolet/task_manager/model/task/TaskStatus;52J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jã
+M
+17G
+171819 *
+1 (28:5B$
+
+
+11
+20
+
+
+13
+21
+
+
+15
+22
+G
+8B
+8910 *
+1 (":5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+31
+313229
+A
+23;
+232425 *
+1 (28:5B
+
+
+13
+21
+
+
+15
+22
+
+42
+424329
+
+27
+272829
+M
+44G
+444519 *
+1 (&28:5B$
+
+
+11
+20
+
+
+13
+46
+
+
+15
+47
+M
+34G
+343519 *
+1
+ 
+(28:5B$
+
+
+11
+20
+
+
+13
+36
+
+
+15
+37
+
+48
+484929
+A
+51;
+515225 *
+1 (&28:5B
+
+
+13
+46
+
+
+15
+47
+A
+38;
+383925 *
+1
+ 
+(28:5B
+
+
+13
+36
+
+
+15
+37
+
+40
+404129rÄ
+
+231726*
+1 (
+
+172730*
+1	 (
+
+173133*
+1
+ (
+
+383426*
+1
+ 
+(
+
+344030*
+1
+	 
+(
+
+344233*
+1
+
+ 
+(
+
+444850*
+1 (
+
+514426*
+1 (&
+
+444030*
+1	 (
+
+444233*
+1
+ (
+
+444833*
+1 (
+
+444833*
+1 (&

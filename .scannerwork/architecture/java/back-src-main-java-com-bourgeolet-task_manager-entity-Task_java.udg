@@ -1,0 +1,463 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404577627*java2.B‘
+D
+?back/src/main/java/com/bourgeolet/task_manager/entity/Task.java2
+	
+type3
+	
+MAIN4
+
+package6
+'
+"com.bourgeolet.task_manager.entity7
+,
+'com.bourgeolet.task_manager.entity.Task9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(12:1)-(39:2)14
+
+simple-name15
+
+
+Task16
+
+Entity18
+
+unknown19
+
+annotated by20
+$
+Recovered#typeBindingLEntity;022
+
+
+uses23
+
+Table25
+#
+Recovered#typeBindingLTable;027
+
+Getter29
+$
+Recovered#typeBindingLGetter;031
+
+Setter33
+$
+Recovered#typeBindingLSetter;035
+
+AllArgsConstructor37
+0
+*Recovered#typeBindingLAllArgsConstructor;039
+
+NoArgsConstructor41
+/
+)Recovered#typeBindingLNoArgsConstructor;043
+0
+*com.bourgeolet.task_manager.entity.Task.id45
+
+field46
+
+private47
+
+(20:5)-(23:21)48
+
+id49
+
+Id51
+ 
+Recovered#typeBindingLId;053
+
+GeneratedValue55
+,
+&Recovered#typeBindingLGeneratedValue;057
+
+SequenceGenerator59
+/
+)Recovered#typeBindingLSequenceGenerator;061
+5
+/com.bourgeolet.task_manager.entity.Task.account63
+
+(25:5)-(27:29)64
+
+account65
+0
+*com.bourgeolet.task_manager.entity.Account67
+
+is type68
+
+	ManyToOne70
+'
+!Recovered#typeBindingLManyToOne;072
+
+
+JoinColumn74
+(
+"Recovered#typeBindingLJoinColumn;076
+3
+-com.bourgeolet.task_manager.entity.Task.title78
+
+(29:5)-(29:26)79
+
+title80
+9
+3com.bourgeolet.task_manager.entity.Task.description82
+
+(31:5)-(31:32)83
+
+description84
+6
+0com.bourgeolet.task_manager.entity.Task.priority86
+
+(33:5)-(33:26)87
+
+priority88
+2
+,com.bourgeolet.task_manager.entity.Task.tags90
+
+(35:5)-(35:31)91
+
+
+tags92
+4
+.com.bourgeolet.task_manager.entity.Task.status94
+
+(37:5)-(38:49)95
+
+status96
+7
+1com.bourgeolet.task_manager.model.task.TaskStatus98
+
+
+Enumerated100
+)
+"Recovered#typeBindingLEnumerated;0102
+=
+6com.bourgeolet.task_manager.model.task.TaskStatus.TODO104
+
+
+references105J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j•	
+
+40
+404119
+
+17
+171819
+
+103
+10310419
+
+28
+282919
+M
+85G
+858646 *
+1! !(28:5B$
+
+
+11
+47
+
+
+13
+87
+
+
+15
+88
+
+38
+383919
+
+42
+424319
+
+34
+343519
+
+69
+697019
+
+54
+545519
+
+99
+9910019
+
+73
+737419
+M
+81G
+818246 *
+1 (28:5B$
+
+
+11
+47
+
+
+13
+83
+
+
+15
+84
+
+101
+10110219
+
+56
+565719
+M
+77G
+777846 *
+1 (28:5B$
+
+
+11
+47
+
+
+13
+79
+
+
+15
+80
+
+97
+979819
+M
+62G
+626346 *
+1 (28:5B$
+
+
+11
+47
+
+
+13
+64
+
+
+15
+65
+
+75
+757619
+
+71
+717219
+
+24
+242519
+
+36
+363719
+
+26
+262719
+
+58
+585919
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+30
+303119
+M
+44G
+444546 *
+1 (28:5B$
+
+
+11
+47
+
+
+13
+48
+
+
+15
+49
+
+66
+666719
+M
+93G
+939446 *
+1& &(28:5B$
+
+
+11
+47
+
+
+13
+95
+
+
+15
+96
+
+21
+212219
+
+60
+606119
+
+32
+323319
+
+50
+505119
+
+52
+525319
+M
+89G
+899046 *
+1# #(28:5B$
+
+
+11
+47
+
+
+13
+91
+
+
+15
+92rò
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (
+
+82820*
+1 (
+
+83023*
+1 (
+
+83220*
+1 (
+
+83423*
+1 (
+
+83620*
+1 (
+
+83823*
+1 (
+
+84020*
+1 (
+
+84223*
+1 (
+
+445020*
+1 (
+
+445223*
+1 (
+
+445420*
+1 (P
+
+445623*
+1 (
+
+445820*
+1 (E
+
+446023*
+1 (
+
+626668*
+1 (
+
+626920*
+1 (-
+
+627123*
+1 (
+
+627320*
+1 (+
+
+627523*
+1 (
+
+626623*
+1 (
+
+626623*
+1 (
+
+939768*
+1& &(
+
+939920*
+1% %(!
+
+9310123*
+1% %(
+
+939723*
+1& &(
+
+939723*
+1& &(
+
+939723*
+1&! &(+
+
+939723*
+1&, &(0
+
+93103105*
+1&, &(0

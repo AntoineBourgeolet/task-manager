@@ -1,0 +1,79 @@
+
+¤com.bourgeolet.task_manager.mapper.TaskMapper#taskToTaskResponseDTO(Lcom/bourgeolet/task_manager/entity/Task;)Lcom/bourgeolet/task_manager/dto/task/TaskResponseDTO;‰
+C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/mapper/TaskMapper.java$ $(0"4*\
+2&b &(fH
+F
+&b &(f
+%1"__id*.
+
+__unknown_file (
+
+%3
+<nulltype>*
+1*P
+3&? &(D<
+:
+&? &(_
+%1"__id*"
+
+__unknown_file (
+
+%2*
+1*p
+4&! &(&Y
+W
+&! &(;
+%0"	__compare*
+&4 &(6
+!=*
+&! &(3
+""*
+&7 &(;
+""*
+2
+3*þ
+1& &(gT
+R
+& &(g
+usernamejava.lang.String"__id*"
+
+__unknown_file (
+
+%1~|
+( ((":
+%44com.bourgeolet.task_manager.dto.task.TaskResponseDTO"4com.bourgeolet.task_manager.dto.task.TaskResponseDTOÍ
+Ê
+	( ((ž
+%5"Ècom.bourgeolet.task_manager.dto.task.TaskResponseDTO#<init>(Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;Lcom/bourgeolet/task_manager/model/task/TaskStatus;)V*X
+
+__unknown_file (<
+:
+%44com.bourgeolet.task_manager.dto.task.TaskResponseDTO*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+""*:
+
+__unknown_file (
+
+usernamejava.lang.String*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+"""I
+	( ((Ÿ<
+:
+%44com.bourgeolet.task_manager.dto.task.TaskResponseDTO:<
+$1 $(;0
+tasks'com.bourgeolet.task_manager.entity.TaskB1/
+-com.bourgeolet.task_manager.mapper.TaskMapperH

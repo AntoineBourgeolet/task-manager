@@ -1,0 +1,81 @@
+
+‰com.bourgeolet.task_manager.controller.TaskController#getTaskById(Ljava/lang/Long;)Lcom/bourgeolet/task_manager/dto/task/TaskResponseDTO;’
+‡C:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/controller/TaskController.javaA A(&"startingBlock*ª
+startingBlockA& A(Aƒ
+€
+@ @(/
+%4"
+__annotate**
+
+__unknown_file (
+
+GetMapping*6
+
+__unknown_file (
+
+taskIdjava.lang.Long…
+‚
+A' A(4
+%5"
+__annotate*,
+
+__unknown_file (
+PathVariable*6
+
+__unknown_file (
+
+taskIdjava.lang.Long|
+z
+A: A(@
+taskIdjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%4*"
+
+__unknown_file (
+
+%5*
+1*ö	
+1B B(¯
+¬
+B B(3
+%0-com.bourgeolet.task_manager.mapper.TaskMapper"__id*e
+
+__unknown_file (I*G7
+5com.bourgeolet.task_manager.controller.TaskController"
+
+taskMapper²
+¯
+B0 B(;5
+%1/com.bourgeolet.task_manager.service.TaskService"__id*f
+
+__unknown_file (J*H7
+5com.bourgeolet.task_manager.controller.TaskController"
+taskServiceàÝ
+B0 B(O-
+%2'com.bourgeolet.task_manager.entity.Task"vcom.bourgeolet.task_manager.service.TaskService#getTaskById(Ljava/lang/Long;)Lcom/bourgeolet/task_manager/entity/Task;*S
+
+__unknown_file (7
+5
+%1/com.bourgeolet.task_manager.service.TaskService*6
+
+__unknown_file (
+
+taskIdjava.lang.Long2getTaskById(Ljava/lang/Long;)ÒÏ
+B B(P:
+%34com.bourgeolet.task_manager.dto.task.TaskResponseDTO"¤com.bourgeolet.task_manager.mapper.TaskMapper#taskToTaskResponseDTO(Lcom/bourgeolet/task_manager/entity/Task;)Lcom/bourgeolet/task_manager/dto/task/TaskResponseDTO;*Q
+
+__unknown_file (5
+3
+%0-com.bourgeolet.task_manager.mapper.TaskMapper*K
+
+__unknown_file (/
+-
+%2'com.bourgeolet.task_manager.entity.Task2@taskToTaskResponseDTO(Lcom/bourgeolet/task_manager/entity/Task;)"H
+B B(Q<
+:
+%34com.bourgeolet.task_manager.dto.task.TaskResponseDTO:$
+A' A(@
+taskIdjava.lang.LongB97
+5com.bourgeolet.task_manager.controller.TaskControllerH

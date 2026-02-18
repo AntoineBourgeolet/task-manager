@@ -1,0 +1,122 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404574918*java2.Bù
+O
+Jback/src/main/java/com/bourgeolet/task_manager/TaskManagerApplication.java2
+	
+type3
+	
+MAIN4
+
+package6
+ 
+com.bourgeolet.task_manager7
+7
+2com.bourgeolet.task_manager.TaskManagerApplication9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(7:1)-(15:2)14
+
+simple-name15
+
+TaskManagerApplication16
+
+EnableScheduling18
+
+unknown19
+
+annotated by20
+.
+(Recovered#typeBindingLEnableScheduling;022
+
+
+uses23
+
+SpringBootApplication25
+3
+-Recovered#typeBindingLSpringBootApplication;027
+S
+Mcom.bourgeolet.task_manager.TaskManagerApplication#main([Ljava/lang/String;)V29
+
+method30
+
+(11:2)-(13:3)31
+
+
+main32J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768jË
+
+24
+242519
+
+17
+171819
+
+21
+212219
+
+26
+262719
+G
+8B
+8910 *
+1	 	($:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+M
+28G
+282930 *
+1 (28:5B$
+
+
+11
+12
+
+
+13
+31
+
+
+15
+32rÇ
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (
+
+28823*
+1 (/

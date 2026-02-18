@@ -1,0 +1,297 @@
+
+1.0AntoineBourgeolet_task-managerJavaFrontend"1771404576788*java2.Bþ
+I
+Dback/src/main/java/com/bourgeolet/task_manager/mapper/TagMapper.java2
+	
+type3
+	
+MAIN4
+
+package6
+'
+"com.bourgeolet.task_manager.mapper7
+1
+,com.bourgeolet.task_manager.mapper.TagMapper9
+
+class10
+
+access11
+
+public12
+
+
+full-range13
+
+(11:1)-(31:2)14
+
+simple-name15
+
+	TagMapper16
+
+	Component18
+
+unknown19
+
+annotated by20
+'
+!Recovered#typeBindingLComponent;022
+
+
+uses23
+
+RequiredArgsConstructor25
+5
+/Recovered#typeBindingLRequiredArgsConstructor;027
+¡
+šcom.bourgeolet.task_manager.mapper.TagMapper#tagCreateDTOToTag(Lcom/bourgeolet/task_manager/dto/tag/TagCreateDTO;)Lcom/bourgeolet/task_manager/entity/Tag;29
+
+method30
+
+(16:5)-(20:6)31
+
+tagCreateDTOToTag32
+,
+&com.bourgeolet.task_manager.entity.Tag34
+
+returns35
+6
+0com.bourgeolet.task_manager.dto.tag.TagCreateDTO37
+
+	has param38
+
+is type39
+
+calls40
+
+
+references41
+O
+Icom.bourgeolet.task_manager.dto.tag.TagCreateDTO#name()Ljava/lang/String;43
+¥
+žcom.bourgeolet.task_manager.mapper.TagMapper#tagToTagResponseDTO(Lcom/bourgeolet/task_manager/entity/Tag;)Lcom/bourgeolet/task_manager/dto/tag/TagResponseDTO;45
+
+(22:5)-(24:6)46
+
+tagToTagResponseDTO47
+8
+2com.bourgeolet.task_manager.dto.tag.TagResponseDTO49
+¡
+šcom.bourgeolet.task_manager.mapper.TagMapper#tagDeleteDTOToTag(Lcom/bourgeolet/task_manager/dto/tag/TagDeleteDTO;)Lcom/bourgeolet/task_manager/entity/Tag;51
+
+(26:5)-(30:6)52
+
+tagDeleteDTOToTag53
+6
+0com.bourgeolet.task_manager.dto.tag.TagDeleteDTO55
+
+Valid57
+#
+Recovered#typeBindingLValid;059
+K
+Ecom.bourgeolet.task_manager.dto.tag.TagDeleteDTO#id()Ljava/lang/Long;61J
+
+1
+12
+
+
+3
+4 Z
+
+5
+5768j¦
+
+36
+363719
+
+21
+212219
+M
+50G
+505130 *
+1 (!28:5B$
+
+
+11
+12
+
+
+13
+52
+
+
+15
+53
+
+54
+545519
+
+24
+242519
+
+26
+262719
+M
+44G
+444530 *
+1 (.28:5B$
+
+
+11
+12
+
+
+13
+46
+
+
+15
+47
+
+58
+585919
+
+60
+606119
+M
+28G
+282930 *
+1 (!28:5B$
+
+
+11
+12
+
+
+13
+31
+
+
+15
+32
+
+56
+565719
+G
+8B
+8910 *
+1 (:5B$
+
+
+11
+12
+
+
+13
+14
+
+
+15
+16
+
+33
+333419
+
+48
+484919
+
+17
+171819
+
+42
+424319rÜ
+
+81720*
+1 (
+
+82123*
+1 (
+
+82420*
+1 (
+
+82623*
+1 (
+
+283335*
+1 (
+
+283638*
+1" (.
+
+283323*
+1 (
+
+283639*
+1/ (;
+
+283623*
+1" (.
+
+283339*
+1 (
+
+283323*
+1	 (
+
+283340*
+1 (
+
+283641*
+1 (&
+
+284240*
+1" (&
+
+444835*
+1 (
+
+443338*
+1/ (2
+
+444823*
+1 (
+
+443339*
+13 (6
+
+443323*
+1/ (2
+
+444840*
+1 ("
+
+503335*
+1 (
+
+505438*
+1) (5
+
+503323*
+1 (
+
+505439*
+16 (9
+
+505620*
+1" ((
+
+505823*
+1# ((
+
+505423*
+1) (5
+
+503339*
+1 (
+
+503323*
+1	 (
+
+503340*
+1 (
+
+505441*
+1 (
+
+506040*
+1 (

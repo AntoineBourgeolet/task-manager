@@ -1,0 +1,14 @@
+
+Icom.bourgeolet.task_manager.service.TaskService#findAll()Ljava/util/List;å
+ÅC:/Users/antoine.bourgeolet/workdir/projects/task-manager/back/src/main/java/com/bourgeolet/task_manager/service/TaskService.javaR R("1*Ÿ
+1S S(µ
+≤
+S S(;
+%05com.bourgeolet.task_manager.repository.TaskRepository"__id*c
+
+__unknown_file (G*E1
+/com.bourgeolet.task_manager.service.TaskService"
+taskRepository"
+S S((
+""B31
+/com.bourgeolet.task_manager.service.TaskServiceH
