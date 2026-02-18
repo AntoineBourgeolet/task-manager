@@ -30,6 +30,12 @@ jobs:
         working-directory: backend
         run: mvn -B -DskipITs clean package verify
 
+      
+      - name: Copy Maven dependencies
+        working-directory: backend
+        run: mvn -B -DincludeScope=compile dependency:copy-dependencies -DoutputDirectory=target/dependency
+
+
       - name: Upload backend artifacts
         uses: actions/upload-artifact@v4
         with:
