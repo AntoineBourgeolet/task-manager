@@ -64,7 +64,7 @@ class TagServiceTest {
     void delete_shouldDelegateToRepository() {
         Tag toDelete = new Tag();
 
-        tagService.delete(toDelete, "antoine");
+        tagService.delete(toDelete);
 
         verify(tagRepository, times(1)).delete(toDelete);
         verifyNoMoreInteractions(tagRepository);
