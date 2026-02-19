@@ -28,8 +28,7 @@ jobs:
 
       - name: Build Backend (Maven)
         working-directory: backend
-        run: mvn -B -DskipITs clean install -pl applications -am
-
+        run: mvn -B -DskipITs clean install -am
 
 
       
