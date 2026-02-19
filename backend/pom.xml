@@ -34,10 +34,6 @@
         <jacoco.version>0.8.11</jacoco.version>
         <openapi.generator.version>7.7.0</openapi.generator.version>
         <springdoc.version>2.6.0</springdoc.version>
-        
-<sonar.projectKey>AntoineBourgeolet_task-manager</sonar.projectKey>
-  <sonar.organization>antoinebourgeolet</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
     </properties>
 
