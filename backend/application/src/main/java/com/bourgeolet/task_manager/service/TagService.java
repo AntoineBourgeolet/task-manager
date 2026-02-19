@@ -2,7 +2,6 @@ package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.repository.TagRepository;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
