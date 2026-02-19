@@ -37,7 +37,7 @@ jobs:
       # Build TOUT le backend (applications + api-xxx via -am)
       - name: Build Backend (Maven)
         working-directory: backend
-        run: mvn -B -DskipITs clean install -pl applications -am
+        run: mvn -B -DskipITs clean install -pl -am
 
       # -----------------------
       # FRONTEND BUILD
