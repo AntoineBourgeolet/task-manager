@@ -33,7 +33,7 @@ jobs:
       
       - name: Copy Maven dependencies
         working-directory: backend
-        run: mvn -B -DincludeScope=compile dependency:copy-dependencies -DoutputDirectory=target/dependency
+        run: mvn -B -DincludeScope=compile -pl backend/api-task dependency:copy-dependencies -DoutputDirectory=backend/api-task/target/dependency
 
 
       - name: Upload backend artifacts
