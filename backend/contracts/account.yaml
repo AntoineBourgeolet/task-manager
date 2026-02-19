@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Account API
+  version: 1.0.0
+
+paths:
+  /account:
+    post:
+      summary: Create a new account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreateDTO'
+      responses:
+        '202':
+          description: Account accepted for creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponseDTO'
+    get:
+      summary: Get all accounts
+      operationId: getAllAccounts
+      responses:
+        '200':
+          description: List of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponseDTO'
+
+components:
+  schemas:
+    AccountCreateDTO:
+      type: object
+      description: "DTO d'entrée pour la création d'un compte (adapter aux champs réels)."
+      properties:
+        actor:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+      required:
+        - actor
+        - name
+
+    AccountResponseDTO:
+      type: object
+      description: "DTO renvoyé après création et dans les lectures (adapter aux champs réels)."
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+          format: email
+        email:
+          type: string
+          format: email
+      required:
+        - id
+        - username
