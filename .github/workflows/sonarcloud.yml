@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Backend (Maven)
         working-directory: backend
-        run: mvn -B -DskipITs clean package verify
+        run: mvn -B -DskipITs clean install -pl backend/api-task -am
 
       
       - name: Copy Maven dependencies
