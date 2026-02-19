@@ -39,6 +39,11 @@ jobs:
         working-directory: backend
         run: mvn -B -DskipITs clean install -am
 
+
+      - name: Copy dependencies
+        working-directory: backend/application
+        run: mvn dependency:copy-dependencies
+
       # -----------------------
       # FRONTEND BUILD
       # -----------------------
