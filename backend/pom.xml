@@ -21,10 +21,10 @@
     <description>Parent multi-module pour tasks-manager</description>
 
     <modules>
+        <module>application</module>
         <module>api-tag</module>
         <module>api-account</module>
         <module>api-task</module>
-        <module>application</module>
     </modules>
 
     <properties>
