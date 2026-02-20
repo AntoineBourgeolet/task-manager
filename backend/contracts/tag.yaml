@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Tag API
+  version: 1.0.0
+
+paths:
+  /tag:
+    post:
+      summary: Create a new tag
+      operationId: createTag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreateDTO'
+      responses:
+        '202':
+          description: Tag created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponseDTO'
+
+    get:
+      summary: Get all tags
+      operationId: getAllTags
+      responses:
+        '200':
+          description: List of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagResponseDTO'
+
+    delete:
+      summary: Delete a tag
+      operationId: deleteTag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDeleteDTO'
+      responses:
+        '204':
+          description: Tag deleted successfully
+
+components:
+  schemas:
+    TagCreateDTO:
+      type: object
+      properties:
+        actor:
+          type: string
+        name:
+          type: string
+      required:
+        - actor
+        - name
+
+    TagDeleteDTO:
+      type: object
+      properties:
+        actor:
+            type: string
+        id:
+          type: integer
+          format: int64
+      required:
+        - id
+
+    TagResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      required:
+        - id
+        - name
