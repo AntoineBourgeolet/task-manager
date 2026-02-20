@@ -5,8 +5,9 @@ import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.mapper.TaskMapper;
 import com.bourgeolet.task_manager.service.TaskService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class TaskApiImplTest {
 
     @Mock
