@@ -3,6 +3,7 @@ package com.bourgeolet.task_manager.kafka.outbox;
 import com.bourgeolet.task_manager.entity.Outbox;
 import com.bourgeolet.task_manager.repository.OutboxRepository;
 import com.bourgeolet.task_manager.service.OutboxService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Profile("!test")
 public class OutboxProducer {
 
 

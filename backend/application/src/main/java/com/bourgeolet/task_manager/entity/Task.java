@@ -2,10 +2,7 @@ package com.bourgeolet.task_manager.entity;
 
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,8 +10,7 @@ import java.util.List;
 @Table(name = "task")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Task {
 
     @Id

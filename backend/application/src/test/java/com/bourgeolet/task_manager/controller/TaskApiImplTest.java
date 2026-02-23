@@ -31,14 +31,14 @@ class TaskApiImplTest {
     void createTask_shouldReturnAcceptedAndMappedDTO() {
         // Arrange
         TaskCreateDTO createDTO = mock(TaskCreateDTO.class);
-        when(createDTO.getActor()).thenReturn("john.doe");
+        when(createDTO.getActor()).thenReturn("antoine");
 
         Task mappedTask = new Task();
         Task createdTask = new Task();
         TaskResponseDTO responseDTO = new TaskResponseDTO();
 
         when(taskMapper.taskFromTaskCreateDTO(createDTO)).thenReturn(mappedTask);
-        when(taskService.create(mappedTask, "john.doe")).thenReturn(createdTask);
+        when(taskService.create(mappedTask, "antoine")).thenReturn(createdTask);
         when(taskMapper.taskToTaskResponseDTO(createdTask)).thenReturn(responseDTO);
 
         // Act
@@ -49,7 +49,7 @@ class TaskApiImplTest {
         assertThat(response.getBody()).isEqualTo(responseDTO);
 
         verify(taskMapper).taskFromTaskCreateDTO(createDTO);
-        verify(taskService).create(mappedTask, "john.doe");
+        verify(taskService).create(mappedTask, "antoine");
         verify(taskMapper).taskToTaskResponseDTO(createdTask);
         verifyNoMoreInteractions(taskService, taskMapper);
     }
@@ -59,9 +59,9 @@ class TaskApiImplTest {
         // Arrange
         TaskDeleteDTO deleteDTO = mock(TaskDeleteDTO.class);
         when(deleteDTO.getId()).thenReturn(42L);
-        when(deleteDTO.getActor()).thenReturn("john.doe");
+        when(deleteDTO.getActor()).thenReturn("antoine");
 
-        doNothing().when(taskService).deleteTask(42L, "john.doe");
+        doNothing().when(taskService).deleteTask(42L, "antoine");
 
         // Act
         ResponseEntity<Void> response = taskApi.deleteTask(deleteDTO);
@@ -70,7 +70,7 @@ class TaskApiImplTest {
         assertThat(response.getStatusCode().value()).isEqualTo(204);
         assertThat(response.getBody()).isNull();
 
-        verify(taskService).deleteTask(42L, "john.doe");
+        verify(taskService).deleteTask(42L, "antoine");
         verifyNoMoreInteractions(taskService);
         verifyNoInteractions(taskMapper);
     }
