@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { Task } from '../models/task';
 import { TaskCreateDto } from '../models/task-create-dto';
 import { TaskDeleteDto } from '../models/task-delete-dto';
-import { TaskChangeStatusDTO } from '../models/task-change-status-dto';
-import { TaskChangeUserAffecteeDTO } from '../models/task-change-user-affectee-dto';
+import { TaskPatchDto } from '../models/task-patch-dto';
 import { Board } from '../../../../environments/type';
 import { api } from '../../../../environments/const';
 
@@ -34,11 +33,8 @@ export class TaskService {
     });
   }
 
-  modifyStatus(taskChangeStatusDTO: TaskChangeStatusDTO): Observable<Task> {
-    return this.http.patch<Task>(this.apiUrl + '/modifyStatus', taskChangeStatusDTO);
+  patch(id: number | string, taskPatchDTO: TaskPatchDto): Observable<Task> {
+    return this.http.patch<Task>(this.apiUrl + '/' + id, taskPatchDTO);
   }
 
-  modifyUser(taskChangeUserAffecteeDTO: TaskChangeUserAffecteeDTO): Observable<Task> {
-    return this.http.patch<Task>(this.apiUrl + '/modifyUser', taskChangeUserAffecteeDTO);
-  }
 }

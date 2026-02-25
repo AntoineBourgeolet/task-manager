@@ -27,9 +27,8 @@ import { Board } from '../../../../../environments/type';
 import { columnsTemplate } from '../../../../../environments/const';
 import {
   buildDeleteDto,
-  buildTaskChangeStatusDTO,
-  buildTaskChangeUserAffecteeDTO,
 } from '../../../task/data-access/builders';
+import { buildTaskPathDTO } from '../../../task/data-access/builders/task-patch.builder';
 
 @Component({
   selector: 'dashboard',
@@ -66,8 +65,7 @@ export class Dashboard implements OnInit {
   public loading = true;
 
   private taskDeleteDto = buildDeleteDto();
-  private taskChangeUserAffecteeDTO = buildTaskChangeUserAffecteeDTO();
-  private taskChangeStatusDTO = buildTaskChangeStatusDTO();
+  private taskPatchDto = buildTaskPathDTO();
 
   ngOnInit(): void {
     this.taskEvents.refreshList$.subscribe(() => {
@@ -124,13 +122,11 @@ export class Dashboard implements OnInit {
   }
 
   affecteUser(idTask: number, newTaskUser: string): void {
-    this.taskChangeUserAffecteeDTO = buildTaskChangeUserAffecteeDTO({
+    this.taskPatchDto = buildTaskPathDTO({
       actor: this.actor,
-      id: idTask,
-      newUser: newTaskUser,
+      userAffectee: newTaskUser
     });
-    console.log(this.taskChangeUserAffecteeDTO);
-    this.taskService.modifyUser(this.taskChangeUserAffecteeDTO).subscribe();
+    this.taskService.patch(idTask, this.taskPatchDto).subscribe();
   }
 
   getConnectedLists(): string[] {
@@ -148,9 +144,12 @@ export class Dashboard implements OnInit {
         event.currentIndex,
       );
       const moved = event.container.data[event.currentIndex];
-      console.log(moved.id, targetColId.toUpperCase());
-      this.taskChangeStatusDTO = { actor: this.actor, id: moved.id, newStatus: targetColId };
-      this.taskService.modifyStatus?.(this.taskChangeStatusDTO).subscribe();
+      this.taskPatchDto = buildTaskPathDTO({
+      actor: this.actor,
+      userAffectee: moved.userAffectee,
+      status: targetColId as any
+    });
+    this.taskService.patch(moved.id, this.taskPatchDto).subscribe();      
     }
   }
 

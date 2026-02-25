@@ -7,18 +7,26 @@ on:
     branches: [ "main" ]
 
 jobs:
-  backend:
-    name: Build Backend (Maven)
+  build_and_scan:
+    name: Build Backend + Frontend + SonarCloud
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
+      pull-requests: write
+      id-token: write
+
     steps:
+      # -----------------------
+      # CHECKOUT
+      # -----------------------
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # -----------------------
+      # BACKEND BUILD
+      # -----------------------
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -26,35 +34,19 @@ jobs:
           java-version: "21"
           cache: maven
 
+      # Build TOUT le backend (applications + api-xxx via -am)
       - name: Build Backend (Maven)
         working-directory: backend
-        run: mvn -B -DskipITs clean package verify
-
-      
-      - name: Copy Maven dependencies
-        working-directory: backend
-        run: mvn -B -DincludeScope=compile dependency:copy-dependencies -DoutputDirectory=target/dependency
+        run: mvn -B -DskipITs clean install -am
 
 
-      - name: Upload backend artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-artifacts
-          path: backend/**
-          if-no-files-found: error
+      - name: Copy dependencies
+        working-directory: backend/application
+        run: mvn dependency:copy-dependencies
 
-  frontend:
-    name: Build Frontend (Angular)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+      # -----------------------
+      # FRONTEND BUILD
+      # -----------------------
       - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
@@ -62,46 +54,15 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Build Frontend (Angular)
+      - name: Build Frontend
         working-directory: frontend
         run: |
           npm ci --ignore-scripts
           npm run build -- --configuration production
 
-      - name: Upload frontend artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-artifacts
-          path: |
-            frontend/**
-          if-no-files-found: ignore
-
-  sonar:
-    name: SonarCloud Scan
-    runs-on: ubuntu-latest
-    needs: [ backend, frontend ]
-    permissions:
-      contents: read
-      pull-requests: write
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Download backend artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-artifacts
-          path: backend
-
-      - name: Download frontend artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-artifacts
-          path: frontend
-
+      # -----------------------
+      # SONAR CLOUD SCAN
+      # -----------------------
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9
         env:

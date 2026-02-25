@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/backend/api-account/api-account.iml" filepath="$PROJECT_DIR$/backend/api-account/api-account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/api-tag/api-tag.iml" filepath="$PROJECT_DIR$/backend/api-tag/api-tag.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/api-task/api-task.iml" filepath="$PROJECT_DIR$/backend/api-task/api-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/task-manager.iml" filepath="$PROJECT_DIR$/.idea/task-manager.iml" />
     </modules>
   </component>
