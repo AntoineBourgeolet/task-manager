@@ -2,6 +2,7 @@ package com.bourgeolet.task_manager.mapper;
 
 import com.bourgeolet.task_manager.config.audit.AuditEvent;
 import com.bourgeolet.task_manager.entity.Outbox;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
@@ -25,6 +26,6 @@ public class OutboxMapper {
     }
 
     private String writeJson(AuditEvent evt) {
-        return objectMapper.writeValueAsString(evt);
+            return objectMapper.writeValueAsString(evt);
     }
 }

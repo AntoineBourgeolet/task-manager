@@ -1,12 +1,15 @@
 package com.bourgeolet.task_manager.service;
 
 
+import com.bourgeolet.task_manager.command.TaskPatchCommand;
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
 import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.exception.task.TaskNotFoundException;
 import com.bourgeolet.task_manager.repository.AccountRepository;
+import com.bourgeolet.task_manager.repository.TagRepository;
 import com.bourgeolet.task_manager.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,7 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
     private final AccountRepository accountRepository;
-
+    private final TagRepository tagRepository;
 
     private final OutboxService outboxService;
 
@@ -27,35 +30,6 @@ public class TaskService {
     public Task create(Task task, String actor) {
         Task result = taskRepository.save(task);
         outboxService.ticketCreatedAuditEvent(result, actor);
-        return result;
-    }
-
-    public Task changeStatus(Long idTask, TaskStatus newStatus, String actor) {
-        Task tasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
-        TaskStatus oldStatus = tasks.getStatus();
-        tasks.setStatus(newStatus);
-        Task result = taskRepository.save(tasks);
-        outboxService.ticketStatusChangedAuditEvent(result, oldStatus.name(), newStatus.name(), actor);
-        return result;
-
-    }
-
-    public Task changeUserAffectee(Long idTask, String newUsername, String actor) {
-        Task newTasks = taskRepository.findById(idTask).orElseThrow(() -> new TaskNotFoundException(idTask));
-        String oldUsername = newTasks.getAccount() != null ? newTasks.getAccount().getUsername() : "";
-        if (newUsername == null) {
-            newTasks.setAccount(null);
-        } else {
-            Account newAccount = accountRepository.findAccountByUsername(newUsername);
-            if (newAccount == null) {
-                throw new AccountNotFoundException(null);
-            }
-            newTasks.setAccount(newAccount);
-        }
-
-        Task result = taskRepository.save(newTasks);
-        outboxService.ticketChangedUserAffecteeAuditEvent(result, oldUsername, newUsername, actor);
-
         return result;
     }
 
@@ -81,5 +55,64 @@ public class TaskService {
 
     public List<Task> findAll() {
         return taskRepository.findAll();
+    }
+
+
+    public Task patchTask(TaskPatchCommand cmd) {
+        Task task = taskRepository.findById(cmd.taskId())
+                .orElseThrow(() -> new TaskNotFoundException(cmd.taskId()));
+
+        TaskStatus oldStatus = task.getStatus();
+        String oldUsername = task.getAccount() != null ? task.getAccount().getUsername() : "";
+        boolean statusChanged = false;
+        boolean userChanged = false;
+
+        if (cmd.statusPresent().equals(true)) {
+            task.setStatus(cmd.status());
+            statusChanged = !oldStatus.name().equals(cmd.status().name());
+        }
+
+        if (cmd.userAffecteePresent().equals(true)) {
+            Account account = null;
+            if (cmd.userAffectee() != null) {
+                account = accountRepository.findAccountByUsername(cmd.userAffectee());
+                if (account == null) {
+                    throw new AccountNotFoundException(cmd.userAffectee());
+                }
+            }
+            task.setAccount(account);
+            userChanged = !oldUsername.equals(cmd.userAffectee());
+        }
+
+        if (cmd.titlePresent().equals(true)) {
+            task.setTitle(cmd.title());
+        }
+
+        if (cmd.descriptionPresent().equals(true)) {
+            task.setDescription(cmd.description());
+        }
+
+        if (cmd.priorityPresent().equals(true)) {
+            task.setPriority(cmd.priority());
+        }
+
+        if (cmd.tagsPresent().equals(true)) {
+            List<Tag> tags = cmd.tagIds().stream()
+                    .map(id -> tagRepository.findById(id).orElse(null))
+                    .toList();
+            task.setTags(tags);
+        }
+
+        Task result = taskRepository.save(task);
+
+        if (statusChanged) {
+            outboxService.ticketStatusChangedAuditEvent(result, oldStatus.name(), cmd.status().name(), cmd.actor());
+        }
+
+        if (userChanged) {
+            outboxService.ticketChangedUserAffecteeAuditEvent(result, oldUsername, cmd.userAffectee(), cmd.actor());
+        }
+
+        return result;
     }
 }

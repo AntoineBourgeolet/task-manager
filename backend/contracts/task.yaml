@@ -60,43 +60,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
-  /task/modifyStatus:
+  /task/{id}:
     patch:
       tags: [Task]
-      operationId: modifyTaskStatus
-      summary: Modifier le statut d'une tâche
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TaskChangeStatusDTO'
-      responses:
-        '202':
-          description: Statut modifié
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskResponseDTO'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '404':
-          $ref: '#/components/responses/NotFound'
+      operationId: patchTask
+      summary: Modifier partiellement une tâche (JSON Merge Patch)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
 
-  /task/modifyUser:
-    patch:
-      tags: [Task]
-      operationId: modifyTaskUser
-      summary: Modifier l'utilisateur affecté
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskChangeUserAffecteeDTO'
+              type: string
+
       responses:
         '202':
-          description: Utilisateur affecté modifié
+          description: Tâche modifiée
           content:
             application/json:
               schema:
@@ -190,6 +176,39 @@ components:
           format: int64
         newStatus:
           $ref: '#/components/schemas/TaskStatus'
+
+    TaskPatchDTO:
+      type: object
+      description: Patch partiel pour modifier une tâche (tous les champs sont optionnels)
+      properties:
+        actor:
+          type: string
+          minLength: 1
+          description: L'utilisateur effectuant la modification (requis dans la requête)
+        status:
+          $ref: '#/components/schemas/TaskStatus'
+          description: Nouveau statut de la tâche
+        userAffectee:
+          type: string
+          nullable: true
+          description: Nouvel utilisateur affecté (null pour ne pas affecter)
+        title:
+          type: string
+          minLength: 1
+          description: Nouveau titre
+        description:
+          type: string
+          nullable: true
+          description: Nouvelle description
+        priority:
+          type: integer
+          format: int32
+          description: Nouvelle priorité
+        tags:
+          type: array
+          items:
+            $ref: './tag.yaml#/components/schemas/TagCreateDTO'
+          description: Nouveaux tags
 
     TaskChangeUserAffecteeDTO:
       type: object
