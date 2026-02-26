@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -33,7 +34,7 @@ public class OutboxProducer {
     @Scheduled(fixedDelayString = "PT2S")
     @Transactional
     public void publishPending() {
-        List<Outbox> outboxList = outboxRepository.getNextBatch(200);
+        List<Outbox> outboxList = outboxRepository.getNextBatch(200).orElse(Collections.emptyList());
         for (Outbox e : outboxList) {
             String id = e.getAggregateId().toString();
             kafkaTemplate.send(TOPIC, id, e.getPayload())

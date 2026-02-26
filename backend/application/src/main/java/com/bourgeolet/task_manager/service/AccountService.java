@@ -1,6 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AccountService {
     }
 
     public Account getAccountByUsername(String username) {
-        return accountRepository.findAccountByUsername(username);
+        return accountRepository.findAccountByUsername(username).orElseThrow(() -> new AccountNotFoundException(username));
     }
 
 }

@@ -141,7 +141,7 @@ class TaskServiceTest {
     @Test
     void patchTask_shouldPatchAllFields_whenPresentFlagsTrue_andEmitBothEvents() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
-        when(accountRepository.findAccountByUsername("newUser")).thenReturn(accountNew);
+        when(accountRepository.findAccountByUsername("newUser")).thenReturn(Optional.ofNullable(accountNew));
         Tag tag1 = new Tag();
         tag1.setId(1L);
         Tag tag2 = new Tag();
@@ -272,7 +272,7 @@ class TaskServiceTest {
     @Test
     void patchTask_shouldThrow_whenUserPresentAndNewUserNotFound() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
-        when(accountRepository.findAccountByUsername("ghost")).thenReturn(null);
+        when(accountRepository.findAccountByUsername("ghost")).thenReturn(Optional.empty());
 
         TaskPatchCommand cmd = TaskPatchCommand.builder()
                 .taskId(42L)

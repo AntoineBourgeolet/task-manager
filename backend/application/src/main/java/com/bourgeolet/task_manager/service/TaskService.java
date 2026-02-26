@@ -29,8 +29,9 @@ public class TaskService {
 
 
     public Task create(Task task, String actor) {
-        if(task.getAccount() != null && task.getAccount().getUsername() != null){
-            Account account = accountRepository.findAccountByUsername(task.getAccount().getUsername());
+        if (task.getAccount() != null && task.getAccount().getUsername() != null) {
+            Account account = accountRepository.findAccountByUsername(task.getAccount().getUsername())
+                    .orElseThrow(() -> new AccountNotFoundException(task.getAccount().getUsername()));
             task.setAccount(account);
         }
         Task result = taskRepository.save(task);
@@ -45,12 +46,11 @@ public class TaskService {
     }
 
 
-    public List<Task> getTasksByUserId(String username) throws AccountNotFoundException {
-        if (accountRepository.findAccountByUsername(username) != null) {
-            throw new AccountNotFoundException(username);
-        }
+    public List<Task>   getTasksByUserId(String username) throws AccountNotFoundException {
+        accountRepository.findAccountByUsername(username)
+                .orElseThrow(() -> new AccountNotFoundException(username));
 
-        return taskRepository.findByAccount(username);
+        return taskRepository.findByAccount(username).orElse(Collections.emptyList());
     }
 
     public Task getTaskById(Long idTask) {
@@ -73,20 +73,11 @@ public class TaskService {
         boolean userChanged = false;
 
         if (cmd.statusPresent().equals(true)) {
-            task.setStatus(cmd.status());
-            statusChanged = !oldStatus.name().equals(cmd.status().name());
+            statusChanged = changeStatus(cmd, task, oldStatus);
         }
 
         if (cmd.userAffecteePresent().equals(true)) {
-            Account account = null;
-            if (cmd.userAffectee() != null && !cmd.userAffectee().isEmpty()) {
-                account = accountRepository.findAccountByUsername(cmd.userAffectee());
-                if (account == null) {
-                    throw new AccountNotFoundException(cmd.userAffectee());
-                }
-            }
-            task.setAccount(account);
-            userChanged = !oldUsername.equals(cmd.userAffectee());
+            userChanged = changeUserAffectee(cmd, task, oldUsername);
         }
 
         if (cmd.titlePresent().equals(true)) {
@@ -102,14 +93,7 @@ public class TaskService {
         }
 
         if (cmd.tagsPresent().equals(true)) {
-            if (cmd.tagIds().isEmpty()) {
-                task.setTags(Collections.emptyList());
-            } else {
-                List<Tag> tags = cmd.tagIds().stream()
-                        .map(id -> tagRepository.findById(id).orElse(null))
-                        .toList();
-                task.setTags(tags);
-            }
+            changeTags(cmd, task);
         }
 
         Task result = taskRepository.save(task);
@@ -123,5 +107,35 @@ public class TaskService {
         }
 
         return result;
+    }
+
+    private void changeTags(TaskPatchCommand cmd, Task task) {
+        if (cmd.tagIds().isEmpty()) {
+            task.setTags(Collections.emptyList());
+        } else {
+            List<Tag> tags = cmd.tagIds().stream()
+                    .map(id -> tagRepository.findById(id).orElse(null))
+                    .toList();
+            task.setTags(tags);
+        }
+    }
+
+    private boolean changeUserAffectee(TaskPatchCommand cmd, Task task, String oldUsername) {
+        boolean userChanged;
+        Account account = null;
+        if (cmd.userAffectee() != null && !cmd.userAffectee().isBlank()) {
+            account = accountRepository.findAccountByUsername(cmd.userAffectee())
+                    .orElseThrow(() -> new AccountNotFoundException(cmd.userAffectee()));
+        }
+        task.setAccount(account);
+        userChanged = !oldUsername.equals(cmd.userAffectee());
+        return userChanged;
+    }
+
+    private static boolean changeStatus(TaskPatchCommand cmd, Task task, TaskStatus oldStatus) {
+        boolean statusChanged;
+        task.setStatus(cmd.status());
+        statusChanged = !oldStatus.name().equals(cmd.status().name());
+        return statusChanged;
     }
 }

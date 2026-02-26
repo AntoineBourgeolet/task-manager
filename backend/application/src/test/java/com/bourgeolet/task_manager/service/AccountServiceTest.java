@@ -1,6 +1,7 @@
 package com.bourgeolet.task_manager.service;
 
 import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.repository.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -92,7 +94,7 @@ class AccountServiceTest {
     void getAccountByUsername_shouldReturnAccountFromRepository() {
         // Arrange
         Account a = new Account(); a.setId(10L); a.setUsername("antoine");
-        when(accountRepository.findAccountByUsername("antoine")).thenReturn(a);
+        when(accountRepository.findAccountByUsername("antoine")).thenReturn(Optional.of(a));
 
         // Act
         Account result = accountService.getAccountByUsername("antoine");
@@ -105,14 +107,12 @@ class AccountServiceTest {
 
     @Test
     void getAccountByUsername_shouldReturnNull_whenRepositoryReturnsNull() {
-        // Arrange
-        when(accountRepository.findAccountByUsername("unknown")).thenReturn(null);
+        when(accountRepository.findAccountByUsername("unknown")).thenReturn(Optional.empty());
 
-        // Act
-        Account result = accountService.getAccountByUsername("unknown");
+        assertThatThrownBy(() -> accountService.getAccountByUsername("unknown"))
+                .isInstanceOf(AccountNotFoundException.class)
+                .hasStackTraceContaining("unknown");
 
-        // Assert
-        assertThat(result).isNull();
         verify(accountRepository).findAccountByUsername("unknown");
         verifyNoMoreInteractions(accountRepository);
     }

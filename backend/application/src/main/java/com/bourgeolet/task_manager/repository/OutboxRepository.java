@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface OutboxRepository extends JpaRepository<@NotNull Outbox, @NotNull Long> {
@@ -20,7 +21,7 @@ public interface OutboxRepository extends JpaRepository<@NotNull Outbox, @NotNul
         ORDER BY event_at
         LIMIT :batchSize
         """, nativeQuery = true)
-    List<Outbox> getNextBatch(@Param("batchSize") int batchSize);
+    Optional<List<Outbox>> getNextBatch(@Param("batchSize") int batchSize);
 
     @Modifying
     @Query(value = """
