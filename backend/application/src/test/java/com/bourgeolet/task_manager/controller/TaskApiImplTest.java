@@ -68,13 +68,12 @@ class TaskApiImplTest {
     void deleteTask_shouldReturnNoContent() {
         
         TaskDeleteDTO deleteDTO = mock(TaskDeleteDTO.class);
-        when(deleteDTO.getId()).thenReturn(42L);
         when(deleteDTO.getActor()).thenReturn("antoine");
 
         doNothing().when(taskService).deleteTask(42L, "antoine");
 
         
-        ResponseEntity<@NotNull Void> response = taskApi.deleteTask(deleteDTO);
+        ResponseEntity<@NotNull Void> response = taskApi.deleteTask(42L, deleteDTO);
 
         
         assertThat(response.getStatusCode().value()).isEqualTo(204);

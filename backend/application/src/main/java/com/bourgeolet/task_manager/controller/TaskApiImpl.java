@@ -38,8 +38,8 @@ public class TaskApiImpl implements TaskApi {
     }
 
     @Override
-    public ResponseEntity<@NotNull Void> deleteTask(TaskDeleteDTO dto) {
-        taskService.deleteTask(dto.getId(), dto.getActor());
+    public ResponseEntity<@NotNull Void> deleteTask(Long id, TaskDeleteDTO dto) {
+        taskService.deleteTask(id, dto.getActor());
         return ResponseEntity.noContent().build();
     }
 

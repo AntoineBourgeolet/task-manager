@@ -26,8 +26,8 @@ export class TaskService {
     return this.http.post<Task>(this.apiUrl, taskCreateDto);
   }
 
-  delete(taskDeleteDto: TaskDeleteDto): Observable<void> {
-    return this.http.delete<void>(this.apiUrl, {
+  delete(id: number, taskDeleteDto: TaskDeleteDto): Observable<void> {
+    return this.http.delete<void>(this.apiUrl + '/' + id, {
       body: taskDeleteDto,
       headers: { 'Content-Type': 'application/json' },
     });

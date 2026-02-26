@@ -102,9 +102,9 @@ export class Dashboard implements OnInit {
   }
 
   deleteTask(idTask: number) {
-    this.taskDeleteDto = buildDeleteDto({ actor: this.actor, id: idTask });
+    this.taskDeleteDto = buildDeleteDto({ actor: this.actor });
 
-    this.taskService.delete(this.taskDeleteDto).subscribe(() => {
+    this.taskService.delete(idTask, this.taskDeleteDto).subscribe(() => {
       this.loadBoard();
       this.cdr.detectChanges();
     });

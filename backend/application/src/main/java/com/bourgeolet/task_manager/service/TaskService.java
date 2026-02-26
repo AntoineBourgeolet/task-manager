@@ -29,6 +29,10 @@ public class TaskService {
 
 
     public Task create(Task task, String actor) {
+        if(task.getAccount() != null && task.getAccount().getUsername() != null){
+            Account account = accountRepository.findAccountByUsername(task.getAccount().getUsername());
+            task.setAccount(account);
+        }
         Task result = taskRepository.save(task);
         outboxService.ticketCreatedAuditEvent(result, actor);
         return result;

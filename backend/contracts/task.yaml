@@ -41,11 +41,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskResponseDTO'
-
+  /task/{id}:
     delete:
-      tags: [Task]
+      tags: [ Task ]
       operationId: deleteTask
       summary: Supprimer une tâche
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         required: true
         content:
@@ -59,8 +66,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
-
-  /task/{id}:
     patch:
       tags: [Task]
       operationId: patchTask
@@ -226,14 +231,11 @@ components:
 
     TaskDeleteDTO:
       type: object
-      required: [actor, id]
+      required: [actor]
       properties:
         actor:
           type: string
           minLength: 1
-        id:
-          type: integer
-          format: int64
 
     TaskResponseDTO:
       type: object
