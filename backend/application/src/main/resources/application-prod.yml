@@ -1,0 +1,45 @@
+# application-prod.yml
+
+debug: false
+
+logging:
+  level:
+    root: WARN
+    "org.springframework.boot.autoconfigure": WARN
+    "org.springframework": WARN
+    "org.springframework.kafka": WARN
+    "org.springframework.kafka.listener": WARN
+    "org.apache.kafka.clients.consumer": WARN
+
+spring:
+  application:
+    name: tasks-manager
+
+  datasource:
+    url: jdbc:h2:file:./data/taskdb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
