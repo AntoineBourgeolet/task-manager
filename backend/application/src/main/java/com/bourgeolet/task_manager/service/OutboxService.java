@@ -26,13 +26,11 @@ public class OutboxService {
         outboxPublishingTxService.markPublishedInNewTx(id);
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
     public void ticketStatusChangedAuditEvent(Task result, String oldStatus, String newStatus, String actor) {
         AuditEvent evt = AuditEvent.ticketChangedStatus(result.getId(), actor, oldStatus, newStatus);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
     public void ticketChangedUserAffecteeAuditEvent(Task result, String oldUser, String newUser, String actor) {
         oldUser = Objects.requireNonNullElse(oldUser, "");
         newUser = Objects.requireNonNullElse(newUser, "");
@@ -40,13 +38,11 @@ public class OutboxService {
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
     public void ticketCreatedAuditEvent(Task result, String actor) {
         AuditEvent evt = AuditEvent.ticketCreated(result.getId(), actor);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
 
-    @Transactional(propagation = Propagation.MANDATORY)
     public void ticketDeleteAuditEvent(Long id, String actor) {
         AuditEvent evt = AuditEvent.ticketDelete(id, actor);
         outboxRepository.save(outboxMapper.toOutbox(evt));
