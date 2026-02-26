@@ -6,8 +6,6 @@ import com.bourgeolet.task_manager.mapper.OutboxMapper;
 import com.bourgeolet.task_manager.repository.OutboxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.UUID;
