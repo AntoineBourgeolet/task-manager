@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -16,6 +22,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { columnsTemplate } from '../../../../../environments/const';
+import { buildTaskPathDTO } from '../../data-access/builders';
+import { Tag } from '../../../tag/models/tag';
 
 @Component({
   selector: 'task-opened',
@@ -44,6 +52,9 @@ export class TaskOpenedComponent implements OnInit {
   public readonly dialogRef = inject(MatDialogRef<TaskOpenedComponent>);
 
   private readonly idTask = this.dialogRef._containerInstance._config.data.id;
+  private readonly actor: string = 'AntoineActor';
+
+  private taskPatchDto = buildTaskPathDTO();
 
   public readonly addOnBlur = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -92,6 +103,21 @@ export class TaskOpenedComponent implements OnInit {
     const nid = this.normalizeId(id);
     const col = columnsTemplate.find((c) => c.id === nid);
     return col?.title ?? fallback;
+  }
+
+  save(): void {
+    this.taskPatchDto = buildTaskPathDTO({
+      actor: this.actor,
+      userAffectee: this.task.userAffectee,
+      status: this.task.status,
+      title: this.task.title,
+      description: this.task.description,
+      priority: this.task.priority,
+      tags: this.task.tags as Tag[] | null,
+    });
+    this.taskService.patch(this.idTask, this.taskPatchDto).subscribe(() => {
+      this.dialogRef.close(true);
+    });
   }
 
   cancelCreate(): void {

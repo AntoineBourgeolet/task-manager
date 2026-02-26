@@ -14,6 +14,7 @@ import com.bourgeolet.task_manager.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -74,7 +75,7 @@ public class TaskService {
 
         if (cmd.userAffecteePresent().equals(true)) {
             Account account = null;
-            if (cmd.userAffectee() != null) {
+            if (cmd.userAffectee() != null && !cmd.userAffectee().isEmpty()) {
                 account = accountRepository.findAccountByUsername(cmd.userAffectee());
                 if (account == null) {
                     throw new AccountNotFoundException(cmd.userAffectee());
@@ -97,10 +98,14 @@ public class TaskService {
         }
 
         if (cmd.tagsPresent().equals(true)) {
-            List<Tag> tags = cmd.tagIds().stream()
-                    .map(id -> tagRepository.findById(id).orElse(null))
-                    .toList();
-            task.setTags(tags);
+            if (cmd.tagIds().isEmpty()) {
+                task.setTags(Collections.emptyList());
+            } else {
+                List<Tag> tags = cmd.tagIds().stream()
+                        .map(id -> tagRepository.findById(id).orElse(null))
+                        .toList();
+                task.setTags(tags);
+            }
         }
 
         Task result = taskRepository.save(task);

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class TaskApiImpl implements TaskApi {
 
     private final TaskService taskService;
     private final TaskMapper taskMapper;
-    private final ObjectMapper objectMapper;
+    private final JsonMapper jsonMapper;
 
 
     private static List<TaskResponseDTO> filterByStatus(List<TaskResponseDTO> list, TaskStatus status) {
@@ -80,8 +80,8 @@ public class TaskApiImpl implements TaskApi {
         JsonNode node = null;
         TaskPatchDTO dto = null;
 
-            node = objectMapper.readTree(body);
-            dto = objectMapper.readValue(body, TaskPatchDTO.class);
+            node = jsonMapper.readTree(body);
+            dto = jsonMapper.readValue(body, TaskPatchDTO.class);
 
         Task updated = taskService.patchTask(
                 TaskPatchCommand.builder()

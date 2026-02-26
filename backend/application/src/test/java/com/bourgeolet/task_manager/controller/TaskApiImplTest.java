@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
@@ -33,13 +33,13 @@ class TaskApiImplTest {
 
     @BeforeEach
     void setUp() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        taskApi = new TaskApiImpl(taskService, taskMapper, objectMapper);
+        JsonMapper jsonMapper = new JsonMapper();
+        taskApi = new TaskApiImpl(taskService, taskMapper, jsonMapper);
     }
 
     @Test
     void createTask_shouldReturnAcceptedAndMappedDTO() {
-        // Arrange
+        
         TaskCreateDTO createDTO = mock(TaskCreateDTO.class);
         when(createDTO.getActor()).thenReturn("antoine");
 
@@ -51,10 +51,10 @@ class TaskApiImplTest {
         when(taskService.create(mappedTask, "antoine")).thenReturn(createdTask);
         when(taskMapper.taskToTaskResponseDTO(createdTask)).thenReturn(responseDTO);
 
-        // Act
+        
         ResponseEntity<@NotNull TaskResponseDTO> response = taskApi.createTask(createDTO);
 
-        // Assert
+        
         assertThat(response.getStatusCode().value()).isEqualTo(202);
         assertThat(response.getBody()).isEqualTo(responseDTO);
 
@@ -66,17 +66,17 @@ class TaskApiImplTest {
 
     @Test
     void deleteTask_shouldReturnNoContent() {
-        // Arrange
+        
         TaskDeleteDTO deleteDTO = mock(TaskDeleteDTO.class);
         when(deleteDTO.getId()).thenReturn(42L);
         when(deleteDTO.getActor()).thenReturn("antoine");
 
         doNothing().when(taskService).deleteTask(42L, "antoine");
 
-        // Act
+        
         ResponseEntity<@NotNull Void> response = taskApi.deleteTask(deleteDTO);
 
-        // Assert
+        
         assertThat(response.getStatusCode().value()).isEqualTo(204);
         assertThat(response.getBody()).isNull();
 
@@ -87,7 +87,7 @@ class TaskApiImplTest {
 
     @Test
     void listTasks_shouldReturnOkAndListOfDTOs() {
-        // Arrange
+        
         Task t1 = new Task();
         Task t2 = new Task();
 
@@ -98,10 +98,10 @@ class TaskApiImplTest {
         when(taskMapper.taskToTaskResponseDTO(t1)).thenReturn(dto1);
         when(taskMapper.taskToTaskResponseDTO(t2)).thenReturn(dto2);
 
-        // Act
+        
         ResponseEntity<@NotNull List<TaskResponseDTO>> response = taskApi.listTasks();
 
-        // Assert
+        
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         assertThat(response.getBody()).containsExactly(dto1, dto2);
 
@@ -113,8 +113,6 @@ class TaskApiImplTest {
 
     @Test
     void listTasksByStatus_shouldGroupByEachStatusAndReturnOk() {
-        // Arrange
-        // On crée 5 Tasks (peu importe leur contenu) et on mappe vers 5 DTOs mockés
         Task taskTodo = new Task();
         Task taskBlocked = new Task();
         Task taskDoing = new Task();
@@ -140,10 +138,10 @@ class TaskApiImplTest {
         when(taskMapper.taskToTaskResponseDTO(taskTesting)).thenReturn(dtoTesting);
         when(taskMapper.taskToTaskResponseDTO(taskDone)).thenReturn(dtoDone);
 
-        // Act
+        
         ResponseEntity<@NotNull TaskByStatusResponseDTO> response = taskApi.listTasksByStatus();
 
-        // Assert
+        
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         TaskByStatusResponseDTO body = response.getBody();
         assertThat(body).isNotNull();
@@ -164,7 +162,7 @@ class TaskApiImplTest {
 
     @Test
     void getTaskById_shouldReturnOkAndMappedDTO() {
-        // Arrange
+        
         long id = 100L;
         Task task = new Task();
         TaskResponseDTO dto = new TaskResponseDTO();
@@ -172,10 +170,10 @@ class TaskApiImplTest {
         when(taskService.getTaskById(id)).thenReturn(task);
         when(taskMapper.taskToTaskResponseDTO(task)).thenReturn(dto);
 
-        // Act
+        
         ResponseEntity<@NotNull TaskResponseDTO> response = taskApi.getTaskById(id);
 
-        // Assert
+        
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         assertThat(response.getBody()).isEqualTo(dto);
 
@@ -186,7 +184,7 @@ class TaskApiImplTest {
 
     @Test
     void modifyTaskStatus_shouldReturnAcceptedAndMappedDTO() {
-        // Arrange
+        
         String changeJson = """
                 {
                     "status": "TESTING",
@@ -199,7 +197,7 @@ class TaskApiImplTest {
         when(taskService.patchTask(ArgumentMatchers.any())).thenReturn(updated);
         when(taskMapper.taskToTaskResponseDTO(updated)).thenReturn(dto);
 
-        ResponseEntity<TaskResponseDTO> response = taskApi.patchTask(7L, changeJson);
+        ResponseEntity<@NotNull TaskResponseDTO> response = taskApi.patchTask(7L, changeJson);
 
         assertThat(response.getStatusCode().value()).isEqualTo(202);
         assertThat(response.getBody()).isEqualTo(dto);
@@ -211,7 +209,7 @@ class TaskApiImplTest {
 
     @Test
     void modifyTaskUser_shouldReturnAcceptedAndMappedDTO() {
-        // Arrange
+        
         String changeJson = """
                 {
                     "userAffectee": "bob",

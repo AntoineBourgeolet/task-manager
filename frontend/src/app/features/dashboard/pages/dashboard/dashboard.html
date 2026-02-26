@@ -38,17 +38,12 @@
                   [ngClass]="priorityClass(task.priority)"
                 >
                   <mat-card-header>
-                    <mat-card-title class="task-title">
-                      {{ task.title }}
+                    <mat-card-title class="task-subtitle">
+                      Task-manager #{{ task.id }}
                     </mat-card-title>
 
-                    <mat-card-subtitle class="task-subtitle">
-                      @if (true) {
-                        <span class="due">
-                          <mat-icon inline>event</mat-icon>
-                          12/12/2012
-                        </span>
-                      }
+                    <mat-card-subtitle class="task-title">
+                      {{ task.title}}
                     </mat-card-subtitle>
 
                     <span class="spacer"></span>
@@ -117,16 +112,6 @@
                       </mat-select>
                     </mat-form-field>
                   </mat-card-content>
-                  <mat-card-actions align="end">
-                    <button
-                      mat-icon-button
-                      color="warn"
-                      (click)="deleteTask(task.id); $event.stopPropagation()"
-                      aria-label="Supprimer la tâche"
-                    >
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </mat-card-actions>
                   <mat-card-footer>
                     <p class="id-card">Id : {{ task.id }}</p>
                   </mat-card-footer>
