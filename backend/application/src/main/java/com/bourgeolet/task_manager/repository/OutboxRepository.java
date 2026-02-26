@@ -23,11 +23,11 @@ public interface OutboxRepository extends JpaRepository<@NotNull Outbox, @NotNul
         """, nativeQuery = true)
     Optional<List<Outbox>> getNextBatch(@Param("batchSize") int batchSize);
 
-    @Modifying
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(value = """
         UPDATE outbox
         SET published = true, published_at = now()
-        WHERE id = :id
+        WHERE id = :id and published = false
         """, nativeQuery = true)
     void markPublished(@Param("id") UUID id);
 

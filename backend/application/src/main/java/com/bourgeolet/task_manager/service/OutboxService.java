@@ -6,8 +6,6 @@ import com.bourgeolet.task_manager.mapper.OutboxMapper;
 import com.bourgeolet.task_manager.repository.OutboxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -20,9 +18,10 @@ public class OutboxService {
 
     private final OutboxMapper outboxMapper;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void markPublishedAsync(UUID id) {
-        outboxRepository.markPublished(id);
+    private final OutboxPublishingTxService outboxPublishingTxService;
+
+    public void markPublished(UUID id) {
+        outboxPublishingTxService.markPublishedInNewTx(id);
     }
 
     public void ticketStatusChangedAuditEvent(Task result, String oldStatus, String newStatus, String actor) {
@@ -46,4 +45,6 @@ public class OutboxService {
         AuditEvent evt = AuditEvent.ticketDelete(id, actor);
         outboxRepository.save(outboxMapper.toOutbox(evt));
     }
+
+
 }
