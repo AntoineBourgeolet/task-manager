@@ -31,7 +31,7 @@ class OutboxServiceTest {
     private OutboxService outboxService;
 
     @Test
-    void markPublishedAsync_shouldDelegateToRepository() {
+    void markPublishedAsync_whenCalledWithId_shouldDelegateToRepository() {
         UUID id = UUID.randomUUID();
 
         outboxService.markPublished(id);
@@ -44,7 +44,7 @@ class OutboxServiceTest {
     }
 
     @Test
-    void ticketStatusChangedAuditEvent_shouldBuildEventAndPersist() {
+    void ticketStatusChangedAuditEvent_whenValidInputs_shouldBuildEventAndPersist(){
         Task task = new Task();
         task.setId(42L);
         String actor = "john";
@@ -70,7 +70,7 @@ class OutboxServiceTest {
     }
 
     @Test
-    void ticketChangedUserAffecteeAuditEvent_shouldBuildEventWithProvidedUsersAndPersist() {
+    void ticketChangedUserAffecteeAuditEvent_whenUsersProvided_shouldBuildEventAndPersist() {
         Task task = new Task();
         task.setId(7L);
         String actor = "alice";
@@ -96,7 +96,7 @@ class OutboxServiceTest {
     }
 
     @Test
-    void ticketChangedUserAffecteeAuditEvent_shouldNormalizeNullUsersToEmptyString() {
+    void ticketChangedUserAffecteeAuditEvent_whenUsersAreNull_shouldNormalizeToEmptyStringAndPersist(){
         // Arrange
         Task task = new Task();
         task.setId(7L);
@@ -123,7 +123,7 @@ class OutboxServiceTest {
     }
 
     @Test
-    void ticketCreatedAuditEvent_shouldBuildEventAndPersist() {
+    void ticketCreatedAuditEvent_whenValidInputs_shouldBuildEventAndPersist() {
         Task task = new Task();
         task.setId(100L);
         String actor = "system";
@@ -147,7 +147,7 @@ class OutboxServiceTest {
     }
 
     @Test
-    void ticketDeleteAuditEvent_shouldBuildEventAndPersist() {
+    void ticketDeleteAuditEvent_whenValidInputs_shouldBuildEventAndPersist() {
         long id = 55L;
         String actor = "deleter";
 

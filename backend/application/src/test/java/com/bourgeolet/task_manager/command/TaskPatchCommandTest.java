@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class TaskPatchCommandTest {
 
     @Test
-    void builder_shouldRequireTaskId() {
+    void builder_whenTaskIdIsMissing_shouldThrowRuntimeException() {
         RuntimeException ex = assertThrows(RuntimeException.class, () ->
                 TaskPatchCommand.builder()
                         .actor("actor")
@@ -23,7 +23,7 @@ class TaskPatchCommandTest {
     }
 
     @Test
-    void builder_shouldRequireActor() {
+    void builder_whenActorIsMissing_shouldThrowNullPointerException() {
         NullPointerException ex = assertThrows(NullPointerException.class, () ->
                 TaskPatchCommand.builder()
                         .taskId(1L)
@@ -35,7 +35,7 @@ class TaskPatchCommandTest {
     }
 
     @Test
-    void builder_shouldProduceImmutableRecord_withAllFields() {
+    void builder_whenAllFieldsProvided_shouldProduceImmutableRecord() {
         TaskPatchCommand cmd = TaskPatchCommand.builder()
                 .taskId(10L)
                 .actor("actor")

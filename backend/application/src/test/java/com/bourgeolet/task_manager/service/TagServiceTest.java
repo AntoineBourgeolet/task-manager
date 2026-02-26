@@ -34,7 +34,7 @@ class TagServiceTest {
     }
 
     @Test
-    void getAllShouldReturnAllTagsFromRepository() {
+    void getAll_whenCalled_shouldReturnAllTagsFromRepository () {
         when(tagRepository.findAll()).thenReturn(List.of(tag1, tag2));
 
         List<Tag> result = tagService.getAll();
@@ -45,7 +45,7 @@ class TagServiceTest {
     }
 
     @Test
-    void createShouldSaveAndReturnTag() {
+    void create_whenValidInput_shouldSaveAndReturnTag () {
         Tag input = new Tag();
         when(tagRepository.save(input)).thenReturn(input);
 
@@ -61,7 +61,7 @@ class TagServiceTest {
     }
 
     @Test
-    void deleteShouldDelegateToRepository() {
+    void delete_whenCalledWithTag_shouldDelegateToRepository () {
         Tag toDelete = new Tag();
 
         tagService.delete(toDelete);
