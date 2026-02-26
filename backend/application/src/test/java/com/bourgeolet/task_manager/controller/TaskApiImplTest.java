@@ -38,8 +38,8 @@ class TaskApiImplTest {
     }
 
     @Test
-    void createTask_shouldReturnAcceptedAndMappedDTO() {
-        
+    void createTask_whenValidRequest_shouldReturnAcceptedAndMappedDTO() {
+
         TaskCreateDTO createDTO = mock(TaskCreateDTO.class);
         when(createDTO.getActor()).thenReturn("antoine");
 
@@ -51,10 +51,10 @@ class TaskApiImplTest {
         when(taskService.create(mappedTask, "antoine")).thenReturn(createdTask);
         when(taskMapper.taskToTaskResponseDTO(createdTask)).thenReturn(responseDTO);
 
-        
+
         ResponseEntity<@NotNull TaskResponseDTO> response = taskApi.createTask(createDTO);
 
-        
+
         assertThat(response.getStatusCode().value()).isEqualTo(202);
         assertThat(response.getBody()).isEqualTo(responseDTO);
 
@@ -65,17 +65,17 @@ class TaskApiImplTest {
     }
 
     @Test
-    void deleteTask_shouldReturnNoContent() {
-        
+    void deleteTask_whenValidRequest_shouldReturnNoContent() {
+
         TaskDeleteDTO deleteDTO = mock(TaskDeleteDTO.class);
         when(deleteDTO.getActor()).thenReturn("antoine");
 
         doNothing().when(taskService).deleteTask(42L, "antoine");
 
-        
+
         ResponseEntity<@NotNull Void> response = taskApi.deleteTask(42L, deleteDTO);
 
-        
+
         assertThat(response.getStatusCode().value()).isEqualTo(204);
         assertThat(response.getBody()).isNull();
 
@@ -85,8 +85,8 @@ class TaskApiImplTest {
     }
 
     @Test
-    void listTasks_shouldReturnOkAndListOfDTOs() {
-        
+    void listTasks_whenCalled_shouldReturnOkAndListOfDTOs() {
+
         Task t1 = new Task();
         Task t2 = new Task();
 
@@ -97,10 +97,10 @@ class TaskApiImplTest {
         when(taskMapper.taskToTaskResponseDTO(t1)).thenReturn(dto1);
         when(taskMapper.taskToTaskResponseDTO(t2)).thenReturn(dto2);
 
-        
+
         ResponseEntity<@NotNull List<TaskResponseDTO>> response = taskApi.listTasks();
 
-        
+
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         assertThat(response.getBody()).containsExactly(dto1, dto2);
 
@@ -111,7 +111,7 @@ class TaskApiImplTest {
     }
 
     @Test
-    void listTasksByStatus_shouldGroupByEachStatusAndReturnOk() {
+    void listTasksByStatus_whenCalled_shouldGroupByEachStatusAndReturnOk() {
         Task taskTodo = new Task();
         Task taskBlocked = new Task();
         Task taskDoing = new Task();
@@ -137,10 +137,10 @@ class TaskApiImplTest {
         when(taskMapper.taskToTaskResponseDTO(taskTesting)).thenReturn(dtoTesting);
         when(taskMapper.taskToTaskResponseDTO(taskDone)).thenReturn(dtoDone);
 
-        
+
         ResponseEntity<@NotNull TaskByStatusResponseDTO> response = taskApi.listTasksByStatus();
 
-        
+
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         TaskByStatusResponseDTO body = response.getBody();
         assertThat(body).isNotNull();
@@ -160,8 +160,8 @@ class TaskApiImplTest {
     }
 
     @Test
-    void getTaskById_shouldReturnOkAndMappedDTO() {
-        
+    void getTaskById_whenIdExists_shouldReturnOkAndMappedDTO() {
+
         long id = 100L;
         Task task = new Task();
         TaskResponseDTO dto = new TaskResponseDTO();
@@ -169,10 +169,10 @@ class TaskApiImplTest {
         when(taskService.getTaskById(id)).thenReturn(task);
         when(taskMapper.taskToTaskResponseDTO(task)).thenReturn(dto);
 
-        
+
         ResponseEntity<@NotNull TaskResponseDTO> response = taskApi.getTaskById(id);
 
-        
+
         assertThat(response.getStatusCode().value()).isEqualTo(200);
         assertThat(response.getBody()).isEqualTo(dto);
 
@@ -182,8 +182,8 @@ class TaskApiImplTest {
     }
 
     @Test
-    void modifyTaskStatus_shouldReturnAcceptedAndMappedDTO() {
-        
+    void patchTask_whenStatusChangePayloadIsValid_shouldReturnAcceptedAndMappedDTO() {
+
         String changeJson = """
                 {
                     "status": "TESTING",
@@ -207,7 +207,7 @@ class TaskApiImplTest {
     }
 
     @Test
-    void modifyTaskUser_shouldReturnAcceptedAndMappedDTO() {
+    void patchTask_whenUserChangePayloadIsValid_shouldReturnAcceptedAndMappedDTO() {
         
         String changeJson = """
                 {

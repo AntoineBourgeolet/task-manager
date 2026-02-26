@@ -26,7 +26,7 @@ class AccountServiceTest {
     private AccountService accountService;
 
     @Test
-    void create_shouldSaveAndReturnAccount_whenUsernameIsValid() {
+    void create_whenUsernameIsValid_shouldSaveAndReturnAccount() {
         Account input = new Account();
         input.setUsername("antoine");
 
@@ -43,14 +43,14 @@ class AccountServiceTest {
 
         verify(accountRepository).save(captor.capture());
         Account passed = captor.getValue();
-        assertThat(passed).isSameAs(input); // le service passe bien l'instance reçue
+        assertThat(passed).isSameAs(input);
         assertThat(passed.getUsername()).isEqualTo("antoine");
 
         verifyNoMoreInteractions(accountRepository);
     }
 
     @Test
-    void create_shouldThrowIllegalArgumentException_whenUsernameIsNull() {
+    void create_whenUsernameIsNull_shouldThrowIllegalArgumentException() {
         Account input = new Account();
         input.setUsername(null);
 
@@ -62,8 +62,8 @@ class AccountServiceTest {
     }
 
     @Test
-    void create_shouldThrowIllegalArgumentException_whenUsernameIsBlank() {
-        // Arrange
+    void create_whenUsernameIsBlank_shouldThrowIllegalArgumentException() {
+
         Account input = new Account();
         input.setUsername("   ");
 
@@ -76,7 +76,7 @@ class AccountServiceTest {
 
 
     @Test
-    void getAll_shouldDelegateToRepositoryAndReturnList() {
+    void getAll_whenCalled_shouldDelegateToRepository() {
         Account a1 = new Account(); a1.setId(1L); a1.setUsername("u1");
         Account a2 = new Account(); a2.setId(2L); a2.setUsername("u2");
         when(accountRepository.findAll()).thenReturn(List.of(a1, a2));
@@ -88,25 +88,25 @@ class AccountServiceTest {
         verifyNoMoreInteractions(accountRepository);
     }
 
-    // ---------- getAccountByUsername ----------
+
 
     @Test
-    void getAccountByUsername_shouldReturnAccountFromRepository() {
-        // Arrange
+    void getAccountByUsername_whenAccountExists_shouldReturnAccountFromRepository() {
+
         Account a = new Account(); a.setId(10L); a.setUsername("antoine");
         when(accountRepository.findAccountByUsername("antoine")).thenReturn(Optional.of(a));
 
-        // Act
+
         Account result = accountService.getAccountByUsername("antoine");
 
-        // Assert
+
         assertThat(result).isEqualTo(a);
         verify(accountRepository).findAccountByUsername("antoine");
         verifyNoMoreInteractions(accountRepository);
     }
 
     @Test
-    void getAccountByUsername_shouldReturnNull_whenRepositoryReturnsNull() {
+    void getAccountByUsername_whenAccountDoesNotExist_shouldThrowAccountNotFoundException() {
         when(accountRepository.findAccountByUsername("unknown")).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> accountService.getAccountByUsername("unknown"))

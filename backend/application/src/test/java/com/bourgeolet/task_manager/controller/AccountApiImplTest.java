@@ -35,7 +35,7 @@ class AccountApiImplTest {
     }
 
     @Test
-    void createAccount_shouldReturnAcceptedAndMappedDTO() {
+    void createAccount_whenValidInput_shouldReturnAcceptedAndMappedDTO() {
         // Arrange
         AccountCreateDTO createDTO = new AccountCreateDTO();
         Account mappedAccount = new Account();
@@ -65,7 +65,7 @@ class AccountApiImplTest {
     }
 
     @Test
-    void getAllAccounts_shouldReturnAcceptedAndListOfDTOs() {
+    void getAllAccounts_whenCalled_shouldReturnAcceptedAndListOfDTOs() {
         // Arrange
         Account account1 = new Account();
         Account account2 = new Account();

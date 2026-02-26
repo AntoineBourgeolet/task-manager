@@ -64,7 +64,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void create_shouldSaveTaskAndEmitAuditEvent() {
+    void create_whenValidInput_shouldSaveTaskAndEmitAuditEvent() {
         Task toSave = new Task();
         toSave.setTitle("title");
         Task saved = new Task();
@@ -81,7 +81,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void deleteTask_shouldDeleteAndEmitAuditEvent_whenTaskExists() {
+    void deleteTask_whenTaskExists_shouldDeleteAndEmitAuditEvent() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
 
         taskService.deleteTask(42L, "actor");
@@ -94,7 +94,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void deleteTask_shouldThrow_whenTaskNotFound() {
+    void deleteTask_whenTaskNotFound_shouldThrowTaskNotFoundException() {
         when(taskRepository.findById(999L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> taskService.deleteTask(999L, "actor"))
@@ -107,7 +107,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void getTaskById_shouldReturnTask_whenExists() {
+    void getTaskById_whenExists_shouldReturnTask() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
 
         Task result = taskService.getTaskById(42L);
@@ -117,7 +117,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void getTaskById_shouldThrow_whenNotFound() {
+    void getTaskById_whenNotFound_shouldThrowTaskNotFoundException() {
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> taskService.getTaskById(1L))
@@ -128,7 +128,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void findAll_shouldReturnAll() {
+    void findAll_whenCalled_shouldReturnAllTasks() {
         List<Task> all = List.of(new Task(), new Task(), new Task());
         when(taskRepository.findAll()).thenReturn(all);
 
@@ -139,7 +139,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldPatchAllFields_whenPresentFlagsTrue_andEmitBothEvents() {
+    void patchTask_whenAllPresentFlagsTrue_shouldPatchAllFieldsAndEmitEvents() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
         when(accountRepository.findAccountByUsername("newUser")).thenReturn(Optional.ofNullable(accountNew));
         Tag tag1 = new Tag();
@@ -180,7 +180,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldNotApplyValues_whenPresentFlagsFalse_noEvents() {
+    void patchTask_whenAllPresentFlagsFalse_shouldNotApplyValuesAndEmitNoEvents() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
         when(taskRepository.save(any(Task.class))).thenAnswer(inv -> inv.getArgument(0));
 
@@ -216,7 +216,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldEmitStatusEventOnly_whenStatusPresentAndChanged_andUserUnchanged() {
+    void patchTask_whenStatusPresentAndChanged_shouldEmitStatusEventOnly() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
         when(taskRepository.save(any(Task.class))).thenAnswer(inv -> inv.getArgument(0));
 
@@ -241,7 +241,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldClearTags_whenTagsPresentTrueWithEmptyList() {
+    void patchTask_whenTagsPresentWithEmptyList_shouldClearTags() {
         Tag initialTag = new Tag();
         initialTag.setId(9L);
         task.setTags(List.of(initialTag));
@@ -270,7 +270,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldThrow_whenUserPresentAndNewUserNotFound() {
+    void patchTask_whenUserPresentAndNewUserNotFound_shouldThrowAccountNotFoundException() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
         when(accountRepository.findAccountByUsername("ghost")).thenReturn(Optional.empty());
 
@@ -295,7 +295,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldClearUserAndEmitEvent_whenUserPresentAndNull() {
+    void patchTask_whenUserPresentAndNull_shouldClearUserAndEmitEvent() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
         when(taskRepository.save(any(Task.class))).thenAnswer(inv -> inv.getArgument(0));
 
@@ -319,7 +319,7 @@ class TaskServiceTest {
     }
 
     @Test
-    void patchTask_shouldThrow_whenTaskNotFound() {
+    void patchTask_whenTaskNotFound_shouldThrowTaskNotFoundException() {
         when(taskRepository.findById(123L)).thenReturn(Optional.empty());
 
         TaskPatchCommand cmd = TaskPatchCommand.builder()

@@ -22,7 +22,7 @@ class OutboxPublishingTxServiceTest {
     private OutboxPublishingTxService outboxPublishingTxService;
 
     @Test
-    void markPublishedInNewTx_success(){
+    void markPublishedInNewTx_shouldPublishedId_whenCorrectUUID(){
         UUID id = UUID.randomUUID();
         outboxPublishingTxService.markPublishedInNewTx(id);
         verify(outboxRepository).markPublished(id);
