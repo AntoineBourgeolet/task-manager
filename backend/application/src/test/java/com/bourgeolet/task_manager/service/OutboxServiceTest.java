@@ -24,6 +24,9 @@ class OutboxServiceTest {
     @Mock
     private OutboxMapper outboxMapper;
 
+    @Mock
+    OutboxPublishingTxService outboxPublishingTxService;
+
     @InjectMocks
     private OutboxService outboxService;
 
@@ -31,10 +34,12 @@ class OutboxServiceTest {
     void markPublishedAsync_shouldDelegateToRepository() {
         UUID id = UUID.randomUUID();
 
-        outboxService.markPublishedAsync(id);
+        outboxService.markPublished(id);
 
-        verify(outboxRepository).markPublished(id);
-        verifyNoMoreInteractions(outboxRepository);
+        verify(outboxPublishingTxService).markPublishedInNewTx(id);
+        verifyNoMoreInteractions(outboxPublishingTxService);
+
+        verifyNoInteractions(outboxRepository);
         verifyNoInteractions(outboxMapper);
     }
 

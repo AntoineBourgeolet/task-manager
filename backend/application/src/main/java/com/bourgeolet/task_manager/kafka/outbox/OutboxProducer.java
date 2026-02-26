@@ -32,7 +32,6 @@ public class OutboxProducer {
     }
 
     @Scheduled(fixedDelayString = "PT2S")
-    @Transactional
     public void publishPending() {
         List<Outbox> outboxList = outboxRepository.getNextBatch(200).orElse(Collections.emptyList());
         for (Outbox e : outboxList) {
@@ -40,7 +39,7 @@ public class OutboxProducer {
             kafkaTemplate.send(TOPIC, id, e.getPayload())
                     .whenComplete((metadata, ex) -> {
                         if (ex == null) {
-                            outboxService.markPublishedAsync(e.getId());
+                            outboxService.markPublished(e.getId());
                         }
                     });
         }
