@@ -45,7 +45,7 @@
     "@angular/material": "^21.1.1",
     "@schematics/angular": "^21.1.1",
     "jsdom": "^27.1.0",
-    "nx": "^21.6.10",
+    "nx": "^22.5.4",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "~5.9.2",
