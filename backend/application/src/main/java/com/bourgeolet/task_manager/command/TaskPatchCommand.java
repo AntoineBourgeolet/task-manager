@@ -2,7 +2,6 @@ package com.bourgeolet.task_manager.command;
 
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
 import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
