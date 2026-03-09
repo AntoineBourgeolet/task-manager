@@ -3,10 +3,13 @@ package com.bourgeolet.task_manager.mapper;
 import com.bourgeolet.task_manager.dto.task.TaskCreateDTO;
 import com.bourgeolet.task_manager.dto.task.TaskResponseDTO;
 import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.entity.Task;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -15,33 +18,39 @@ public class TaskMapper {
     private final TagMapper tagMapper;
 
     public Task taskFromTaskCreateDTO(TaskCreateDTO dto) {
-        Task task = new Task();
+        Account account = null;
+        List<Tag> listTags = null;
         if (!dto.getUserAffectee().isBlank()) {
-            Account account = new Account();
-            account.setUsername(dto.getUserAffectee());
-            task.setAccount(account);
+            account = Account.builder()
+                    .username(dto.getUserAffectee())
+                    .build();
         }
-        task.setTitle(dto.getTitle());
-        task.setDescription(dto.getDescription());
-        if(dto.getTags().isEmpty()){
-            task.setTags(dto.getTags().stream().map(tagMapper::tagCreateDTOToTag).toList());
+        if(!dto.getTags().isEmpty()){
+            listTags = dto.getTags().stream().map(tagMapper::tagCreateDTOToTag).toList();
         }
-        task.setPriority(dto.getPriority());
-        return task;
+        return Task.builder()
+                .account(account)
+                .title(dto.getTitle())
+                .description(dto.getDescription())
+                .tags(listTags)
+                .priority(dto.getPriority())
+                .build();
 
     }
 
     public TaskResponseDTO taskToTaskResponseDTO(Task task) {
-        TaskResponseDTO taskResponseDTO = new TaskResponseDTO();
-        taskResponseDTO.setDescription(task.getDescription());
-        taskResponseDTO.setId(task.getId());
-        taskResponseDTO.setPriority(task.getPriority());
-        taskResponseDTO.setTags(task.getTags().stream().map(tagMapper::tagToTagResponseDTO).toList());
-        taskResponseDTO.setTitle(task.getTitle());
-        taskResponseDTO.setStatus(task.getStatus());
+        String username = null;
         if (task.getAccount() != null){
-            taskResponseDTO.setUserAffectee(task.getAccount().getUsername());
+            username = task.getAccount().getUsername();
         }
-        return taskResponseDTO;
+        return TaskResponseDTO.builder()
+                .description(task.getDescription())
+                .id(task.getId())
+                .priority(task.getPriority())
+                .tags(task.getTags().stream().map(tagMapper::tagToTagResponseDTO).toList())
+                .title(task.getTitle())
+                .status(task.getStatus())
+                .userAffectee(username)
+                .build();
     }
 }
