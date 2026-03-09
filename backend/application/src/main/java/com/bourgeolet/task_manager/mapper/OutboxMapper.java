@@ -13,15 +13,15 @@ public class OutboxMapper {
 
     public Outbox toOutbox(AuditEvent evt) {
         String payload = writeJson(evt);
-        Outbox out = new Outbox();
-        out.setId(evt.eventId());
-        out.setAggregateType(evt.aggregateType());
-        out.setAggregateId(evt.aggregateId());
-        out.setEventType(evt.eventType());
-        out.setEventAt(evt.occurredAt());
-        out.setPayload(payload);
-        out.setPublished(false);
-        return out;
+        return Outbox.builder()
+                .id(evt.eventId())
+                .aggregateType(evt.aggregateType())
+                .aggregateId(evt.aggregateId())
+                .eventType(evt.eventType())
+                .eventAt(evt.occurredAt())
+                .payload(payload)
+                .published(false)
+                .build();
     }
 
     private String writeJson(AuditEvent evt) {

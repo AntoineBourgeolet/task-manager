@@ -14,18 +14,14 @@ public class TagMapper {
 
 
     public Tag tagCreateDTOToTag(TagCreateDTO tagCreateDTO){
-        Tag tag = new Tag();
-        tag.setName(tagCreateDTO.getName());
-        return tag;
+        return Tag.builder().name(tagCreateDTO.getName()).build();
     }
 
     public TagResponseDTO tagToTagResponseDTO(Tag tag){
         return new TagResponseDTO(tag.getId(), tag.getName());
     }
 
-    public Tag tagDeleteDTOToTag(@Valid TagDeleteDTO dto) {
-        Tag tag = new Tag();
-        tag.setId(dto.getId());
-        return tag;
+    public Tag tagDeleteDTOToTag(@Valid TagDeleteDTO tagDeleteDTO) {
+        return Tag.builder().id(tagDeleteDTO.getId()).build();
     }
 }

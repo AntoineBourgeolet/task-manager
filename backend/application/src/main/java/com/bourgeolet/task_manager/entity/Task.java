@@ -10,7 +10,9 @@ import java.util.List;
 @Table(name = "task")
 @Getter
 @Setter
-@RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
 
     @Id

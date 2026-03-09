@@ -14,13 +14,12 @@ public class AccountMapper {
 
 
     public AccountResponseDTO accountToAccountResponseDTO(Account account) {
-        return new AccountResponseDTO(account.getId(), account.getUsername());
+        return new AccountResponseDTO(account.getId(), account.getUsername(), null);
     }
 
     public Account accountCreateDTOToAccount(@Valid AccountCreateDTO dto) {
-        Account account = new Account();
-        account.setUsername(dto.getUsername());
-        account.setEmail(dto.getEmail());
-        return account;
+        return Account.builder()
+                .username(dto.getUsername())
+                .email(dto.getEmail()).build();
     }
 }
