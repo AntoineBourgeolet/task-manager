@@ -1,7 +1,6 @@
 package com.bourgeolet.task_manager.command;
 
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
-import com.bourgeolet.task_manager.entity.Tag;
 import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -28,7 +27,7 @@ public record TaskPatchCommand(
         Integer priority,
 
         Boolean tagsPresent,
-        List<Tag> tags,
+        List<Long> tagIds,
 
         Boolean userAffecteePresent,
         String userAffectee

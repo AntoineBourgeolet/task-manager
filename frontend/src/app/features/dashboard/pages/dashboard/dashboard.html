@@ -17,139 +17,163 @@
         [class.column-testing]="col.id === 'TESTING'"
         [class.column-done]="col.id === 'DONE'"
       >
-      <mat-card class="column-card" appearance="outlined">
-        <mat-card-header class="column-header">
-          <div class="column-heading">
-            <mat-card-title class="column-title">
-              {{ col.title }}
-            </mat-card-title>
-            <span class="count">{{ board[col.id]?.length }}</span>
-          </div>
-        </mat-card-header>
-        <mat-card-content>
-          <div
-            class="list"
-            cdkDropList
-            [id]="col.id"
-            [cdkDropListData]="board[col.id]"
-            [cdkDropListConnectedTo]="getConnectedLists()"
-            (cdkDropListDropped)="drop($event, col.id)"
-          >
-            @for (task of board[col.id]; track task.id) {
-              <div
-                class="card"
-                cdkDrag
-                (click)="openTask(task.id)"
-                onkeypress=""
-                [attr.aria-label]="'Tâche ' + task.title"
-              >
-                <mat-card
-                  appearance="outlined"
-                  class="task-card"
-                  [ngClass]="priorityClass(task.priority)"
+        <mat-card class="column-card" appearance="outlined">
+          <mat-card-header class="column-header">
+            <div class="column-heading">
+              <mat-card-title class="column-title">
+                {{ col.title }}
+              </mat-card-title>
+              <span class="count">{{ board[col.id]?.length }}</span>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div
+              class="list"
+              cdkDropList
+              [id]="col.id"
+              [cdkDropListData]="board[col.id]"
+              [cdkDropListConnectedTo]="getConnectedLists()"
+              (cdkDropListDropped)="drop($event, col.id)"
+            >
+              @for (task of board[col.id]; track task.id) {
+                <div
+                  class="card"
+                  cdkDrag
+                  (click)="openTask(task.id)"
+                  onkeypress=""
+                  [attr.aria-label]="'Tâche ' + task.title"
                 >
-                  <mat-card-header class="task-card-header">
-                    <div class="task-header-main">
-                      <mat-card-title class="task-title">
-                        {{ task.title }}
-                      </mat-card-title>
-                    </div>
+                  <mat-card
+                    appearance="outlined"
+                    class="task-card"
+                    [ngClass]="priorityClass(task.priority)"
+                  >
+                    <mat-card-header class="task-card-header">
+                      <div class="task-header-main">
+                        <mat-card-title class="task-title">
+                          {{ task.title }}
+                        </mat-card-title>
+                      </div>
 
-                    <button
-                      mat-icon-button
-                      class="task-menu-button"
-                      [matMenuTriggerFor]="taskMenu"
-                      (click)="$event.stopPropagation()"
-                      aria-label="Actions de tâche"
-                    >
-                      <mat-icon>more_horiz</mat-icon>
-                    </button>
-                    <mat-menu #taskMenu="matMenu">
-                      <button mat-menu-item (click)="openTask(task.id)">
-                        <mat-icon>open_in_new</mat-icon>
-                        <span>Ouvrir</span>
+                      <button
+                        mat-icon-button
+                        class="task-menu-button"
+                        [matMenuTriggerFor]="taskMenu"
+                        (click)="$event.stopPropagation()"
+                        aria-label="Actions de tâche"
+                      >
+                        <mat-icon>more_horiz</mat-icon>
                       </button>
-                      <button mat-menu-item>
-                        <mat-icon>content_copy</mat-icon>
-                        <span>Dupliquer</span>
-                      </button>
-                      <button mat-menu-item (click)="deleteTask(task.id)">
-                        <mat-icon color="warn">delete</mat-icon>
-                        <span>Supprimer</span>
-                      </button>
-                    </mat-menu>
-                  </mat-card-header>
+                      <mat-menu #taskMenu="matMenu">
+                        <button mat-menu-item (click)="openTask(task.id)">
+                          <mat-icon>open_in_new</mat-icon>
+                          <span>Ouvrir</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>content_copy</mat-icon>
+                          <span>Dupliquer</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteTask(task.id)">
+                          <mat-icon color="warn">delete</mat-icon>
+                          <span>Supprimer</span>
+                        </button>
+                      </mat-menu>
+                    </mat-card-header>
 
-                  <mat-card-content>
-                    @if (task.tags?.length) {
-                      <mat-chip-set class="tag-chip-set" aria-label="Tags">
-                        @for (tag of task.tags; track tag) {
-                          <mat-chip class="tag-chip" appearance="outlined">
-                            {{ tag.name }}
-                          </mat-chip>
-                        }
-                      </mat-chip-set>
-                    }
+                    <mat-card-content>
+                      @if (task.tags?.length) {
+                        <mat-chip-set class="tag-chip-set" aria-label="Tags">
+                          @for (tag of task.tags; track tag) {
+                            <mat-chip class="tag-chip" appearance="outlined">
+                              {{ tag.name }}
+                            </mat-chip>
+                          }
+                        </mat-chip-set>
+                      }
 
-                    <div class="task-meta-row">
-                      <div class="issue-meta-left">
-                        <div class="priority-token" [ngClass]="priorityChipClass(task.priority)">
-                          <mat-icon>keyboard_double_arrow_up</mat-icon>
-                          <span>{{ priorityLabel(task.priority) }}</span>
+                      <div class="task-meta-row">
+                        <div class="issue-meta-left">
+                          <div class="priority-token" [ngClass]="priorityChipClass(task.priority)">
+                            <mat-icon>keyboard_double_arrow_up</mat-icon>
+                            <span>{{ priorityLabel(task.priority) }}</span>
+                          </div>
+                        </div>
+
+                        <div
+                          class="issue-meta-right"
+                          (click)="$event.stopPropagation()"
+                          (keydown)="$event.stopPropagation()"
+                        >
+                          <span class="issue-key">TM-{{ task.id }}</span>
+
+                          <button
+                            mat-icon-button
+                            class="assignee-button"
+                            [matTooltip]="task.userAffectee || 'Non affecté'"
+                            matTooltipPosition="above"
+                            [matMenuTriggerFor]="assigneeMenu"
+                            [attr.aria-label]="
+                              (task.userAffectee ? assigneeInitials(task.userAffectee) : 'NA') +
+                              ' - Changer utilisateur affecté'
+                            "
+                          >
+                            @if (task.userAffectee) {
+                              <span class="assignee-avatar">
+                                <span class="option-avatar compact">{{
+                                  assigneeInitials(task.userAffectee)
+                                }}</span>
+                              </span>
+                            } @else {
+                              <span class="option-avatar compact option-avatar-empty">NA</span>
+                            }
+                          </button>
+
+                          <mat-menu #assigneeMenu="matMenu" xPosition="before" yPosition="below">
+                            <button
+                              mat-menu-item
+                              (click)="task.userAffectee = null; affecteUser(task.id, null)"
+                            >
+                              <span class="option-avatar compact option-avatar-empty">NA</span>
+                              <span>Non affecté</span>
+                            </button>
+                            @for (user of users; track user.username) {
+                              <button
+                                mat-menu-item
+                                (click)="
+                                  task.userAffectee = user.username;
+                                  affecteUser(task.id, user.username)
+                                "
+                              >
+                                <span class="option-avatar compact">{{
+                                  assigneeInitials(user.username)
+                                }}</span>
+                                <span>{{ user.username }}</span>
+                              </button>
+                            }
+                          </mat-menu>
                         </div>
                       </div>
-
-                      <div class="issue-meta-right" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
-                        <span class="issue-key">TM-{{ task.id }}</span>
-
-                        <button
-                          mat-icon-button
-                          class="assignee-button"
-                          [matTooltip]="task.userAffectee || 'Non affecté'"
-                          matTooltipPosition="above"
-                          [matMenuTriggerFor]="assigneeMenu"
-                          aria-label="Changer utilisateur affecté"
-                        >
-                          <span class="assignee-avatar">
-                            <mat-icon>{{ task.userAffectee ? 'person' : 'person_off' }}</mat-icon>
-                          </span>
-                        </button>
-
-                        <mat-menu #assigneeMenu="matMenu" xPosition="before" yPosition="below">
-                          <button mat-menu-item (click)="task.userAffectee = null; affecteUser(task.id, null)">
-                            <span class="option-avatar compact option-avatar-empty">NA</span>
-                            <span>Non affecté</span>
-                          </button>
-                          @for (user of users; track user.username) {
-                            <button mat-menu-item (click)="task.userAffectee = user.username; affecteUser(task.id, user.username)">
-                              <span class="option-avatar compact">{{ assigneeInitials(user.username) }}</span>
-                              <span>{{ user.username }}</span>
-                            </button>
-                          }
-                        </mat-menu>
-                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                  <ng-template cdkDragPreview>
+                    <div class="drag-preview">
+                      <mat-icon>drag_indicator</mat-icon>
+                      {{ task.title }}
                     </div>
-                  </mat-card-content>
-                </mat-card>
-                <ng-template cdkDragPreview>
-                  <div class="drag-preview">
-                    <mat-icon>drag_indicator</mat-icon>
-                    {{ task.title }}
-                  </div>
-                </ng-template>
-                <ng-template cdkDragPlaceholder>
-                  <div class="drag-placeholder"></div>
-                </ng-template>
-              </div>
-            } @empty {
-              <div class="empty">
-                <mat-icon>inbox</mat-icon>
-                Aucune tâche ici
-              </div>
-            }
-          </div>
-        </mat-card-content>
-      </mat-card>
+                  </ng-template>
+                  <ng-template cdkDragPlaceholder>
+                    <div class="drag-placeholder"></div>
+                  </ng-template>
+                </div>
+              } @empty {
+                <div class="empty">
+                  <mat-icon>inbox</mat-icon>
+                  Aucune tâche ici
+                </div>
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
       </section>
     }
   </div>

@@ -4,6 +4,7 @@ package com.bourgeolet.task_manager.service;
 import com.bourgeolet.task_manager.command.TaskPatchCommand;
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
 import com.bourgeolet.task_manager.entity.Account;
+import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.exception.task.TaskNotFoundException;
@@ -38,6 +39,21 @@ public class TaskService {
             Account account = accountRepository.findAccountByUsername(task.getAccount().getUsername())
                     .orElseThrow(() -> new AccountNotFoundException(task.getAccount().getUsername()));
             task.setAccount(account);
+        }
+        if (task.getTags() != null) {
+            List<Long> tagIds = task.getTags().stream()
+                    .map(Tag::getId)
+                    .toList();
+
+            if (tagIds.isEmpty()) {
+                task.setTags(new java.util.ArrayList<>());
+            } else {
+                var managedTags = tagRepository.findAllById(tagIds);
+                if (managedTags.size() != tagIds.size()) {
+                    throw new IllegalArgumentException("Some tags do not exist");
+                }
+                task.setTags(new java.util.ArrayList<>(managedTags));
+            }
         }
         Task result = taskRepository.save(task);
         outboxService.ticketCreatedAuditEvent(result, actor);
@@ -113,11 +129,17 @@ public class TaskService {
     }
 
     private void changeTags(TaskPatchCommand cmd, Task task) {
-        if (cmd.tags() == null || cmd.tags().isEmpty()) {
+        if (cmd.tagIds() == null || cmd.tagIds().isEmpty()) {
             task.setTags(new java.util.ArrayList<>());
-        } else {
-            task.setTags(new java.util.ArrayList<>(cmd.tags()));
+            return;
         }
+
+        var managedTags = tagRepository.findAllById(cmd.tagIds());
+        if (managedTags.size() != cmd.tagIds().size()) {
+            throw new IllegalArgumentException("Some tags do not exist");
+        }
+
+        task.setTags(new java.util.ArrayList<>(managedTags));
     }
 
     private boolean changeUserAffectee(TaskPatchCommand cmd, Task task, String oldUsername) {
