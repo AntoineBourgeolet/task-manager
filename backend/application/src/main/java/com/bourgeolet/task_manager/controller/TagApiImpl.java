@@ -3,6 +3,7 @@ package com.bourgeolet.task_manager.controller;
 import com.bourgeolet.task_manager.api.tag.TagApi;
 import com.bourgeolet.task_manager.dto.tag.TagCreateDTO;
 import com.bourgeolet.task_manager.dto.tag.TagDeleteDTO;
+import com.bourgeolet.task_manager.dto.tag.TagPatchDTO;
 import com.bourgeolet.task_manager.dto.tag.TagResponseDTO;
 import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.mapper.TagMapper;
@@ -24,6 +25,12 @@ public class TagApiImpl implements TagApi {
     private final TagService tagService;
     private final TagMapper tagMapper;
 
+
+    @Override
+    public ResponseEntity<@NotNull TagResponseDTO> patchTag(TagPatchDTO tagPatchDTO) {
+        Tag tag = tagService.patch(tagMapper.tagPatchDTOToTag(tagPatchDTO), tagPatchDTO.getActor());
+        return ResponseEntity.accepted().body(tagMapper.tagToTagResponseDTO(tag));
+    }
 
     @Override
     public ResponseEntity<@NotNull TagResponseDTO> createTag(TagCreateDTO tagCreateDTO) {

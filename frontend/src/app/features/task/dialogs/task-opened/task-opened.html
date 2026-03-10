@@ -7,7 +7,6 @@
     }
 
     <div class="header-meta">
-
       @if (task.status) {
         <span class="meta-chip status">{{ statusBinded }}</span>
       }
@@ -16,11 +15,7 @@
 
   <div class="header-right">
     @if (task.id) {
-      <button
-        mat-icon-button
-        matTooltip="Copier l'ID"
-        aria-label="Copier l'ID du ticket"
-      >
+      <button mat-icon-button matTooltip="Copier l'ID" aria-label="Copier l'ID du ticket">
         <mat-icon>content_copy</mat-icon>
       </button>
     }
@@ -28,9 +23,11 @@
 </div>
 
 <mat-dialog-content class="ticket-dialog">
-
-  <form class="ticket-form">
-
+  <form
+    class="ticket-form"
+    (ngSubmit)="$event.preventDefault()"
+    (keydown.enter)="$event.preventDefault()"
+  >
     <!-- Titre -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Titre</mat-label>
@@ -76,14 +73,14 @@
       <mat-form-field class="tag-field" appearance="outline">
         <mat-chip-grid #chipGrid aria-label="Tags">
           @for (tag of task.tags; track tag) {
-            <mat-chip-row [editable]="true">
-              <button matChipEdit mat-icon-button aria-label="Modifier le tag">
+            <mat-chip-row [editable]="true" [removable]="true" (removed)="removeTag(tag)" (edited)="editTag(tag, $event)">
+              <button type="button" matChipEdit mat-icon-button aria-label="Modifier le tag">
                 <mat-icon>edit</mat-icon>
               </button>
 
-              {{ tag }}
+              {{ tag.name }}
 
-              <button matChipRemove mat-icon-button aria-label="Supprimer le tag">
+              <button type="button" matChipRemove mat-icon-button aria-label="Supprimer le tag">
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip-row>
@@ -94,16 +91,16 @@
             [matChipInputFor]="chipGrid"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addTag($event)"
+            (keydown.enter)="$event.preventDefault(); $event.stopPropagation()"
           />
         </mat-chip-grid>
       </mat-form-field>
     </div>
-
   </form>
-
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-stroked-button color="warn" (click)="cancelCreate()">Annuler</button>
+  <button mat-stroked-button color="primary" (click)="cancelCreate()">Fermer</button>
   <button mat-raised-button color="primary" (click)="save()">Enregistrer</button>
 </mat-dialog-actions>

@@ -47,6 +47,7 @@ class TagServiceTest {
     @Test
     void create_whenValidInput_shouldSaveAndReturnTag () {
         Tag input = new Tag();
+        when(tagRepository.findByName(input.getName())).thenReturn(java.util.Optional.empty());
         when(tagRepository.save(input)).thenReturn(input);
 
         Tag created = tagService.create(input);
@@ -54,6 +55,7 @@ class TagServiceTest {
         assertThat(created).isSameAs(input);
 
         ArgumentCaptor<Tag> captor = ArgumentCaptor.forClass(Tag.class);
+        verify(tagRepository, times(1)).findByName(input.getName());
         verify(tagRepository, times(1)).save(captor.capture());
         assertThat(captor.getValue()).isSameAs(input);
 

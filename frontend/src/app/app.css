@@ -2,6 +2,54 @@
   flex: 1 1 auto;
 }
 
-button{
-    margin-left: 5px;
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 68px;
+  padding: 0 0.9rem;
+  background: linear-gradient(90deg, #ffffff 0%, #f7f9fc 100%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #1f2937;
+}
+
+.toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.create-fab {
+  transform: scale(0.86);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+.app-content {
+  padding: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .app-toolbar {
+    flex-wrap: wrap;
+    row-gap: 0.45rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

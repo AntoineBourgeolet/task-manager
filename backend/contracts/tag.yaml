@@ -48,6 +48,23 @@ paths:
         '204':
           description: Tag deleted successfully
 
+    patch:
+      summary: Update a tag
+      operationId: patchTag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagPatchDTO'
+      responses:
+        '200':
+          description: Tag updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponseDTO'
+
 components:
   schemas:
     TagCreateDTO:
@@ -65,11 +82,12 @@ components:
       type: object
       properties:
         actor:
-            type: string
+          type: string
         id:
           type: integer
           format: int64
       required:
+        - actor
         - id
 
     TagResponseDTO:
@@ -81,5 +99,20 @@ components:
         name:
           type: string
       required:
+        - id
+        - name
+
+    TagPatchDTO:
+      type: object
+      properties:
+        actor:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      required:
+        - actor
         - id
         - name

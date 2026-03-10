@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskCreateDialog } from './features/task/dialogs/task-create/task-create';
@@ -11,7 +12,7 @@ import { UserCreateComponent } from './features/user/dialogs/user-create/user-cr
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIconModule, MatButtonModule, MatToolbarModule],
+  imports: [RouterOutlet, MatIconModule, MatButtonModule, MatToolbarModule, MatMenuModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

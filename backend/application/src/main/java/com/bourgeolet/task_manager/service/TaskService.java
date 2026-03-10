@@ -4,7 +4,6 @@ package com.bourgeolet.task_manager.service;
 import com.bourgeolet.task_manager.command.TaskPatchCommand;
 import com.bourgeolet.task_manager.dto.task.TaskStatus;
 import com.bourgeolet.task_manager.entity.Account;
-import com.bourgeolet.task_manager.entity.Tag;
 import com.bourgeolet.task_manager.entity.Task;
 import com.bourgeolet.task_manager.exception.account.AccountNotFoundException;
 import com.bourgeolet.task_manager.exception.task.TaskNotFoundException;
@@ -27,6 +26,12 @@ public class TaskService {
 
     private final OutboxService outboxService;
 
+    private static boolean changeStatus(TaskPatchCommand cmd, Task task, TaskStatus oldStatus) {
+        boolean statusChanged;
+        task.setStatus(cmd.status());
+        statusChanged = !oldStatus.name().equals(cmd.status().name());
+        return statusChanged;
+    }
 
     public Task create(Task task, String actor) {
         if (task.getAccount() != null && task.getAccount().getUsername() != null) {
@@ -45,8 +50,7 @@ public class TaskService {
         taskRepository.delete(tasks);
     }
 
-
-    public List<Task>   getTasksByUserId(String username) throws AccountNotFoundException {
+    public List<Task> getTasksByUserId(String username) throws AccountNotFoundException {
         accountRepository.findAccountByUsername(username)
                 .orElseThrow(() -> new AccountNotFoundException(username));
 
@@ -61,7 +65,6 @@ public class TaskService {
     public List<Task> findAll() {
         return taskRepository.findAll();
     }
-
 
     public Task patchTask(TaskPatchCommand cmd) {
         Task task = taskRepository.findById(cmd.taskId())
@@ -110,13 +113,10 @@ public class TaskService {
     }
 
     private void changeTags(TaskPatchCommand cmd, Task task) {
-        if (cmd.tagIds().isEmpty()) {
-            task.setTags(Collections.emptyList());
+        if (cmd.tags() == null || cmd.tags().isEmpty()) {
+            task.setTags(new java.util.ArrayList<>());
         } else {
-            List<Tag> tags = cmd.tagIds().stream()
-                    .map(id -> tagRepository.findById(id).orElse(null))
-                    .toList();
-            task.setTags(tags);
+            task.setTags(new java.util.ArrayList<>(cmd.tags()));
         }
     }
 
@@ -130,12 +130,5 @@ public class TaskService {
         task.setAccount(account);
         userChanged = !oldUsername.equals(cmd.userAffectee());
         return userChanged;
-    }
-
-    private static boolean changeStatus(TaskPatchCommand cmd, Task task, TaskStatus oldStatus) {
-        boolean statusChanged;
-        task.setStatus(cmd.status());
-        statusChanged = !oldStatus.name().equals(cmd.status().name());
-        return statusChanged;
     }
 }

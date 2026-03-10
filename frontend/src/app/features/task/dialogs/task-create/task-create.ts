@@ -13,6 +13,7 @@ import {
   MatChipInput,
 } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { UserService } from '../../../user/data-access/user.api';
@@ -20,9 +21,13 @@ import { User } from '../../../user/models/user';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../data-access/task.api';
 import { TaskEventsService } from '../../data-access/task-events.service';
-import { Tag } from '../../../tag/models/tag';
+import { TagCreateDto } from '../../../tag/models/tag-create-dto';
 import { TaskCreateDto } from '../../models/task-create-dto';
 import { buildTaskCreateDTO } from '../../data-access/builders/task-create.builder';
+
+interface TaskCreateTag {
+  name: string;
+}
 
 @Component({
   selector: 'task-create',
@@ -37,6 +42,7 @@ import { buildTaskCreateDTO } from '../../data-access/builders/task-create.build
     MatIconModule,
     MatChipInput,
     MatChipsModule,
+    MatSnackBarModule,
     FormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,12 +54,13 @@ export class TaskCreateDialog implements OnInit {
   private readonly dialogRef = inject(MatDialogRef<TaskCreateDialog>);
   private readonly userService = inject(UserService);
   private readonly taskService = inject(TaskService);
+  private readonly snackBar = inject(MatSnackBar);
 
   private readonly actor: string = 'AntoineActor';
 
   public readonly addOnBlur = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  public readonly tags = signal<Tag[]>([]);
+  public readonly tags = signal<TaskCreateTag[]>([]);
   public readonly announcer = inject(LiveAnnouncer);
 
   private taskCreateDto: TaskCreateDto = buildTaskCreateDTO();
@@ -77,17 +84,31 @@ export class TaskCreateDialog implements OnInit {
     });
   }
 
+  private showSuccess(message: string): void {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
+  }
+
   createTask(): void {
+    const tagsPayload: TagCreateDto[] = this.tags().map((tag) => ({
+      actor: this.actor,
+      name: tag.name,
+    }));
+
     this.taskCreateDto = {
       actor: this.actor,
       title: this.titre,
       description: this.description,
       userAffectee: this.utilisateurAffecte,
       priority: this.priority,
-      tags: this.tags(),
+      tags: tagsPayload,
     };
     this.taskService.create(this.taskCreateDto).subscribe(() => {
       this.taskEvents.notifyRefresh();
+      this.showSuccess('Creation reussie');
       this.dialogRef.close();
     });
   }
@@ -103,7 +124,7 @@ export class TaskCreateDialog implements OnInit {
     }
   }
 
-  remove(tag: Tag): void {
+  remove(tag: TaskCreateTag): void {
     this.tags.update((tags) => {
       const index = tags.indexOf(tag);
       if (index < 0) {
@@ -116,7 +137,7 @@ export class TaskCreateDialog implements OnInit {
     });
   }
 
-  edit(tag: Tag, event: MatChipEditedEvent) {
+  edit(tag: TaskCreateTag, event: MatChipEditedEvent) {
     const value = event.value.trim();
     if (!value) {
       this.remove(tag);

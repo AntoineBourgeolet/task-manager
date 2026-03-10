@@ -2,6 +2,7 @@ package com.bourgeolet.task_manager.mapper;
 
 import com.bourgeolet.task_manager.dto.tag.TagCreateDTO;
 import com.bourgeolet.task_manager.dto.tag.TagDeleteDTO;
+import com.bourgeolet.task_manager.dto.tag.TagPatchDTO;
 import com.bourgeolet.task_manager.dto.tag.TagResponseDTO;
 import com.bourgeolet.task_manager.entity.Tag;
 import jakarta.validation.Valid;
@@ -23,5 +24,13 @@ public class TagMapper {
 
     public Tag tagDeleteDTOToTag(@Valid TagDeleteDTO tagDeleteDTO) {
         return Tag.builder().id(tagDeleteDTO.getId()).build();
+    }
+
+    public Tag tagPatchDTOToTag(TagPatchDTO tagPatchDTO) {
+        return Tag.builder().id(tagPatchDTO.getId()).name(tagPatchDTO.getName()).build();
+    }
+
+    public Tag tagPatchDTOToTag(com.bourgeolet.task_manager.dto.task.TagPatchDTO tagPatchDTO) {
+        return Tag.builder().id(tagPatchDTO.getId()).name(tagPatchDTO.getName()).build();
     }
 }

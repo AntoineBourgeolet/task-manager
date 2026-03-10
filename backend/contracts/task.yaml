@@ -212,7 +212,7 @@ components:
         tags:
           type: array
           items:
-            $ref: './tag.yaml#/components/schemas/TagCreateDTO'
+            $ref: './tag.yaml#/components/schemas/TagPatchDTO'
           description: Nouveaux tags
 
     TaskChangeUserAffecteeDTO:

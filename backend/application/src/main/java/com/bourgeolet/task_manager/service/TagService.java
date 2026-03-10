@@ -18,10 +18,16 @@ public class TagService {
     }
 
     public Tag create(Tag tag) {
-        return tagRepository.save(tag);
+        return tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag));
     }
 
     public void delete(Tag tag) {
         tagRepository.delete(tag);
+    }
+
+    @SuppressWarnings("notused")
+    public Tag patch(Tag tag, String actor) {
+        tagRepository.findById(tag.getId()).orElseThrow(() -> new RuntimeException("Le tag n'existe pas"));
+        return tagRepository.save(tag);
     }
 }

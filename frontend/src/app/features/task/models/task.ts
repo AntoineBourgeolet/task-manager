@@ -1,4 +1,5 @@
 import { ColumnId } from "../../../../environments/type";
+import { Tag } from "../../tag/models/tag";
 
 export interface Task {
   id: number;
@@ -6,7 +7,7 @@ export interface Task {
   description?: string;
   userAffectee?: string | null;
   priority?: number;
-  tags?: string[] | null;
+  tags?: Tag[] | null;
   status?: ColumnId;
 }
 

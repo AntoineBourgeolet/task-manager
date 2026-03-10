@@ -14,8 +14,6 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { TaskService } from '../../../task/data-access/task.api';
 import { Task } from '../../../task/models/task';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { User } from '../../../user/models/user';
 import { UserService } from '../../../user/data-access/user.api';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -23,6 +21,8 @@ import { TaskEventsService } from '../../../task/data-access/task-events.service
 import { TaskOpenedComponent } from '../../../task/dialogs/task-opened/task-opened';
 import { take } from 'rxjs';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Board } from '../../../../../environments/type';
 import { columnsTemplate } from '../../../../../environments/const';
 import {
@@ -43,11 +43,11 @@ import { buildTaskPathDTO } from '../../../task/data-access/builders/task-patch.
     MatIconModule,
     MatChipsModule,
     MatDividerModule,
-    MatFormFieldModule,
-    MatSelectModule,
     MatDialogModule,
     MatMenuTrigger,
     MatMenuModule,
+    MatSnackBarModule,
+    MatTooltipModule,
   ],
 })
 export class Dashboard implements OnInit {
@@ -56,6 +56,7 @@ export class Dashboard implements OnInit {
   private readonly taskEvents = inject(TaskEventsService);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly dialog = inject(MatDialog);
+  private readonly snackBar = inject(MatSnackBar);
 
   private readonly actor: string = 'AntoineActor';
 
@@ -85,9 +86,18 @@ export class Dashboard implements OnInit {
     });
   }
 
+  private showSuccess(message: string): void {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+    });
+  }
+
   openTask(id: number | string) {
     const dialogRef = this.dialog.open(TaskOpenedComponent, {
       data: { id },
+      disableClose: true,
     });
 
     dialogRef
@@ -106,6 +116,7 @@ export class Dashboard implements OnInit {
 
     this.taskService.delete(idTask, this.taskDeleteDto).subscribe(() => {
       this.loadBoard();
+      this.showSuccess('Suppression reussie');
       this.cdr.detectChanges();
     });
   }
@@ -121,7 +132,7 @@ export class Dashboard implements OnInit {
     });
   }
 
-  affecteUser(idTask: number, newTaskUser: string): void {
+  affecteUser(idTask: number, newTaskUser: string | null): void {
     this.taskPatchDto = buildTaskPathDTO({
       actor: this.actor,
       userAffectee: newTaskUser
@@ -162,5 +173,51 @@ export class Dashboard implements OnInit {
   }
   priorityChipClass(p: number | undefined) {
     return { p1: p === 1, p2: p === 2, p3: p === 3 };
+  }
+
+  priorityLabel(p: number | undefined): string {
+    if (p === 1) {
+      return 'Haute';
+    }
+
+    if (p === 2) {
+      return 'Moyenne';
+    }
+
+    if (p === 3) {
+      return 'Basse';
+    }
+
+    return 'Non definie';
+  }
+
+  assigneeInitials(username: string | null | undefined): string {
+    if (!username?.trim()) {
+      return '?';
+    }
+
+    return username
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? '')
+      .join('');
+  }
+
+  totalTasks(): number {
+    return Object.values(this.board).reduce((sum, tasks) => sum + tasks.length, 0);
+  }
+
+  doneTasks(): number {
+    return this.board['DONE'].length;
+  }
+
+  completionRate(): number {
+    const total = this.totalTasks();
+    if (total === 0) {
+      return 0;
+    }
+
+    return Math.round((this.doneTasks() / total) * 100);
   }
 }

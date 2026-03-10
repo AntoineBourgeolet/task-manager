@@ -1,13 +1,39 @@
-<mat-toolbar>
-    <button matIconButton class="icon" aria-label="icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Task Manager Antoine</span>
-    <span class="spacer"></span>
-        <button matButton="elevated" (click)="createTask()">Créer un ticket</button>
-        <button matButton="elevated" (click)="createUser()">Créer un Utilisateur</button>
+<mat-toolbar class="app-toolbar">
+    <div class="brand-wrap">
+        <button matIconButton class="icon" aria-label="Menu principal">
+            <mat-icon>dashboard</mat-icon>
+        </button>
+        <span class="brand-title">Task Manager Antoine</span>
+    </div>
 
-    
+    <span class="spacer"></span>
+
+    <div class="toolbar-actions">
+        <button
+            mat-fab
+            color="primary"
+            class="create-fab"
+            aria-label="Actions de creation"
+            [matMenuTriggerFor]="createMenu"
+            #createMenuTrigger="matMenuTrigger"
+            (mouseenter)="createMenuTrigger.openMenu()"
+        >
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <mat-menu #createMenu="matMenu" xPosition="before" yPosition="below">
+            <button mat-menu-item (click)="createTask()">
+                <mat-icon>confirmation_number</mat-icon>
+                <span>Créer un ticket</span>
+            </button>
+            <button mat-menu-item (click)="createUser()">
+                <mat-icon>person_add</mat-icon>
+                <span>Créer un utilisateur</span>
+            </button>
+        </mat-menu>
+    </div>
 </mat-toolbar>
 
-<router-outlet />
+<main class="app-content">
+    <router-outlet />
+</main>

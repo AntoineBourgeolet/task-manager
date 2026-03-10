@@ -1,4 +1,4 @@
-import { Tag } from '../../tag/models/tag';
+import { TagCreateDto } from '../../tag/models/tag-create-dto';
 
 export interface TaskCreateDto {
   actor: string;
@@ -6,5 +6,5 @@ export interface TaskCreateDto {
   description: string | null | undefined;
   userAffectee: string | null | undefined;
   priority: number | null | undefined;
-  tags: Tag[] | null | undefined;
+  tags: TagCreateDto[] | null | undefined;
 }
