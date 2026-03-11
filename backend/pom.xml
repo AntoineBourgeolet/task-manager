@@ -25,6 +25,7 @@
         <module>api-tag</module>
         <module>api-account</module>
         <module>api-task</module>
+        <module>api-auth</module>
     </modules>
 
     <properties>
@@ -39,5 +40,6 @@
         <swagger-annotations.version>2.2.19</swagger-annotations.version>
         <jackson-databind-nullable.version>0.2.9</jackson-databind-nullable.version>
         <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
+        <jjwt.version>0.12.6</jjwt.version>
     </properties>
 </project>

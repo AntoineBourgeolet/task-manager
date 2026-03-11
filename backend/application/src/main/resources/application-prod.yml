@@ -43,3 +43,10 @@ springdoc:
     enabled: false
   swagger-ui:
     enabled: false
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY}
+      access-token-expiration: 3600000
+      refresh-token-expiration: 604800000

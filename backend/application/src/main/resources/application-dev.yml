@@ -42,3 +42,10 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+
+application:
+  security:
+    jwt:
+      secret-key: dGFza01hbmFnZXJTZWNyZXRLZXlGb3JKV1RBdXRoZW50aWNhdGlvbjIwMjQ=
+      access-token-expiration: 3600000
+      refresh-token-expiration: 604800000
