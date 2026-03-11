@@ -22,7 +22,7 @@
   font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: 0.01em;
-  color: #1f2937;
+  color: #18072e;
 }
 
 .toolbar-actions {
@@ -33,7 +33,8 @@
 
 .create-fab {
   transform: scale(0.86);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+  background-color: #87aadb;
+  box-shadow: 0 4px 10px rgba(2, 10, 28, 0.249);
 }
 
 .app-content {

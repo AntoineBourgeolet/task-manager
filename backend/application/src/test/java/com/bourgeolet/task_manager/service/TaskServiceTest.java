@@ -141,13 +141,14 @@ class TaskServiceTest {
     @Test
     void patchTask_whenAllPresentFlagsTrue_shouldPatchAllFieldsAndEmitEvents() {
         when(taskRepository.findById(42L)).thenReturn(Optional.of(task));
-        when(accountRepository.findAccountByUsername("newUser")).thenReturn(Optional.ofNullable(accountNew));
+        when(accountRepository.findAccountByUsername("newUser")).thenReturn(Optional.of(accountNew));
+
         Tag tag1 = new Tag();
         tag1.setId(1L);
         Tag tag2 = new Tag();
         tag2.setId(2L);
-        when(tagRepository.findById(1L)).thenReturn(Optional.of(tag1));
-        when(tagRepository.findById(2L)).thenReturn(Optional.of(tag2));
+
+        when(tagRepository.findAllById(List.of(1L,2L))).thenReturn(List.of(tag1, tag2));
         when(taskRepository.save(any(Task.class))).thenAnswer(inv -> inv.getArgument(0));
 
         TaskPatchCommand cmd = TaskPatchCommand.builder()
@@ -175,8 +176,11 @@ class TaskServiceTest {
         assertThat(result.getDescription()).isEqualTo("new-desc");
         assertThat(result.getPriority()).isEqualTo(9);
         assertThat(result.getTags()).containsExactly(tag1, tag2);
-        verify(outboxService).ticketStatusChangedAuditEvent(result, "TODO", "DONE", "actor");
-        verify(outboxService).ticketChangedUserAffecteeAuditEvent(result, "oldUser", "newUser", "actor");
+
+        InOrder inOrder = inOrder(outboxService);
+        inOrder.verify(outboxService).ticketStatusChangedAuditEvent(result, "TODO", "DONE", "actor");
+        inOrder.verify(outboxService).ticketChangedUserAffecteeAuditEvent(result, "oldUser", "newUser", "actor");
+        verifyNoMoreInteractions(outboxService);
     }
 
     @Test
