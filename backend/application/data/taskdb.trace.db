@@ -86,3 +86,19 @@ Caused by: java.lang.AssertionError: 12
 	at org.h2.mvstore.FileStore.executeFileStoreOperation(FileStore.java:1894)
 	at org.h2.mvstore.MVStore.executeFilestoreOperation(MVStore.java:1044)
 	... 19 more
+2026-03-12 10:03:02.753453+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La table "HTE_TAG" existe déjà
+Table "HTE_TAG" already exists; SQL statement:
+create global temporary table HTE_tag(rn_ integer not null, id bigint, name varchar(255), primary key (rn_)) transactional [42101-240]
+2026-03-12 10:03:02.762876+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La table "HTE_TASK" existe déjà
+Table "HTE_TASK" already exists; SQL statement:
+create global temporary table HTE_task(priority integer, rn_ integer not null, account_id bigint, id bigint, description varchar(255), title varchar(255), status enum ('BLOCKED','DOING','DONE','TESTING','TODO'), primary key (rn_)) transactional [42101-240]
+2026-03-12 10:05:07.256830+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La table "HTE_TAG" existe déjà
+Table "HTE_TAG" already exists; SQL statement:
+create global temporary table HTE_tag(rn_ integer not null, id bigint, name varchar(255), primary key (rn_)) transactional [42101-240]
+2026-03-12 10:05:07.267149+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La table "HTE_TASK" existe déjà
+Table "HTE_TASK" already exists; SQL statement:
+create global temporary table HTE_task(priority integer, rn_ integer not null, account_id bigint, id bigint, description varchar(255), title varchar(255), status enum ('BLOCKED','DOING','DONE','TESTING','TODO'), primary key (rn_)) transactional [42101-240]

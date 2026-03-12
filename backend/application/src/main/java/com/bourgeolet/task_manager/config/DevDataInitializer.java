@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,13 +23,13 @@ public class DevDataInitializer implements ApplicationRunner {
     private static final String ADMIN_EMAIL    = "admin@dev.local";
 
     private final AccountRepository accountRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${app.admin.initial-password}")
     private String adminInitialPassword;
 
     public DevDataInitializer(AccountRepository accountRepository,
-                               BCryptPasswordEncoder passwordEncoder) {
+                               PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
         this.passwordEncoder   = passwordEncoder;
     }
