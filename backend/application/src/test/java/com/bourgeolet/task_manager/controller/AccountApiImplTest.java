@@ -2,15 +2,19 @@ package com.bourgeolet.task_manager.controller;
 
 import com.bourgeolet.task_manager.dto.account.AccountCreateDTO;
 import com.bourgeolet.task_manager.dto.account.AccountResponseDTO;
+import com.bourgeolet.task_manager.dto.account.LoginRequestDTO;
+import com.bourgeolet.task_manager.dto.account.LoginResponseDTO;
 import com.bourgeolet.task_manager.entity.Account;
 import com.bourgeolet.task_manager.mapper.AccountMapper;
 import com.bourgeolet.task_manager.service.AccountService;
+import com.bourgeolet.task_manager.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 
 import java.util.List;
 
@@ -25,6 +29,9 @@ class AccountApiImplTest {
 
     @Mock
     private AccountMapper accountMapper;
+
+    @Mock
+    private AuthService authService;
 
     @InjectMocks
     private AccountApiImpl accountApi;
@@ -93,5 +100,41 @@ class AccountApiImplTest {
         verify(accountService).getAll();
         verify(accountMapper).accountToAccountResponseDTO(account1);
         verify(accountMapper).accountToAccountResponseDTO(account2);
+    }
+
+    @Test
+    void login_whenCredentialsAreValid_shouldReturnOkWithTokenPayload() {
+        LoginRequestDTO loginRequestDTO = LoginRequestDTO.builder()
+            .username("admin")
+            .password("secret")
+            .build();
+        LoginResponseDTO loginResponseDTO = LoginResponseDTO.builder()
+            .token("jwt-token")
+            .type("Bearer")
+            .build();
+
+        when(authService.login(loginRequestDTO)).thenReturn(loginResponseDTO);
+
+        ResponseEntity<LoginResponseDTO> response = accountApi.login(loginRequestDTO);
+
+        assertThat(response.getStatusCode().value()).isEqualTo(200);
+        assertThat(response.getBody()).isEqualTo(loginResponseDTO);
+        verify(authService).login(loginRequestDTO);
+    }
+
+    @Test
+    void login_whenCredentialsAreInvalid_shouldReturnUnauthorizedWithoutBody() {
+        LoginRequestDTO loginRequestDTO = LoginRequestDTO.builder()
+            .username("admin")
+            .password("wrong-password")
+            .build();
+
+        when(authService.login(loginRequestDTO)).thenThrow(new BadCredentialsException("invalid credentials"));
+
+        ResponseEntity<LoginResponseDTO> response = accountApi.login(loginRequestDTO);
+
+        assertThat(response.getStatusCode().value()).isEqualTo(401);
+        assertThat(response.getBody()).isNull();
+        verify(authService).login(loginRequestDTO);
     }
 }

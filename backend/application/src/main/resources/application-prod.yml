@@ -43,3 +43,9 @@ springdoc:
     enabled: false
   swagger-ui:
     enabled: false
+
+app:
+  auth:
+    jwt:
+      secret: ${APP_AUTH_JWT_SECRET:task-manager-prod-jwt-secret-key-2026-please-change}
+      ttl: ${APP_AUTH_JWT_TTL:PT15M}

@@ -4,6 +4,25 @@ info:
   version: 1.0.0
 
 paths:
+  /auth/login:
+    post:
+      summary: Authenticate a user and return a JWT
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestDTO'
+      responses:
+        '200':
+          description: Authenticated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseDTO'
+        '401':
+          description: Invalid credentials
   /account:
     post:
       summary: Create a new account
@@ -56,6 +75,36 @@ paths:
 
 components:
   schemas:
+    LoginRequestDTO:
+      type: object
+      description: Credentials used to authenticate a user.
+      properties:
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+        - username
+        - password
+
+    LoginResponseDTO:
+      type: object
+      description: Stable authentication response containing the JWT and its metadata.
+      properties:
+        token:
+          type: string
+        expiration:
+          type: string
+          format: date-time
+        type:
+          type: string
+      required:
+        - token
+        - expiration
+        - type
+
     AccountCreateDTO:
       type: object
       description: "DTO d'entrée pour la création d'un compte (adapter aux champs réels)."

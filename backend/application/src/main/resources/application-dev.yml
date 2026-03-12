@@ -46,3 +46,7 @@ springdoc:
 app:
   admin:
     initial-password: ${ADMIN_INITIAL_PASSWORD:admin_dev_pass}
+  auth:
+    jwt:
+      secret: ${APP_AUTH_JWT_SECRET:task-manager-dev-jwt-secret-key-2026-please-change}
+      ttl: ${APP_AUTH_JWT_TTL:PT15M}
