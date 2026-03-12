@@ -42,3 +42,7 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+
+app:
+  admin:
+    initial-password: ${ADMIN_INITIAL_PASSWORD:admin_dev_pass}
